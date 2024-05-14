@@ -64,14 +64,6 @@ export default function ApartmentsGrids() {
                 }}
               >
                 <Box sx={{ textAlign: "center" }}>
-                  <ViewInAr />
-                  <Typography sx={{ color: "rgba(12, 175, 255, 1)" }}>
-                    Size
-                  </Typography>
-                  <Typography>{apartment?.apartment?.size} m2</Typography>
-                </Box>
-
-                <Box sx={{ textAlign: "center" }}>
                   <Bed />
                   <Typography sx={{ color: "rgba(12, 175, 255, 1)" }}>
                     Rooms
@@ -86,6 +78,14 @@ export default function ApartmentsGrids() {
                     Type
                   </Typography>
                   <Typography>Apartment</Typography>
+                </Box>
+
+                <Box sx={{ textAlign: "center" }}>
+                  <ViewInAr />
+                  <Typography sx={{ color: "rgba(12, 175, 255, 1)" }}>
+                    Size
+                  </Typography>
+                  <Typography>{apartment?.apartment?.size} m2</Typography>
                 </Box>
               </CardContent>
 
