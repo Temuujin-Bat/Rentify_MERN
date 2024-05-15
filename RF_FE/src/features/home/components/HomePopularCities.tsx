@@ -34,7 +34,7 @@ export default function HomePopularCities() {
       {cities.map((city, index) => (
         <Grid xs={12} sm={12} md={4} lg={4} key={index}>
           <Link
-            href={`rent?city=${city.name}`}
+            href={`/apartments?city=${city.name}`}
             sx={{
               display: "flex",
               flexDirection: "row",

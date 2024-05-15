@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 import * as dotenv from "dotenv";
 dotenv.config();
 const app = express();
@@ -10,6 +11,7 @@ import apartmentRouter from "./routes/apartmentRouter.js";
 /// Middleware
 ///
 app.use(express.json());
+app.use(cors());
 
 ///
 /// Routes

@@ -2,7 +2,7 @@ import Apartment from "../models/apartmentModel.js";
 
 export const getAllApartments = async (req, res) => {
   try {
-    const apartments = req.body;
+    const apartments = await Apartment.find({});
 
     res.status(200).json({
       message: "Apartments retrieved successfully!",

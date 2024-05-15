@@ -9,10 +9,13 @@ import {
 } from "@mui/material";
 import { Apartment, Bed, ViewInAr } from "@mui/icons-material";
 
-import { apartments } from "../../../data";
+// import { apartments } from "../../../data";
 import ApartmentsGridsImagesList from "./ApartmentsGridsImagesList";
+import { getApartmentsData } from "../../../store/apartments/selectors";
 
 export default function ApartmentsGrids() {
+  const { apartments } = getApartmentsData();
+
   return (
     <Grid container spacing={5}>
       {apartments.map((apartment, index) => (

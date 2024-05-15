@@ -1,5 +1,6 @@
 export const apartments = [
   {
+    id: 1,
     name: "Jane Smith",
     phone: 9876543210,
     price: 1500,
@@ -29,6 +30,7 @@ export const apartments = [
     planType: "silver",
   },
   {
+    id: 2,
     name: "Michael Johnson",
     phone: 1122334455,
     price: 1000,
@@ -59,6 +61,7 @@ export const apartments = [
     planType: "bronze",
   },
   {
+    id: 3,
     name: "Emily Davis",
     phone: 5566778899,
     price: 1800,
