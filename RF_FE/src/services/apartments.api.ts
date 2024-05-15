@@ -1,8 +1,11 @@
 import axios from "axios";
 
-async function ApartmentsController() {
+async function ApartmentsController(city: string | null) {
   try {
-    const result = await axios.get("http://localhost:1010/api/v1/apartments");
+    const params = city ? { city } : {};
+    const result = await axios.get("http://localhost:1010/api/v1/apartments", {
+      params,
+    });
 
     return result.data.apartments;
   } catch (error) {

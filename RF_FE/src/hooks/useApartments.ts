@@ -4,12 +4,12 @@ import { useEffect } from "react";
 import { ApartmentsController } from "../services/apartments.api";
 import { setApartments } from "../store/apartments/slice";
 
-export function useGetApartmentsAPI() {
+export function useGetApartmentsAPI(city: string | null) {
   const dispatch = useDispatch();
 
   const { data, isSuccess } = useQuery({
-    queryKey: ["apartments"],
-    queryFn: ApartmentsController,
+    queryKey: ["apartments", city],
+    queryFn: () => ApartmentsController(city),
   });
 
   useEffect(() => {

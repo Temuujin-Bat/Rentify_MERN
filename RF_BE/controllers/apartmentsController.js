@@ -2,7 +2,9 @@ import Apartment from "../models/apartmentModel.js";
 
 export const getAllApartments = async (req, res) => {
   try {
-    const apartments = await Apartment.find({});
+    const { city } = req.query;
+    const query = city ? { "address.city": city } : {};
+    const apartments = await Apartment.find(query);
 
     res.status(200).json({
       message: "Apartments retrieved successfully!",

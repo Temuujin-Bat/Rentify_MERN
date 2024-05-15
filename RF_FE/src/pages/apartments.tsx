@@ -8,9 +8,7 @@ import { useParamsURL } from "../hooks/useParamsURL";
 export default function apartments() {
   const result = useParamsURL().get("city");
 
-  console.log(result);
-
-  useGetApartmentsAPI();
+  useGetApartmentsAPI(result);
 
   return (
     <Container maxWidth={"lg"}>
