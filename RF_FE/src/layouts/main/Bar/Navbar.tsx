@@ -1,9 +1,11 @@
 import { Box, Button, Container, Link, Typography } from "@mui/material";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import { useNavigate } from "react-router-dom";
+import { getAuthData } from "../../../store/auth/selectors";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const { authDetails } = getAuthData();
 
   return (
     <Container
@@ -57,25 +59,54 @@ export default function Navbar() {
       </Box>
 
       {/* LOGIN BUTTON */}
-      <Button
-        variant="outlined"
-        sx={{
-          borderRadius: "20px",
-          color: "rgba(12, 175, 255, 1)",
-          fontWeight: "bold",
-          border: "2px solid rgba(12, 175, 255, 1)",
-          fontSize: ".6em",
-        }}
-        onClick={() => navigate("/login")}
-      >
-        login
-      </Button>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        {authDetails ? (
+          <Button
+            sx={{
+              borderRadius: "20px",
+              color: "rgba(12, 175, 255, 1)",
+              fontWeight: "bold",
+              border: "2px solid rgba(12, 175, 255, 1)",
+              fontSize: ".6em",
+            }}
+          >
+            {authDetails.firstName}
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            sx={{
+              borderRadius: "20px",
+              color: "rgba(12, 175, 255, 1)",
+              fontWeight: "bold",
+              border: "2px solid rgba(12, 175, 255, 1)",
+              fontSize: ".6em",
+            }}
+            onClick={() => navigate("/login")}
+          >
+            Login
+          </Button>
+        )}
+
+        <Button
+          variant="outlined"
+          sx={{
+            borderRadius: "20px",
+            color: "rgba(12, 175, 255, 1)",
+            fontWeight: "bold",
+            border: "2px solid rgba(12, 175, 255, 1)",
+            fontSize: ".6em",
+          }}
+          onClick={() => navigate("/addAds")}
+        >
+          Create AD
+        </Button>
+      </Box>
     </Container>
   );
 }
 
 const pages = [
-  { url: "apartments", name: "Search rentals" },
-  { url: "addList", name: "Add listing" },
+  { url: "apartments", name: "Apartments" },
   { url: "blog", name: "Blog" },
 ];

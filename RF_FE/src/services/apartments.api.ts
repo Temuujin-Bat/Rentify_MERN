@@ -16,4 +16,12 @@ async function ApartmentsController(city: string | null) {
   }
 }
 
-export { ApartmentsController };
+const createApartmentController = async (formData) => {
+  const response = await axios.post(
+    "http://localhost:1010/api/v1/apartments",
+    formData
+  );
+  return response.data;
+};
+
+export { ApartmentsController, createApartmentController };

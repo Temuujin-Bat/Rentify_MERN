@@ -1,8 +1,11 @@
 import { Router } from "express";
-import { getAllApartments } from "../controllers/apartmentsController.js";
+import {
+  addApartment,
+  getAllApartments,
+} from "../controllers/apartmentsController.js";
 
 const router = Router();
 
-router.route("/").get(getAllApartments);
+router.route("/").get(getAllApartments).post(addApartment);
 
 export default router;

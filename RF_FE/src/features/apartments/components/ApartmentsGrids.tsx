@@ -53,7 +53,6 @@ export default function ApartmentsGrids() {
                     fontWeight: "bold",
                   }}
                 >
-                  {apartment?.address?.neighborhood} /{" "}
                   {apartment?.address?.city}
                 </Typography>
               </CardMedia>

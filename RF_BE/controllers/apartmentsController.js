@@ -12,7 +12,20 @@ export const getAllApartments = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      message: "Error retrieving apartments",
+      message: "Error retrieving apartments backend",
+      error: error.message,
+    });
+  }
+};
+
+export const addApartment = async (req, res) => {
+  try {
+    const newApartment = await Apartment.create(req.body);
+
+    res.status(201).json(newApartment);
+  } catch (error) {
+    res.status(500).json({
+      message: "Error creating apartments backend",
       error: error.message,
     });
   }

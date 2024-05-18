@@ -15,7 +15,6 @@ const apartmentSchema = new mongoose.Schema(
       city: { type: String, required: true },
       street: { type: String, required: true },
       buildingNumber: { type: Number, required: true },
-      neighborhood: { type: String, required: true },
       zipCode: { type: Number, required: true },
     },
     tags: {

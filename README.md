@@ -1,1 +1,0 @@
-# Rentify_MERN
