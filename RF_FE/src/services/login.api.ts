@@ -4,7 +4,8 @@ async function LoginController(loginData) {
   try {
     const response = await axios.post(
       "http://localhost:1010/api/v1/auth/login",
-      loginData
+      loginData,
+      { withCredentials: true }
     );
 
     return response;
