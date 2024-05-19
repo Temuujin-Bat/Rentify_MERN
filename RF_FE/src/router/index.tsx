@@ -4,9 +4,13 @@ import { MainLayout } from "../layouts";
 
 import HomePage from "../pages/home";
 import ApartmentsPage from "../pages/apartments";
+import BlogPage from "../pages/blog";
 import AddAdsPage from "../pages/addAds";
 import RegisterPage from "../pages/register";
 import LoginPage from "../pages/login";
+
+import { AuthRedirect } from "./AuthRedirect";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 const InitRoutes = () => {
   return useRoutes([
@@ -22,8 +26,16 @@ const InitRoutes = () => {
           element: <ApartmentsPage />,
         },
         {
+          path: "/blog",
+          element: <BlogPage />,
+        },
+        {
           path: "/addAds",
-          element: <AddAdsPage />,
+          element: (
+            <ProtectedRoute>
+              <AddAdsPage />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "/register",
@@ -31,7 +43,11 @@ const InitRoutes = () => {
         },
         {
           path: "/login",
-          element: <LoginPage />,
+          element: (
+            <AuthRedirect>
+              <LoginPage />
+            </AuthRedirect>
+          ),
         },
       ],
     },

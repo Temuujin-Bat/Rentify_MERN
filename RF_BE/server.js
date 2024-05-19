@@ -5,6 +5,7 @@ import morgan from "morgan";
 import * as dotenv from "dotenv";
 dotenv.config();
 const app = express();
+import cookieParser from "cookie-parser";
 
 import apartmentRouter from "./routes/apartmentRouter.js";
 import authRouter from "./routes/authRouter.js";
@@ -14,6 +15,7 @@ import authRouter from "./routes/authRouter.js";
 ///
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 app.use(morgan("dev"));
 
 ///

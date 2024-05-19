@@ -6,7 +6,7 @@ const authDetails = localStorage.getItem("user");
 
 const initialState = {
   tokenDetails: localStorage.getItem("token") || "",
-  authDetails: JSON.parse(authDetails) || {},
+  authDetails: JSON.parse(authDetails) || null,
 };
 
 const authSlice = createSlice({

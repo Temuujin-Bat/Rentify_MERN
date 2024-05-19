@@ -1,7 +1,8 @@
 import Grid from "@mui/material/Unstable_Grid2";
 import { useState } from "react";
-import { createApartmentController } from "../../../services/apartments.api";
+
 import { getAuthData } from "../../../store/auth/selectors";
+import { createApartmentController } from "../../../services/addApartment.api";
 
 export default function AddAds() {
   const { authDetails } = getAuthData();

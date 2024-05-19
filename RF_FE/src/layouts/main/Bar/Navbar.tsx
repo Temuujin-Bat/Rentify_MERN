@@ -60,7 +60,7 @@ export default function Navbar() {
 
       {/* LOGIN BUTTON */}
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        {authDetails ? (
+        {authDetails != null ? (
           <Button
             sx={{
               borderRadius: "20px",
