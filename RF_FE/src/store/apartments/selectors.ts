@@ -1,9 +1,12 @@
 import { useSelector } from "react-redux";
 
 export function getApartmentsData() {
-  const { apartments } = useSelector((state) => state.apartmentsReducer);
+  const { apartments, singleApartment } = useSelector(
+    (state) => state.apartmentsReducer
+  );
 
   return {
     apartments,
+    singleApartment,
   };
 }

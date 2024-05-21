@@ -1,9 +1,12 @@
 import { useRoutes } from "react-router-dom";
+import { lazy } from "react";
 
 import { MainLayout } from "../layouts";
 
 import HomePage from "../pages/home";
 import ApartmentsPage from "../pages/apartments";
+
+import SingleApartment from "../pages/Apartments/singleApartment";
 import BlogPage from "../pages/blog";
 import AddAdsPage from "../pages/addAds";
 import RegisterPage from "../pages/register";
@@ -24,6 +27,10 @@ const InitRoutes = () => {
         {
           path: "/apartments",
           element: <ApartmentsPage />,
+        },
+        {
+          path: "/apartments/:id",
+          element: <SingleApartment />,
         },
         {
           path: "/blog",

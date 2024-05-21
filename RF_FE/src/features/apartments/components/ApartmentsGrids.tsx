@@ -31,7 +31,7 @@ export default function ApartmentsGrids() {
           }}
         >
           <Link
-            href={`/rent/${apartment?.address?.city}/${apartment?.name}`}
+            href={`/apartments/${apartment._id}`}
             sx={{ textDecoration: "none" }}
           >
             <Card sx={{ height: "340px" }}>

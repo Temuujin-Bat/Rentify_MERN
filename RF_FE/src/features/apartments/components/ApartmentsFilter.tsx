@@ -6,13 +6,24 @@ import {
   InputLabel,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function ApartmentsFilter() {
   const [city, setCity] = useState("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const cityFromUrl = params.get("city");
+
+    if (cityFromUrl) {
+      setCity(cityFromUrl);
+    } else {
+      setCity("");
+    }
+  }, [location.search]);
 
   const handleSearch = () => {
     const params = new URLSearchParams();
@@ -35,7 +46,7 @@ export default function ApartmentsFilter() {
     >
       <Grid xs={12} sm={12} md={12}>
         <FormControl variant="outlined" fullWidth>
-          <InputLabel>Country</InputLabel>
+          <InputLabel>City</InputLabel>
           <Select
             value={city}
             onChange={(e) => setCity(e.target.value)}
@@ -44,9 +55,17 @@ export default function ApartmentsFilter() {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value="Chicago">Chicago</MenuItem>
-            <MenuItem value="Canada">Canada</MenuItem>
-            <MenuItem value="Israel">Israel</MenuItem>
+
+            <MenuItem value="Jerusalem">Jerusalem</MenuItem>
+            <MenuItem value="Tel Aviv">Tel Aviv</MenuItem>
+            <MenuItem value="Haifa">Haifa</MenuItem>
+            <MenuItem value="Rishon LeZion">Rishon LeZion</MenuItem>
+            <MenuItem value="Petah Tikva">Petah Tikva</MenuItem>
+            <MenuItem value="Ashdod">Ashdod</MenuItem>
+            <MenuItem value="Netanya">Netanya</MenuItem>
+            <MenuItem value="Beer Sheva">Beer Sheva</MenuItem>
+            <MenuItem value="Bnei Brak">Bnei Brak</MenuItem>
+            <MenuItem value="Holon">Holon</MenuItem>
           </Select>
         </FormControl>
       </Grid>

@@ -3,6 +3,10 @@ const reducers = {
     ...state,
     apartments: action.payload,
   }),
+  setSingleApartment: (state, action) => ({
+    ...state,
+    singleApartment: action.payload,
+  }),
 };
 
 export { reducers };

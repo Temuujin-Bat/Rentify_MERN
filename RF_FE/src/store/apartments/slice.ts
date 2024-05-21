@@ -4,6 +4,7 @@ import { reducers } from "./reducers";
 
 const initialState = {
   apartments: [],
+  singleApartment: null,
 };
 
 const apartmentsSlice = createSlice({
@@ -12,5 +13,5 @@ const apartmentsSlice = createSlice({
   reducers,
 });
 
-export const { setApartments } = apartmentsSlice.actions;
+export const { setApartments, setSingleApartment } = apartmentsSlice.actions;
 export default apartmentsSlice.reducer;

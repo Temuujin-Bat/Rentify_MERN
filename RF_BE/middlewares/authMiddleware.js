@@ -8,9 +8,9 @@ export const authUser = (req, res, next) => {
       return res.status(401).json({ msg: "Authentication invalid middleware" });
     }
 
-    const { firstName } = verifyJWT(token);
+    const { userID } = verifyJWT(token);
 
-    req.user = { firstName };
+    req.user = { userID };
 
     next();
   } catch (error) {
