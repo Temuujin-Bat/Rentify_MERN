@@ -3,14 +3,15 @@ import { lazy } from "react";
 
 import { MainLayout } from "../layouts";
 
-import HomePage from "../pages/home";
-import ApartmentsPage from "../pages/apartments";
-
-import SingleApartment from "../pages/Apartments/singleApartment";
-import BlogPage from "../pages/blog";
-import AddAdsPage from "../pages/addAds";
-import RegisterPage from "../pages/register";
-import LoginPage from "../pages/login";
+const LazyHome = lazy(() => import("../pages/home"));
+const LazyApartment = lazy(() => import("../pages/apartments"));
+const LazySingleApartment = lazy(
+  () => import("../pages/Apartments/singleApartment")
+);
+const LazyBlog = lazy(() => import("../pages/blog"));
+const LazyAddAds = lazy(() => import("../pages/addAds"));
+const LazyLogin = lazy(() => import("../pages/login"));
+const LazyRegister = lazy(() => import("../pages/register"));
 
 import { AuthRedirect } from "./AuthRedirect";
 import { ProtectedRoute } from "./ProtectedRoute";
@@ -21,38 +22,42 @@ const InitRoutes = () => {
       element: <MainLayout />,
       children: [
         {
+          path: "*",
+          element: <LazyHome />,
+        },
+        {
           path: "/",
-          element: <HomePage />,
+          element: <LazyHome />,
         },
         {
           path: "/apartments",
-          element: <ApartmentsPage />,
+          element: <LazyApartment />,
         },
         {
           path: "/apartments/:id",
-          element: <SingleApartment />,
+          element: <LazySingleApartment />,
         },
         {
           path: "/blog",
-          element: <BlogPage />,
+          element: <LazyBlog />,
         },
         {
           path: "/addAds",
           element: (
             <ProtectedRoute>
-              <AddAdsPage />
+              <LazyAddAds />
             </ProtectedRoute>
           ),
         },
         {
           path: "/register",
-          element: <RegisterPage />,
+          element: <LazyRegister />,
         },
         {
           path: "/login",
           element: (
             <AuthRedirect>
-              <LoginPage />
+              <LazyLogin />
             </AuthRedirect>
           ),
         },

@@ -17,7 +17,7 @@ export default function ApartmentsGrids() {
   const { apartments } = getApartmentsData();
 
   return (
-    <Grid container spacing={5}>
+    <Grid container spacing={3}>
       {apartments.map((apartment, index) => (
         <Grid
           xs={12}

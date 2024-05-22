@@ -11,7 +11,6 @@ export default function HomePopularCities() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            m: "20px 0px 20px 0px",
           }}
         >
           <Typography
@@ -19,7 +18,6 @@ export default function HomePopularCities() {
               fontWeight: "bold",
               color: "rgba(12, 175, 255, 1)",
               fontSize: "1.5em",
-              mb: "5px",
               textAlign: "center",
             }}
           >

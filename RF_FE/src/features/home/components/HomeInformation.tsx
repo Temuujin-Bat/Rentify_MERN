@@ -15,7 +15,6 @@ export default function HomeInformation() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        m: "40px 0px 40px 0px",
       }}
     >
       <Typography
@@ -23,14 +22,13 @@ export default function HomeInformation() {
           fontWeight: "bold",
           fontSize: "1.5em",
           color: "rgba(0, 0, 0, 1)",
-          mt: "20px",
           textAlign: "center",
         }}
       >
         Are you looking for a rental home?
       </Typography>
 
-      <Container maxWidth={"lg"} sx={{ mt: "10px" }}>
+      <Container maxWidth={"lg"}>
         <Grid container spacing={2}>
           {gridData.map((item, index) => (
             <Grid
@@ -65,7 +63,6 @@ export default function HomeInformation() {
           borderRadius: "20px",
           padding: "5px 30px",
           fontWeight: "bold",
-          m: "20px 0 20px 0",
           "&:hover": {
             backgroundColor: "rgba(12, 175, 255, .5)",
           },
@@ -80,7 +77,7 @@ export default function HomeInformation() {
 
 const gridData = [
   {
-    icon: <HomeIcon sx={{ color: "rgba(12, 175, 255, 1)", fontSize: "4em" }} />,
+    icon: <HomeIcon sx={{ color: "rgba(12, 175, 255, 1)", fontSize: "3em" }} />,
     title: "All properties in one place",
     description:
       "We are a rental home search engine. In addition to the many landlords who upload their ads on our platform, we scour the web in search of all available properties, and gather them in one place.",
@@ -88,7 +85,7 @@ const gridData = [
   {
     icon: (
       <MonetizationOnIcon
-        sx={{ color: "rgba(12, 175, 255, 1)", fontSize: "4em" }}
+        sx={{ color: "rgba(12, 175, 255, 1)", fontSize: "3em" }}
       />
     ),
     title: "Compare and save money",
@@ -98,7 +95,7 @@ const gridData = [
   {
     icon: (
       <PermPhoneMsgIcon
-        sx={{ color: "rgba(12, 175, 255, 1)", fontSize: "4em" }}
+        sx={{ color: "rgba(12, 175, 255, 1)", fontSize: "3em" }}
       />
     ),
     title: "Quick contact",
