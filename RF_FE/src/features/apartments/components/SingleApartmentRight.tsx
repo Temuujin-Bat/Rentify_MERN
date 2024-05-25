@@ -10,17 +10,18 @@ export default function SingleApartmentRight() {
   return (
     <Grid container spacing={3}>
       <Grid xs={12} sm={12} md={12} lg={12}>
-        <Paper>
+        <Paper
+          sx={{
+            padding: "10px",
+            display: "flex",
+          }}
+        >
           <Typography
-            sx={{
-              padding: "10px",
-              fontWeight: "bold",
-              color: "rgba(12, 175, 255, 1)",
-              "&:hover": { color: "rgba(12, 175, 255, .5)" },
-            }}
+            sx={{ color: "rgba(255, 99, 71, 1)", fontWeight: "bold" }}
           >
-            Listing Number: {singleApartment?._id}
+            Listing Number:
           </Typography>
+          <Typography>{singleApartment?._id}</Typography>
         </Paper>
       </Grid>
 
@@ -33,25 +34,19 @@ export default function SingleApartmentRight() {
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Typography
               sx={{
-                color: "rgba(12, 175, 255, 1)",
+                color: "rgba(255, 99, 71, 1)",
                 fontWeight: "bold",
               }}
             >
               Contact Name:
             </Typography>
-            <Typography
-              sx={{
-                fontWeight: "bold",
-              }}
-            >
-              {singleApartment?.name}
-            </Typography>
+            <Typography>{singleApartment?.name}</Typography>
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Typography
               sx={{
-                color: "rgba(12, 175, 255, 1)",
+                color: "rgba(255, 99, 71, 1)",
                 fontWeight: "bold",
               }}
             >
@@ -59,9 +54,7 @@ export default function SingleApartmentRight() {
             </Typography>
 
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <Typography sx={{ fontWeight: "bold" }}>
-                {singleApartment?.phone}
-              </Typography>
+              <Typography>{singleApartment?.phone}</Typography>
             </Box>
           </Box>
         </Paper>

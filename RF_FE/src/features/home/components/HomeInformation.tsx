@@ -11,7 +11,7 @@ export default function HomeInformation() {
   return (
     <Box
       sx={{
-        backgroundColor: "rgba(0, 0, 0, .1)",
+        backgroundColor: "rgba(50, 205, 50, .1)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -58,7 +58,7 @@ export default function HomeInformation() {
       <Button
         onClick={() => navigate("/apartments")}
         sx={{
-          background: "rgba(12, 175, 255, 1)",
+          background: "rgba(255, 99, 71, 1)",
           color: "#fff",
           borderRadius: "20px",
           padding: "5px 30px",
@@ -77,7 +77,7 @@ export default function HomeInformation() {
 
 const gridData = [
   {
-    icon: <HomeIcon sx={{ color: "rgba(12, 175, 255, 1)", fontSize: "3em" }} />,
+    icon: <HomeIcon sx={{ color: "rgba(255, 99, 71, 1)", fontSize: "3em" }} />,
     title: "All properties in one place",
     description:
       "We are a rental home search engine. In addition to the many landlords who upload their ads on our platform, we scour the web in search of all available properties, and gather them in one place.",
@@ -85,7 +85,7 @@ const gridData = [
   {
     icon: (
       <MonetizationOnIcon
-        sx={{ color: "rgba(12, 175, 255, 1)", fontSize: "3em" }}
+        sx={{ color: "rgba(255, 99, 71, 1)", fontSize: "3em" }}
       />
     ),
     title: "Compare and save money",
@@ -95,7 +95,7 @@ const gridData = [
   {
     icon: (
       <PermPhoneMsgIcon
-        sx={{ color: "rgba(12, 175, 255, 1)", fontSize: "3em" }}
+        sx={{ color: "rgba(255, 99, 71, 1)", fontSize: "3em" }}
       />
     ),
     title: "Quick contact",

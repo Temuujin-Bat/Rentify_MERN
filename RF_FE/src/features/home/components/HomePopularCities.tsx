@@ -16,7 +16,7 @@ export default function HomePopularCities() {
           <Typography
             sx={{
               fontWeight: "bold",
-              color: "rgba(12, 175, 255, 1)",
+              color: "rgba(255, 99, 71, 1)",
               fontSize: "1.5em",
               textAlign: "center",
             }}
@@ -64,7 +64,7 @@ export default function HomePopularCities() {
             >
               <Typography
                 sx={{
-                  color: "rgba(12, 175, 255, 1)",
+                  color: "rgba(255, 99, 71, 1)",
                 }}
               >
                 Find rental home in

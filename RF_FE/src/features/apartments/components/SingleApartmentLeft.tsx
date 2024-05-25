@@ -44,7 +44,7 @@ export default function SingleApartmentLeft() {
           sx={{
             fontWeight: "bold",
             fontSize: "1.5rem",
-            color: "rgba(12, 175, 255, 1)",
+            color: "rgba(255, 99, 71, 1)",
           }}
         >
           {singleApartment?.price}$ Per Month In{" "}
@@ -75,7 +75,7 @@ export default function SingleApartmentLeft() {
           sx={{
             fontWeight: "bold",
             fontSize: "1.2rem",
-            color: "rgba(12, 175, 255, 1)",
+            color: "rgba(255, 99, 71, 1)",
           }}
         >
           Apartment Description
@@ -88,8 +88,8 @@ export default function SingleApartmentLeft() {
           <Grid container spacing={3}>
             {features.map((feature) => {
               const isActive =
-                singleApartment?.homeFeatures?.[
-                  feature.key as keyof typeof singleApartment.homeFeatures
+                singleApartment?.tags?.[
+                  feature.key as keyof typeof singleApartment.tags
                 ];
 
               return (
@@ -97,8 +97,8 @@ export default function SingleApartmentLeft() {
                   <Typography
                     sx={{
                       color: isActive
-                        ? "rgba(12, 175, 255, 1)"
-                        : "rgba(12, 175, 255, .3)",
+                        ? "rgba(26, 188, 156, 1)"
+                        : "rgba(26, 188, 156, .4)",
                       display: "flex",
                       alignItems: "center",
                     }}

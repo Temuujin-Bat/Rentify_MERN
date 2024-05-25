@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
@@ -7,6 +7,8 @@ import {
   SingleApartmentController,
 } from "../services/apartments.api";
 import { setApartments, setSingleApartment } from "../store/apartments/slice";
+import { useNavigate } from "react-router-dom";
+import { CreateApartmentController } from "../services/addApartment.api";
 
 export function useGetApartmentsAPI(city: string | null) {
   const dispatch = useDispatch();
@@ -36,4 +38,20 @@ export function useGetSingleApartmentAPI(id: string) {
       dispatch(setSingleApartment(data));
     }
   }, [isSuccess, data]);
+}
+
+export function useAddApartmentAPI() {
+  const navigate = useNavigate();
+
+  const { mutate } = useMutation({
+    mutationFn: CreateApartmentController,
+    onSuccess: () => {
+      navigate("/apartments");
+    },
+    onError: (err) => {
+      console.error("Error in useApartments", `${err}`);
+    },
+  });
+
+  return { mutate };
 }

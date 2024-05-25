@@ -1,6 +1,6 @@
 import { FC } from "react";
+import { createTheme } from "@mui/material/styles";
 import {
-  createTheme,
   CssBaseline,
   PaletteMode,
   StyledEngineProvider,

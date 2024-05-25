@@ -86,7 +86,7 @@ export default function SingleApartmentHeroImages() {
   };
 
   return (
-    <Container maxWidth={"xl"} sx={{ marginTop: "62px" }}>
+    <Container maxWidth={"xl"}>
       <Slider {...settings}>
         {images.map((img, index) => (
           <Box

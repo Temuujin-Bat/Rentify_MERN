@@ -35,7 +35,7 @@ export default function Login() {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+        <Avatar sx={{ m: 1, bgcolor: "rgba(255, 99, 71, 1)" }}>
           <LockOutlined />
         </Avatar>
 
@@ -76,7 +76,7 @@ export default function Login() {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 3, mb: 2, backgroundColor: "rgba(255, 99, 71, 1)" }}
           >
             Sign In
           </Button>

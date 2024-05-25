@@ -8,14 +8,11 @@ const ApplicationBar = () => (
       height: "60px",
       display: "flex",
       justifyContent: "center",
-      backgroundColor: "white",
+      backgroundColor: "rgba(255, 99, 71, .1)",
+      position: "static",
     }}
   >
-    <Toolbar
-      sx={{
-        position: "sticky",
-      }}
-    >
+    <Toolbar>
       <Navbar />
     </Toolbar>
   </AppBar>

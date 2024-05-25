@@ -39,18 +39,31 @@ export default function ApartmentsFilter() {
   };
 
   return (
-    <Grid
-      container
-      spacing={2}
-      sx={{ display: "flex", alignItems: "center", mt: "62px" }}
-    >
+    <Grid container spacing={2} sx={{ display: "flex", alignItems: "center" }}>
       <Grid xs={12} sm={12} md={12}>
-        <FormControl variant="outlined" fullWidth>
-          <InputLabel>City</InputLabel>
+        <FormControl fullWidth>
+          <InputLabel
+            sx={{ fontWeight: "bold", color: "rgba(255, 99, 71, 1)" }}
+          >
+            City
+          </InputLabel>
           <Select
             value={city}
             onChange={(e) => setCity(e.target.value)}
             label="City"
+            sx={{
+              "&.MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "rgba(50, 205, 50, 1)",
+                },
+                "&:hover fieldset": {
+                  borderColor: "rgba(50, 205, 50, 1)",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "rgba(50, 205, 50, 1)",
+                },
+              },
+            }}
           >
             <MenuItem value="">
               <em>None</em>
@@ -72,9 +85,13 @@ export default function ApartmentsFilter() {
 
       <Grid xs={12} sm={12} md={12}>
         <Button
-          variant="contained"
-          color="primary"
           onClick={handleSearch}
+          type="submit"
+          sx={{
+            background: "rgba(255, 99, 71, 1)",
+            "&:hover": { background: "rgba(255, 99, 71, .6)" },
+          }}
+          variant="contained"
           fullWidth
         >
           Search

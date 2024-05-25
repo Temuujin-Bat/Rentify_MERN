@@ -26,14 +26,14 @@ export default function Navbar() {
       >
         <ApartmentIcon
           sx={{
-            color: "rgba(12, 175, 255, 1)",
+            color: "rgba(255, 99, 71, 1)",
             fontSize: "2em",
           }}
         />
         <Typography
           sx={{
             fontWeight: "bold",
-            color: "rgba(12, 175, 255, 1)",
+            color: "rgba(255, 99, 71, 1)",
             fontSize: "1.5em",
           }}
         >
@@ -47,7 +47,7 @@ export default function Navbar() {
           <Button key={page.name} onClick={() => navigate(`${page.url}`)}>
             <Typography
               sx={{
-                color: "rgba(12, 175, 255, 1)",
+                color: "rgba(255, 99, 71, 1)",
                 fontSize: ".8em",
                 fontWeight: "bold",
               }}
@@ -64,9 +64,9 @@ export default function Navbar() {
           <Button
             sx={{
               borderRadius: "20px",
-              color: "rgba(12, 175, 255, 1)",
+              color: "rgba(255, 99, 71, 1)",
               fontWeight: "bold",
-              border: "2px solid rgba(12, 175, 255, 1)",
+              border: "2px solid rgba(50, 205, 50, 1)",
               fontSize: ".6em",
             }}
           >
@@ -74,13 +74,16 @@ export default function Navbar() {
           </Button>
         ) : (
           <Button
-            variant="outlined"
             sx={{
               borderRadius: "20px",
-              color: "rgba(12, 175, 255, 1)",
+              color: "rgba(255, 99, 71, 1)",
               fontWeight: "bold",
-              border: "2px solid rgba(12, 175, 255, 1)",
+              border: "2px solid rgba(50, 205, 50, 1)",
               fontSize: ".6em",
+              "&:hover": {
+                border: "2px solid rgba(50, 205, 50, .5)",
+                color: "rgba(255, 99, 71, .5)",
+              },
             }}
             onClick={() => navigate("/login")}
           >
@@ -89,13 +92,16 @@ export default function Navbar() {
         )}
 
         <Button
-          variant="outlined"
           sx={{
             borderRadius: "20px",
-            color: "rgba(12, 175, 255, 1)",
+            color: "rgba(255, 99, 71, 1)",
             fontWeight: "bold",
-            border: "2px solid rgba(12, 175, 255, 1)",
+            border: "2px solid rgba(50, 205, 50, 1)",
             fontSize: ".6em",
+            "&:hover": {
+              border: "2px solid rgba(50, 205, 50, .5)",
+              color: "rgba(255, 99, 71, .5)",
+            },
           }}
           onClick={() => navigate("/addAds")}
         >

@@ -53,7 +53,7 @@ export default function SingleApartmentAgentForm() {
           <Typography
             sx={{
               fontWeight: "bold",
-              color: "rgba(12, 175, 255, 1)",
+              color: "rgba(255, 99, 71, 1)",
               fontSize: "2rem",
               textAlign: "center",
             }}
@@ -75,7 +75,7 @@ export default function SingleApartmentAgentForm() {
         >
           <Typography
             sx={{
-              color: "rgba(12, 175, 255, 1)",
+              color: "rgba(255, 99, 71, 1)",
               fontWeight: "bold",
             }}
           >
@@ -85,7 +85,7 @@ export default function SingleApartmentAgentForm() {
             sx={{
               marginBottom: "10px",
               "& fieldset": {
-                borderColor: "rgba(12, 175, 255, 1)",
+                borderColor: "rgba(255, 99, 71, 1)",
               },
             }}
             required
@@ -98,7 +98,7 @@ export default function SingleApartmentAgentForm() {
             sx={{
               marginBottom: "10px",
               "& fieldset": {
-                borderColor: "rgba(12, 175, 255, 1)",
+                borderColor: "rgba(255, 99, 71, 1)",
               },
             }}
             required
@@ -111,7 +111,7 @@ export default function SingleApartmentAgentForm() {
             sx={{
               marginBottom: "10px",
               "& fieldset": {
-                borderColor: "rgba(12, 175, 255, 1)",
+                borderColor: "rgba(255, 99, 71, 1)",
               },
             }}
             required
@@ -124,7 +124,7 @@ export default function SingleApartmentAgentForm() {
             sx={{
               marginBottom: "10px",
               "& fieldset": {
-                borderColor: "rgba(12, 175, 255, 1)",
+                borderColor: "rgba(255, 99, 71, 1)",
               },
             }}
             required
@@ -142,10 +142,10 @@ export default function SingleApartmentAgentForm() {
             sx={{
               width: "100%",
               height: "3.8vh",
-              background: "rgba(26, 188, 156, 0.8)",
+              background: "rgba(255, 99, 71, .8)",
               color: "#fff",
               "&:hover": {
-                background: "rgba(26, 188, 156, 1)",
+                background: "rgba(255, 99, 71, 1)",
               },
               "& .MuiLoadingButton-loadingIndicator": {
                 color: "white",

@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import { Apartment, Bed, ViewInAr } from "@mui/icons-material";
 
-// import { apartments } from "../../../data";
 import ApartmentsGridsImagesList from "./ApartmentsGridsImagesList";
 import { getApartmentsData } from "../../../store/apartments/selectors";
 
@@ -45,7 +44,7 @@ export default function ApartmentsGrids() {
                     left: "0",
                     width: "100%",
                     height: "35px",
-                    backgroundColor: "rgba(12, 175, 255, 1)",
+                    backgroundColor: "rgba(255, 99, 71, .9)",
                     color: "rgba(255,255,255, 1)",
                     display: "flex",
                     justifyContent: "center",
@@ -67,7 +66,7 @@ export default function ApartmentsGrids() {
               >
                 <Box sx={{ textAlign: "center" }}>
                   <Bed />
-                  <Typography sx={{ color: "rgba(12, 175, 255, 1)" }}>
+                  <Typography sx={{ color: "rgba(255, 99, 71, 1)" }}>
                     Rooms
                   </Typography>
                   <Typography>{apartment?.apartment?.rooms}</Typography>
@@ -76,7 +75,7 @@ export default function ApartmentsGrids() {
                 <Box sx={{ textAlign: "center" }}>
                   <Apartment />
 
-                  <Typography sx={{ color: "rgba(12, 175, 255, 1)" }}>
+                  <Typography sx={{ color: "rgba(255, 99, 71, 1)" }}>
                     Type
                   </Typography>
                   <Typography>Apartment</Typography>
@@ -84,7 +83,7 @@ export default function ApartmentsGrids() {
 
                 <Box sx={{ textAlign: "center" }}>
                   <ViewInAr />
-                  <Typography sx={{ color: "rgba(12, 175, 255, 1)" }}>
+                  <Typography sx={{ color: "rgba(255, 99, 71, 1)" }}>
                     Size
                   </Typography>
                   <Typography>{apartment?.apartment?.size} m2</Typography>
@@ -96,7 +95,7 @@ export default function ApartmentsGrids() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  backgroundColor: "rgba(12, 175, 255, .1)",
+                  backgroundColor: "rgba(255, 99, 71, .1)",
                   height: "10%",
                 }}
               >

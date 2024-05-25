@@ -55,14 +55,14 @@ function NextArrow(props: { onClick: () => void }) {
         zIndex: 1,
         color: "white",
         "&:hover": {
-          backgroundColor: "rgba(12, 175, 255, 1)",
+          backgroundColor: "rgba(26, 188, 156, 1)",
         },
       }}
     >
       <ArrowForwardIos
         sx={{
           fontSize: "1.5rem",
-          backgroundColor: "rgba(12, 175, 255, .1)",
+          backgroundColor: "rgba(26, 188, 156, 0.1)",
           borderRadius: "50%",
         }}
       />

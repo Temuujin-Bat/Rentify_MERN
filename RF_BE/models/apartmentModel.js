@@ -3,19 +3,19 @@ import mongoose from "mongoose";
 const apartmentSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
-    phone: { type: Number, required: true },
-    price: { type: Number, required: true },
+    phone: { type: String, required: true },
+    price: { type: String, required: true },
     apartment: {
       description: { type: String, required: true },
-      floor: { type: Number, required: true },
-      size: { type: Number, required: true },
-      rooms: { type: Number, required: true },
+      floor: { type: String, required: true },
+      size: { type: String, required: true },
+      rooms: { type: String, required: true },
     },
     address: {
       city: { type: String, required: true },
       street: { type: String, required: true },
-      buildingNumber: { type: Number, required: true },
-      zipCode: { type: Number, required: true },
+      buildingNumber: { type: String, required: true },
+      zipCode: { type: String, required: true },
     },
     tags: {
       elevator: Boolean,
@@ -26,11 +26,6 @@ const apartmentSchema = new mongoose.Schema(
       equipped: Boolean,
       petFriendly: Boolean,
       storage: Boolean,
-    },
-    planType: {
-      type: String,
-      enum: ["regular", "silver", "golden"],
-      default: "regular",
     },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
