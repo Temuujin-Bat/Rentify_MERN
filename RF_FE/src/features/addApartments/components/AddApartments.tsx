@@ -6,7 +6,7 @@ import AddAdsDescription from "./AddAdsDescription";
 import AddAdsContact from "./AddAdsContact";
 import { useAddApartmentAPI } from "../../../hooks/useApartments";
 
-export default function AddAds() {
+export default function AddApartments() {
   const [formData, setFormData] = useState({
     name: "Temuujin Bat Erdene",
     phone: "0543892359",
@@ -36,12 +36,12 @@ export default function AddAds() {
     },
   });
 
-  const { mutate } = useAddApartmentAPI();
+  const { mutate: addApartment } = useAddApartmentAPI();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    mutate({ formData });
+    addApartment({ formData });
   };
 
   return (

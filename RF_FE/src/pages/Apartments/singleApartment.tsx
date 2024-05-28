@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Unstable_Grid2";
-import { Container, Typography } from "@mui/material";
+import { Container } from "@mui/material";
 
 import { useParams } from "react-router-dom";
 import { useGetSingleApartmentAPI } from "../../hooks/useApartments";

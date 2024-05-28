@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 
 import apartmentRouter from "./routes/apartmentRouter.js";
 import authRouter from "./routes/authRouter.js";
+import userRouter from "./routes/userRouter.js";
 
 ///
 /// Middleware
@@ -28,8 +29,9 @@ app.use(morgan("dev"));
 ///
 app.use("/api/v1/apartments", apartmentRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/user", userRouter);
 
-app.use("*", (res) => {
+app.use("*", (req, res) => {
   res.status(404).json({ msg: "URL Not found" });
 });
 
