@@ -7,6 +7,14 @@ const reducers = {
     ...state,
     singleApartment: action.payload,
   }),
+  setUserApartments: (state, action) => ({
+    ...state,
+    userApartments: action.payload,
+  }),
+  setUserSingleApartment: (state, action) => ({
+    ...state,
+    userSingleApartment: action.payload,
+  }),
 };
 
 export { reducers };

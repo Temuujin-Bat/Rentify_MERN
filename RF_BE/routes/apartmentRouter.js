@@ -9,6 +9,6 @@ import { authUser } from "../middlewares/authMiddleware.js";
 const router = Router();
 
 router.route("/").get(getAllApartments).post(authUser, addApartment);
-router.route("/:id").get(getSingleApartment);
+router.route("/:id").get(authUser, getSingleApartment);
 
 export default router;

@@ -2,9 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { reducers } from "./reducers.js";
 
+interface AuthState {
+  tokenDetails: string;
+  authDetails: any | null;
+}
+
 const authDetails = localStorage.getItem("user");
 
-const initialState = {
+const initialState: AuthState = {
   tokenDetails: localStorage.getItem("token") || "",
   authDetails: JSON.parse(authDetails) || null,
 };
