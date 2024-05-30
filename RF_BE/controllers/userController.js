@@ -1,6 +1,34 @@
 import User from "../models/userModel.js";
 import Apartment from "../models/apartmentModel.js";
 
+export const getUserInfo = async (req, res) => {
+  try {
+    const userID = req.user.userID;
+
+    const user = await User.findById(userID);
+
+    if (!user) {
+      return res.status(404).json({ msg: `No user with id: ${userID}` });
+    }
+
+    return res.status(200).json({
+      _id: userID,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+    });
+  } catch (error) {
+    return res.status(500).json({ msg: "Internal Server Error" });
+  }
+};
+
+export const editUserInfo = async (req, res) => {
+  try {
+  } catch (error) {
+    return res.status(500).json({ msg: "Internal Server Error" });
+  }
+};
+
 export const userApartments = async (req, res) => {
   try {
     const { userID } = req.user;
