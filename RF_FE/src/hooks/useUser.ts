@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 import { UserInfoController } from "../services/user.api";
+import { setUserInfo } from "../store/user/slice";
 
 export function useGetUserInfoAPI() {
   const dispatch = useDispatch();
@@ -14,6 +15,8 @@ export function useGetUserInfoAPI() {
 
   useEffect(() => {
     if (isSuccess && data) {
+      const userData = data?.data;
+      dispatch(setUserInfo(userData));
     }
   }, [isSuccess, data]);
 }
