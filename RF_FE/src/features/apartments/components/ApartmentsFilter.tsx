@@ -39,7 +39,11 @@ export default function ApartmentsFilter() {
   };
 
   return (
-    <Grid container spacing={2} sx={{ display: "flex", alignItems: "center" }}>
+    <Grid
+      container
+      spacing={2}
+      sx={{ display: "flex", alignItems: "center", marginTop: "20px" }}
+    >
       <Grid xs={12} sm={12} md={12}>
         <FormControl fullWidth>
           <InputLabel

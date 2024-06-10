@@ -18,9 +18,6 @@ const LazyUserSingleApartment = lazy(
 );
 const LazyUserEditApartment = lazy(() => import("../pages/editApartment"));
 import LazyUserInfo from "../pages/userInfo";
-const LazyUserSavedApartments = lazy(
-  () => import("../pages/userSavedApartments")
-);
 
 import { AuthRedirect } from "./AuthRedirect";
 import { ProtectedRoute } from "./ProtectedRoute";
@@ -103,14 +100,6 @@ const InitRoutes = () => {
           element: (
             <ProtectedRoute>
               <LazyUserInfo />
-            </ProtectedRoute>
-          ),
-        },
-        {
-          path: "/user/savedApartments",
-          element: (
-            <ProtectedRoute>
-              <LazyUserSavedApartments />
             </ProtectedRoute>
           ),
         },

@@ -184,6 +184,5 @@ const pages = [
 const settings = [
   { name: "Edit Profile", url: "/user/info" },
   { name: "My Apartments", url: "/user/apartments" },
-  { name: "Saved Apartments", url: "/user/savedApartments" },
   { name: "Logout", url: "/logout" },
 ];

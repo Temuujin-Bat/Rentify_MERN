@@ -4,11 +4,20 @@ import Container from "@mui/material/Container";
 import { ApartmentsFilter, ApartmentsGrids } from "../features/apartments";
 import { useGetApartmentsAPI } from "../hooks/useApartments";
 import { useParamsURL } from "../hooks/useParamsURL";
+import { LoadingMUI } from "../components";
 
 export default function apartments() {
   const result = useParamsURL().get("city");
 
-  useGetApartmentsAPI(result);
+  const { isLoading, isError } = useGetApartmentsAPI(result);
+
+  if (isLoading) {
+    return <LoadingMUI />;
+  }
+
+  if (isError) {
+    return <div>Error loading apartments: {isError}</div>;
+  }
 
   return (
     <Container maxWidth={"lg"}>

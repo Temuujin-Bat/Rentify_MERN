@@ -6,7 +6,7 @@ import "./assets/common.css";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { store } from "./store";
-import LazyLoadingMUI from "./components/LazyLoadingMUI.tsx";
+import LazyLoadingMUI from "./components/LoadingMUI.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {

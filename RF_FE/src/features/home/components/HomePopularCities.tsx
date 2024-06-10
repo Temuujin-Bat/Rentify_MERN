@@ -4,7 +4,7 @@ import telaviv from "../../../assets/homePage/homePageHero.webp";
 
 export default function HomePopularCities() {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} sx={{ marginTop: "30px" }}>
       <Grid xs={12} sm={12} md={12} lg={12}>
         <Box
           sx={{
@@ -67,7 +67,7 @@ export default function HomePopularCities() {
                   color: "rgba(255, 99, 71, 1)",
                 }}
               >
-                Find rental home in
+                Find apartments in
               </Typography>
               <Typography
                 sx={{

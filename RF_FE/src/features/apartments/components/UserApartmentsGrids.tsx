@@ -19,42 +19,7 @@ export default function UserApartmentsGrids() {
 
   return (
     <>
-      {userApartments && userApartments.length === 0 && (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Box
-            component={"img"}
-            src={img}
-            sx={{ borderRadius: "100px", height: "250px", width: "200px" }}
-          />
-
-          <Typography>No Apartments</Typography>
-
-          <Button
-            sx={{
-              borderRadius: "20px",
-              color: "rgba(255, 99, 71, 1)",
-              fontWeight: "bold",
-              border: "2px solid rgba(50, 205, 50, 1)",
-              fontSize: ".6em",
-              "&:hover": {
-                border: "2px solid rgba(50, 205, 50, .5)",
-                color: "rgba(255, 99, 71, .5)",
-              },
-            }}
-            onClick={() => navigate("/addAds")}
-          >
-            What would you like to post?
-          </Button>
-        </Box>
-      )}
-      {userApartments && userApartments.length !== 0 && (
+      {userApartments && userApartments.length !== 0 ? (
         <>
           <Typography
             sx={{
@@ -165,6 +130,40 @@ export default function UserApartmentsGrids() {
             ))}
           </Grid>
         </>
+      ) : (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Box
+            component={"img"}
+            src={img}
+            sx={{ borderRadius: "100px", height: "250px", width: "200px" }}
+          />
+
+          <Typography>No Apartments</Typography>
+
+          <Button
+            sx={{
+              borderRadius: "20px",
+              color: "rgba(255, 99, 71, 1)",
+              fontWeight: "bold",
+              border: "2px solid rgba(50, 205, 50, 1)",
+              fontSize: ".6em",
+              "&:hover": {
+                border: "2px solid rgba(50, 205, 50, .5)",
+                color: "rgba(255, 99, 71, .5)",
+              },
+            }}
+            onClick={() => navigate("/addAds")}
+          >
+            What would you like to post?
+          </Button>
+        </Box>
       )}
     </>
   );

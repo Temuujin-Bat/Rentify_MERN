@@ -15,6 +15,7 @@ export default function HomeInformation() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        marginTop: "50px",
       }}
     >
       <Typography
@@ -23,12 +24,13 @@ export default function HomeInformation() {
           fontSize: "1.5em",
           color: "rgba(0, 0, 0, 1)",
           textAlign: "center",
+          marginTop: "30px",
         }}
       >
         Are you looking for a rental home?
       </Typography>
 
-      <Container maxWidth={"lg"}>
+      <Container maxWidth={"lg"} sx={{ marginTop: "30px" }}>
         <Grid container spacing={2}>
           {gridData.map((item, index) => (
             <Grid
@@ -44,7 +46,13 @@ export default function HomeInformation() {
               }}
             >
               {item.icon}
-              <Typography sx={{ fontWeight: "bold", fontSize: "1.2em" }}>
+              <Typography
+                sx={{
+                  fontWeight: "bold",
+                  fontSize: "1.2em",
+                  marginTop: { xs: "0px", sm: "0px", md: "30px", lg: "30px" },
+                }}
+              >
                 {item.title}
               </Typography>
               <Typography sx={{ textAlign: "center" }}>
@@ -67,6 +75,8 @@ export default function HomeInformation() {
             backgroundColor: "rgba(12, 175, 255, .5)",
           },
           fontSize: ".7em",
+          marginTop: "30px",
+          marginBottom: "30px",
         }}
       >
         Find rental - free
@@ -77,7 +87,7 @@ export default function HomeInformation() {
 
 const gridData = [
   {
-    icon: <HomeIcon sx={{ color: "rgba(255, 99, 71, 1)", fontSize: "3em" }} />,
+    icon: <HomeIcon sx={{ color: "rgba(255, 99, 71, 1)", fontSize: "4em" }} />,
     title: "All properties in one place",
     description:
       "We are a rental home search engine. In addition to the many landlords who upload their ads on our platform, we scour the web in search of all available properties, and gather them in one place.",
@@ -85,7 +95,7 @@ const gridData = [
   {
     icon: (
       <MonetizationOnIcon
-        sx={{ color: "rgba(255, 99, 71, 1)", fontSize: "3em" }}
+        sx={{ color: "rgba(255, 99, 71, 1)", fontSize: "4em" }}
       />
     ),
     title: "Compare and save money",
@@ -95,7 +105,7 @@ const gridData = [
   {
     icon: (
       <PermPhoneMsgIcon
-        sx={{ color: "rgba(255, 99, 71, 1)", fontSize: "3em" }}
+        sx={{ color: "rgba(255, 99, 71, 1)", fontSize: "4em" }}
       />
     ),
     title: "Quick contact",

@@ -24,7 +24,7 @@ import {
 export function useGetApartmentsAPI(city: string | null) {
   const dispatch = useDispatch();
 
-  const { data, isSuccess } = useQuery({
+  const { data, isSuccess, isLoading, isError } = useQuery({
     queryKey: ["apartments", city],
     queryFn: () => ApartmentsController(city),
   });
@@ -34,6 +34,8 @@ export function useGetApartmentsAPI(city: string | null) {
       dispatch(setApartments(data));
     }
   }, [isSuccess, data]);
+
+  return { isLoading, isError };
 }
 
 export function useGetSingleApartmentAPI(id: string) {
