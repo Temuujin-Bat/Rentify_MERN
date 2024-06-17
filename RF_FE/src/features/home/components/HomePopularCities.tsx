@@ -1,6 +1,9 @@
-import { Box, Link, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import telaviv from "../../../assets/homePage/homePageHero.webp";
+import { Box, Link, Typography } from "@mui/material";
+
+import telaviv from "../../../assets/homePage/Tel Aviv.avif";
+import jerusalem from "../../../assets/homePage/Jerusalem.avif";
+import haifa from "../../../assets/homePage/Haifa.avif";
 
 export default function HomePopularCities() {
   return (
@@ -93,10 +96,10 @@ const cities = [
   },
   {
     name: "Jerusalem",
-    img: telaviv,
+    img: jerusalem,
   },
   {
     name: "Haifa",
-    img: telaviv,
+    img: haifa,
   },
 ];
