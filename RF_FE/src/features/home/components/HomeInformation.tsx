@@ -72,7 +72,7 @@ export default function HomeInformation() {
           padding: "5px 30px",
           fontWeight: "bold",
           "&:hover": {
-            backgroundColor: "rgba(12, 175, 255, .5)",
+            backgroundColor: "rgba(255, 99, 71, .5)",
           },
           fontSize: ".7em",
           marginTop: "30px",

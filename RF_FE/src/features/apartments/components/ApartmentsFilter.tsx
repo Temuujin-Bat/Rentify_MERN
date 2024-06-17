@@ -45,9 +45,12 @@ export default function ApartmentsFilter() {
       sx={{ display: "flex", alignItems: "center", marginTop: "20px" }}
     >
       <Grid xs={12} sm={12} md={12}>
-        <FormControl fullWidth>
+        <FormControl fullWidth error>
           <InputLabel
-            sx={{ fontWeight: "bold", color: "rgba(255, 99, 71, 1)" }}
+            sx={{
+              fontWeight: "bold",
+              color: "yellow",
+            }}
           >
             City
           </InputLabel>
@@ -58,13 +61,13 @@ export default function ApartmentsFilter() {
             sx={{
               "&.MuiOutlinedInput-root": {
                 "& fieldset": {
-                  borderColor: "rgba(50, 205, 50, 1)",
+                  borderColor: "rgba(26, 188, 156, 1)",
                 },
                 "&:hover fieldset": {
-                  borderColor: "rgba(50, 205, 50, 1)",
+                  borderColor: "rgba(26, 188, 156, 1) ",
                 },
                 "&.Mui-focused fieldset": {
-                  borderColor: "rgba(50, 205, 50, 1)",
+                  borderColor: "rgba(26, 188, 156, 1) ",
                 },
               },
             }}
@@ -92,6 +95,7 @@ export default function ApartmentsFilter() {
           onClick={handleSearch}
           type="submit"
           sx={{
+            height: "40px",
             background: "rgba(255, 99, 71, 1)",
             "&:hover": { background: "rgba(255, 99, 71, .6)" },
           }}
