@@ -1,4 +1,4 @@
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Box, Typography, Paper } from "@mui/material";
 import {
   DoorFront,
@@ -29,6 +29,7 @@ export default function SingleApartmentLeft() {
     {
       icon: <ViewInAr />,
       value: singleApartment?.apartment?.size,
+      labels: "m²",
     },
     {
       icon: <Stairs />,
@@ -39,11 +40,11 @@ export default function SingleApartmentLeft() {
 
   return (
     <Grid container spacing={2}>
-      <Grid xs={12} sm={12} md={12} lg={12}>
+      <Grid xs={12} sm={12} md={12} lg={12} sx={{ mt: "20px" }}>
         <Typography
           sx={{
             fontWeight: "bold",
-            fontSize: "1.5rem",
+            fontSize: "1.2rem",
             color: "rgba(255, 99, 71, 1)",
           }}
         >
@@ -57,12 +58,12 @@ export default function SingleApartmentLeft() {
           {singleApartment?.address?.buildingNumber}
         </Typography>
 
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", mt: "5px" }}>
           {apartmentAttributes.map((data, index) => (
             <Box key={index} sx={{ display: "flex", mr: "20px" }}>
               {data.icon}
-              <Box sx={{ display: "flex" }}>
-                <Typography>{data.value}</Typography>
+              <Box sx={{ display: "flex", ml: "5px" }}>
+                <Typography sx={{ mr: "5px" }}>{data.value}</Typography>
                 <Typography>{data.labels}</Typography>
               </Box>
             </Box>
@@ -101,6 +102,7 @@ export default function SingleApartmentLeft() {
                         : "rgba(26, 188, 156, .4)",
                       display: "flex",
                       alignItems: "center",
+                      fontSize: ".8em",
                     }}
                   >
                     <feature.icon sx={{ mr: "10px" }} />

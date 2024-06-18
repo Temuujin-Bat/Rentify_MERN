@@ -1,5 +1,5 @@
-import Grid from "@mui/material/Unstable_Grid2";
-import Container from "@mui/material/Container";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import { Container } from "@mui/material";
 
 import { useUserApartmentsAPI } from "../hooks/useApartments";
 import { UserApartmentsGrids } from "../features/apartments";

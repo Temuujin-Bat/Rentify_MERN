@@ -1,4 +1,4 @@
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import Container from "@mui/material/Container";
 import { UserEdit } from "../features/user";
 import { useGetUserInfoAPI } from "../hooks/useUser";

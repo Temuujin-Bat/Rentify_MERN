@@ -41,7 +41,7 @@ export function useGetApartmentsAPI(city: string | null) {
 export function useGetSingleApartmentAPI(id: string) {
   const dispatch = useDispatch();
 
-  const { data, isSuccess } = useQuery({
+  const { data, isSuccess, isLoading, isError } = useQuery({
     queryKey: ["apartment", id],
     queryFn: () => SingleApartmentController(id),
   });
@@ -51,6 +51,8 @@ export function useGetSingleApartmentAPI(id: string) {
       dispatch(setSingleApartment(data));
     }
   }, [isSuccess, data]);
+
+  return { isLoading, isError };
 }
 
 export function useAddApartmentAPI() {
