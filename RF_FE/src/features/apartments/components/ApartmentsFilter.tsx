@@ -55,6 +55,13 @@ export default function ApartmentsFilter() {
             City
           </InputLabel>
           <Select
+            MenuProps={{
+              sx: {
+                "&& .Mui-selected": {
+                  backgroundColor: "rgba(255, 99, 71, .5)",
+                },
+              },
+            }}
             value={city}
             onChange={(e) => setCity(e.target.value)}
             label="City"
