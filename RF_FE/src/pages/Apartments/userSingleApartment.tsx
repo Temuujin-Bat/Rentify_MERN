@@ -1,4 +1,4 @@
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Box, Button, Container, Link, Modal, Typography } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import {

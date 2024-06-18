@@ -7,6 +7,7 @@ import {
   ThemeProvider,
 } from "@mui/material";
 
+import ComponentsOverrides from "./overrides";
 import { TThemeConfig } from "./type";
 
 const ThemeConfig: FC<TThemeConfig> = ({ children }) => {
@@ -22,6 +23,8 @@ const ThemeConfig: FC<TThemeConfig> = ({ children }) => {
   };
 
   const theme = createTheme(themeOptions);
+
+  theme.components = ComponentsOverrides();
 
   return (
     <StyledEngineProvider injectFirst>

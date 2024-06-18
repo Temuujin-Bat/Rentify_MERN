@@ -1,4 +1,4 @@
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Container } from "@mui/material";
 
 import { useParams } from "react-router-dom";
@@ -8,11 +8,22 @@ import {
   SingleApartmentLeft,
   SingleApartmentRight,
 } from "../../features/apartments";
+import { LoadingMUI } from "../../components";
 
 export default function singleApartment() {
   const { id } = useParams();
 
-  useGetSingleApartmentAPI(id);
+  if (id) {
+    const { isLoading, isError } = useGetSingleApartmentAPI(id);
+
+    if (isLoading) {
+      return <LoadingMUI />;
+    }
+
+    if (isError) {
+      return <div>Error loading apartments: {isError}</div>;
+    }
+  }
 
   return (
     <>

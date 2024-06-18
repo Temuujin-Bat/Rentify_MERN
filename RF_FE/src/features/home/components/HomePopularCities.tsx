@@ -1,4 +1,4 @@
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Box, Link, Typography } from "@mui/material";
 
 import telaviv from "../../../assets/homePage/Tel Aviv.avif";

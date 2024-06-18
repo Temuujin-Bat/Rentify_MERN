@@ -1,5 +1,5 @@
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Box, Button, Typography, Container } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
 import HomeIcon from "@mui/icons-material/Home";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import PermPhoneMsgIcon from "@mui/icons-material/PermPhoneMsg";

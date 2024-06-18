@@ -1,6 +1,9 @@
-import emailjs from "@emailjs/browser";
 import { Paper, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { LoadingButton } from "@mui/lab";
+
+import emailjs from "@emailjs/browser";
+
+import React, { useState } from "react";
 
 export default function SingleApartmentAgentForm() {
   const [userName, setUserName] = useState("");
@@ -10,7 +13,7 @@ export default function SingleApartmentAgentForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -54,8 +57,8 @@ export default function SingleApartmentAgentForm() {
             sx={{
               fontWeight: "bold",
               color: "rgba(255, 99, 71, 1)",
-              fontSize: "2rem",
               textAlign: "center",
+              padding: "20px",
             }}
           >
             Thank You! <br />
@@ -68,7 +71,7 @@ export default function SingleApartmentAgentForm() {
           sx={{
             display: "flex",
             flexDirection: "column",
-            padding: "10px",
+            padding: "20px",
           }}
           component={"form"}
           onSubmit={onSubmit}
@@ -77,6 +80,8 @@ export default function SingleApartmentAgentForm() {
             sx={{
               color: "rgba(255, 99, 71, 1)",
               fontWeight: "bold",
+              fontSize: "1.2em",
+              mb: "10px",
             }}
           >
             Contact Agent:
@@ -84,66 +89,53 @@ export default function SingleApartmentAgentForm() {
           <TextField
             sx={{
               marginBottom: "10px",
-              "& fieldset": {
-                borderColor: "rgba(255, 99, 71, 1)",
-              },
             }}
             required
-            type="text"
-            label="Name"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
+            placeholder="Name*"
+            type="text"
           />
           <TextField
             sx={{
               marginBottom: "10px",
-              "& fieldset": {
-                borderColor: "rgba(255, 99, 71, 1)",
-              },
             }}
             required
-            type="email"
-            label="Email Address"
             value={userEmail}
             onChange={(e) => setUserEmail(e.target.value)}
+            placeholder="Email*"
+            type="email"
           />
           <TextField
             sx={{
               marginBottom: "10px",
-              "& fieldset": {
-                borderColor: "rgba(255, 99, 71, 1)",
-              },
             }}
             required
-            type="text"
-            label="Mobile Number"
             value={userPhone}
             onChange={(e) => setUserPhone(e.target.value)}
+            placeholder="Phone Number*"
+            type="tel"
           />
           <TextField
             sx={{
               marginBottom: "10px",
-              "& fieldset": {
-                borderColor: "rgba(255, 99, 71, 1)",
-              },
             }}
             required
             multiline
             rows={3}
-            label="Message"
-            placeholder="Please contact me regarding: `Listing Number SPR19`"
-            variant="outlined"
+            placeholder="Please contact me regarding: `Listing Number: ABCDE12345`"
             value={userMessage}
             onChange={(e) => setUserMessage(e.target.value)}
+            type="text"
           />
-          {/* <LoadingButton
+          <LoadingButton
             loading={isSubmitting}
             type="submit"
             sx={{
               width: "100%",
-              height: "3.8vh",
+              height: "40px",
               background: "rgba(255, 99, 71, .8)",
-              color: "#fff",
+              color: "white",
               "&:hover": {
                 background: "rgba(255, 99, 71, 1)",
               },
@@ -153,7 +145,7 @@ export default function SingleApartmentAgentForm() {
             }}
           >
             Send Message
-          </LoadingButton> */}
+          </LoadingButton>
         </Paper>
       )}
     </Paper>
