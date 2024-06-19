@@ -12,7 +12,7 @@ const ApplicationBar = () => (
       position: "static",
     }}
   >
-    <Toolbar>
+    <Toolbar disableGutters>
       <Navbar />
     </Toolbar>
   </AppBar>

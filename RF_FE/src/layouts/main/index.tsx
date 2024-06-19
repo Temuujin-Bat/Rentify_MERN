@@ -7,7 +7,6 @@ import { ApplicationBar } from "./Bar";
 
 const MainStyled = styled("main")(() => ({
   width: "100%",
-  minHeight: "calc(100vh - 88px)",
   flexGrow: 1,
   borderBottomLeftRadius: 0,
   borderBottomRightRadius: 0,
@@ -15,7 +14,7 @@ const MainStyled = styled("main")(() => ({
 
 const MainLayout = () => {
   return (
-    <Box>
+    <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
       <ApplicationBar />
       <MainStyled>
         <Outlet />

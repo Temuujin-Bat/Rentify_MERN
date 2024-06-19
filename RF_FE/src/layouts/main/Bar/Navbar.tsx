@@ -1,177 +1,179 @@
+import MenuIcon from "@mui/icons-material/Menu";
 import {
-  Box,
-  Button,
-  Container,
   Link,
-  Menu,
+  Tooltip,
   MenuItem,
+  Avatar,
+  Container,
+  Menu,
   Typography,
+  Box,
+  IconButton,
 } from "@mui/material";
-import ApartmentIcon from "@mui/icons-material/Apartment";
+
 import { useNavigate } from "react-router-dom";
 import { getAuthData } from "../../../store/auth/selectors";
-import { useState } from "react";
+import React from "react";
 import { useLogout } from "../../../hooks/useLogout";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const logout = useLogout();
   const { authDetails } = getAuthData();
+  const isLoggedIn = false;
 
-  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null
+  );
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
+    null
+  );
 
-  const handleOpenUserMenu = (event) => {
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
-  const handleMenuItemClick = (url) => {
-    handleCloseUserMenu();
-
-    if (url) {
-      setTimeout(() => {
-        if (url === "/logout") {
-          logout();
-        } else {
-          navigate(url);
-        }
-      }, 0);
-    }
-  };
-
   return (
     <Container
+      maxWidth={"lg"}
       sx={{
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
       }}
     >
-      {/* ICON */}
-      <Link
-        sx={{
-          display: "flex",
-          textDecoration: "none",
-          alignItems: "center",
-        }}
-        href="/"
-      >
-        <ApartmentIcon
-          sx={{
-            color: "rgba(255, 99, 71, 1)",
-            fontSize: "2em",
-          }}
-        />
-        <Typography
-          sx={{
-            fontWeight: "bold",
-            color: "rgba(255, 99, 71, 1)",
-            fontSize: "1.5em",
-          }}
+      {/* PAGES */}
+      <Box sx={{ display: { xs: "flex", sm: "flex", md: "flex", lg: "none" } }}>
+        <IconButton
+          onClick={handleOpenNavMenu}
+          sx={{ color: "rgba(255, 99, 71, 1)" }}
         >
-          Rentify
-        </Typography>
-      </Link>
+          <MenuIcon sx={{ fontSize: "1.5em" }} />
+        </IconButton>
+        <Menu
+          anchorEl={anchorElNav}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          open={Boolean(anchorElNav)}
+          onClose={handleCloseNavMenu}
+          sx={{ color: "rgba(255, 99, 71, 1)" }}
+        >
+          {pages.map((page) => (
+            <Link key={page.name} underline="none" href={`/${page.url}`}>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography
+                  sx={{
+                    color: "rgba(255, 99, 71, 1)",
+                    width: "100%",
+                  }}
+                >
+                  {page.name}
+                </Typography>
+              </MenuItem>
+            </Link>
+          ))}
+        </Menu>
+      </Box>
 
-      {/* LISTS */}
-      <Box sx={{ display: "flex" }}>
+      {/* LOGO */}
+      <Box>
+        <Link href="/" underline="none">
+          <Typography
+            sx={{
+              display: { xs: "none", sm: "flex", md: "flex", lg: "flex" },
+              fontWeight: "bold",
+              fontSize: "1.5em",
+              color: "rgba(255, 99, 71, 1)",
+              letterSpacing: ".4em",
+            }}
+          >
+            Rentify
+          </Typography>
+        </Link>
+      </Box>
+
+      {/* PAGES WHEN LARGE */}
+      <Box sx={{ display: { xs: "none", sm: "none", md: "none", lg: "flex" } }}>
         {pages.map((page) => (
-          <Button key={page.name} onClick={() => navigate(`${page.url}`)}>
-            <Typography
-              sx={{
-                color: "rgba(255, 99, 71, 1)",
-                fontSize: ".8em",
-                fontWeight: "bold",
-              }}
-            >
-              {page.name}
-            </Typography>
-          </Button>
+          <Link key={page.name} underline="none" href={`/${page.url}`}>
+            <MenuItem onClick={handleCloseNavMenu}>
+              <Typography
+                sx={{ color: "rgba(255, 99, 71, 1)", fontSize: "1.2em" }}
+              >
+                {page.name}
+              </Typography>
+            </MenuItem>
+          </Link>
         ))}
       </Box>
 
-      {/* LOGIN BUTTON */}
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        {authDetails != null ? (
-          <Box>
-            <Button
-              sx={{
-                borderRadius: "20px",
-                color: "rgba(255, 99, 71, 1)",
-                fontWeight: "bold",
-                border: "2px solid rgba(50, 205, 50, 1)",
-                fontSize: ".6em",
-              }}
-              onClick={handleOpenUserMenu}
-            >
-              {authDetails.firstName}
-            </Button>
+      {/* LOGIN AND USER */}
+      {isLoggedIn ? (
+        <Box>
+          <IconButton onClick={handleOpenUserMenu}>
+            <Avatar sx={{ backgroundColor: "rgba(255, 99, 71, 1)" }}>T</Avatar>
+          </IconButton>
 
-            <Menu
-              sx={{ mt: "45px" }}
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-              keepMounted
-              disableScrollLock
-            >
-              {settings.map((setting) => (
-                <MenuItem
-                  key={setting.url}
-                  onClick={() => handleMenuItemClick(setting.url)}
-                >
-                  <Typography textAlign="center">{setting.name}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        ) : (
-          <Button
-            sx={{
-              borderRadius: "20px",
-              color: "rgba(255, 99, 71, 1)",
-              fontWeight: "bold",
-              border: "2px solid rgba(50, 205, 50, 1)",
-              fontSize: ".6em",
-              "&:hover": {
-                border: "2px solid rgba(50, 205, 50, .5)",
-                color: "rgba(255, 99, 71, .5)",
-              },
+          <Menu
+            sx={{ mt: "45px" }}
+            anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
             }}
-            onClick={() => navigate("/login")}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
           >
-            Login
-          </Button>
-        )}
-
-        <Button
-          sx={{
-            borderRadius: "20px",
-            color: "rgba(255, 99, 71, 1)",
-            fontWeight: "bold",
-            border: "2px solid rgba(50, 205, 50, 1)",
-            fontSize: ".6em",
-            "&:hover": {
-              border: "2px solid rgba(50, 205, 50, .5)",
-              color: "rgba(255, 99, 71, .5)",
-            },
-          }}
-          onClick={() => navigate("/addAds")}
-        >
-          Create AD
-        </Button>
-      </Box>
+            {settings.map((setting) => (
+              <Link key={setting.name} underline="none" href={`${setting.url}`}>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography
+                    sx={{
+                      color: "rgba(255, 99, 71, 1)",
+                      width: "100%",
+                    }}
+                  >
+                    {setting.name}
+                  </Typography>
+                </MenuItem>
+              </Link>
+            ))}
+          </Menu>
+        </Box>
+      ) : (
+        <Box>
+          <Link underline="none" href="login">
+            <IconButton>
+              <Tooltip title="login">
+                <Avatar />
+              </Tooltip>
+            </IconButton>
+          </Link>
+        </Box>
+      )}
     </Container>
   );
 }
@@ -179,6 +181,7 @@ export default function Navbar() {
 const pages = [
   { url: "apartments", name: "Apartments" },
   { url: "blog", name: "Blog" },
+  { url: "addApartment", name: "Add Apartment" },
 ];
 
 const settings = [

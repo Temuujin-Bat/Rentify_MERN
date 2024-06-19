@@ -9,29 +9,6 @@ export default function SingleApartmentRight() {
 
   return (
     <Grid container spacing={3} sx={{ mt: { xs: "-10px", md: "20px" } }}>
-      <Grid xs={12} sm={12} md={12} lg={12}>
-        <Paper
-          sx={{
-            padding: "10px",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <Typography
-            sx={{
-              color: "rgba(255, 99, 71, 1)",
-              fontWeight: "bold",
-              mr: "5px",
-            }}
-          >
-            Listing Number:
-          </Typography>
-          <Typography sx={{ fontSize: ".9em" }}>
-            {singleApartment?._id}
-          </Typography>
-        </Paper>
-      </Grid>
-
       <Grid xs={12} sm={7} md={12} lg={12}>
         <Paper
           sx={{
@@ -69,6 +46,26 @@ export default function SingleApartmentRight() {
                 {singleApartment?.phone}
               </Typography>
             </Box>
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              sx={{
+                color: "rgba(255, 99, 71, 1)",
+                fontWeight: "bold",
+                mr: "5px",
+              }}
+            >
+              Listing Number:
+            </Typography>
+            <Typography sx={{ fontSize: ".9em" }}>
+              {singleApartment?._id}
+            </Typography>
           </Box>
         </Paper>
       </Grid>
