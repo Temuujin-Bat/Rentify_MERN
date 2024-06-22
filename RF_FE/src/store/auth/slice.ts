@@ -2,16 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { reducers } from "./reducers.js";
 
-interface AuthState {
-  tokenDetails: string;
-  authDetails: any | null;
-}
+import { TLoginStore } from "../../types/login.type.js";
 
-const authDetails = localStorage.getItem("user");
+const authDetails = sessionStorage.getItem("user");
+const parsedAuthDetails = authDetails ? JSON.parse(authDetails) : null;
 
-const initialState: AuthState = {
-  tokenDetails: localStorage.getItem("token") || "",
-  authDetails: JSON.parse(authDetails) || null,
+const initialState: TLoginStore = {
+  tokenDetails: sessionStorage.getItem("token"),
+  authDetails: parsedAuthDetails,
 };
 
 const authSlice = createSlice({

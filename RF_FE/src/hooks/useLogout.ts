@@ -7,8 +7,8 @@ export const useLogout = () => {
   const dispatch = useDispatch();
 
   const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("user");
 
     dispatch(setToken());
     dispatch(setAuth());

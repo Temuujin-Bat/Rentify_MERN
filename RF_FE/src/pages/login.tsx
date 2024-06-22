@@ -1,14 +1,12 @@
-import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import {
   Avatar,
   Box,
   Button,
-  Checkbox,
   Container,
-  FormControlLabel,
   TextField,
   Typography,
   Link,
+  Stack,
 } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
 import { useState } from "react";
@@ -29,73 +27,90 @@ export default function Login() {
     <Container maxWidth={"xs"}>
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: { xs: "20px", sm: "60px", md: "60px", lg: "80px" },
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          width: "100%",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "rgba(255, 99, 71, 1)" }}>
+        <Avatar sx={{ bgcolor: "rgba(255, 99, 71, 1)", m: "10px" }}>
           <LockOutlined />
         </Avatar>
 
-        <Typography component="h1" variant="h5">
+        <Typography sx={{ fontWeight: "bold", fontSize: "1.2em" }}>
           Sign in
         </Typography>
 
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+        <Box
+          component="form"
+          noValidate
+          onSubmit={handleSubmit}
+          sx={{ mt: "10px", width: "100%" }}
+        >
+          <Stack>
+            <Typography sx={{ ml: "5px" }}>Email*</Typography>
+            <TextField
+              required
+              fullWidth
+              autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+            />
+          </Stack>
 
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+          <Stack sx={{ mt: "10px" }}>
+            <Typography sx={{ ml: "5px" }}>Password*</Typography>
+            <TextField
+              required
+              fullWidth
+              type="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              sx={{ mb: "10px" }}
+            />
+          </Stack>
+
+          <Link
+            href="#"
+            underline="none"
+            sx={{ fontWeight: "bold", color: "rgba(26, 188, 156, 1)" }}
+          >
+            Forgot password?
+          </Link>
 
           <Button
             type="submit"
             fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2, backgroundColor: "rgba(255, 99, 71, 1)" }}
+            sx={{
+              backgroundColor: "rgba(255, 99, 71, 1)",
+              color: "white",
+              fontWeight: "bold",
+              my: "20px",
+              "&:hover": { backgroundColor: "rgba(255, 99, 71, .5)" },
+            }}
           >
             Sign In
           </Button>
-
-          <Grid container>
-            <Grid xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid>
-              <Link href="/register" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
         </Box>
       </Box>
-      <Copyright sx={{ mt: 8, mb: 4 }} />
+
+      <Link
+        href="/register"
+        underline="none"
+        sx={{ textAlign: "left", color: "black", display: "flex" }}
+      >
+        <Typography>Don't have an account?</Typography>
+        <Typography
+          sx={{ ml: "5px", color: "rgba(26, 188, 156, 1)", fontWeight: "bold" }}
+        >
+          Sign Up
+        </Typography>
+      </Link>
+      <Copyright sx={{ mt: "40px" }} />
     </Container>
   );
 }

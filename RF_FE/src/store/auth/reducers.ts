@@ -1,9 +1,12 @@
+import { PayloadAction } from "@reduxjs/toolkit";
+import { TLoginStore } from "../../types";
+
 const reducers = {
-  setToken: (state, action) => ({
+  setToken: (state: TLoginStore, action: PayloadAction<string>) => ({
     ...state,
     tokenDetails: action.payload,
   }),
-  setAuth: (state, action) => ({
+  setAuth: (state: TLoginStore, action: PayloadAction<string>) => ({
     ...state,
     authDetails: action.payload,
   }),

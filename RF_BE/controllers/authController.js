@@ -37,15 +37,15 @@ export const login = async (req, res) => {
       return register.status(400).json({ msg: "Insert email and password." });
     }
 
-    const user = await User.findOne({ email: req.body.email });
+    const userData = await User.findOne({ email: req.body.email });
 
-    if (!user) {
+    if (!userData) {
       return res.status(401).json({ msg: "Email or password incorrect." });
     }
 
     const isPasswordCorrect = await comparePasswords(
       req.body.password,
-      user.password
+      userData.password
     );
 
     if (!isPasswordCorrect) {
@@ -54,7 +54,7 @@ export const login = async (req, res) => {
         .json({ msg: "Email or password input is incorrect!" });
     }
 
-    const token = createJWT({ userID: user._id, name: user.firstName });
+    const token = createJWT({ userID: userData._id, name: userData.firstName });
 
     const oneDay = 1000 * 60 * 60 * 24;
 
@@ -63,6 +63,13 @@ export const login = async (req, res) => {
       expires: new Date(Date.now() + oneDay),
       secure: true,
     });
+
+    const user = {
+      userID: userData._id,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      email: userData.email,
+    };
 
     res.status(200).json({ msg: "User logged in", token, user });
   } catch (error) {

@@ -11,19 +11,18 @@ export function useLoginAPI() {
   const { mutate } = useMutation({
     mutationFn: LoginController,
     onSuccess: (response) => {
-      const token = response?.data.token || "";
-      const user = response?.data.user;
-
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
-
-      dispatch(setToken(token));
-      dispatch(setAuth(user));
-
-      navigate("/");
+      if (response) {
+        const token = response?.token || "";
+        const user = response?.user;
+        sessionStorage.setItem("token", token);
+        sessionStorage.setItem("user", JSON.stringify(user));
+        dispatch(setToken(token));
+        dispatch(setAuth(user));
+        navigate("/");
+      }
     },
-    onError: (err) => {
-      console.error("Error in useLogin", `${err}`);
+    onError: (error) => {
+      console.error("Login failed:", error);
     },
   });
 
