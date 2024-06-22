@@ -1,6 +1,6 @@
 import { Box, Stack } from "@mui/material";
 
-import homeHeroImage from "../../../assets/homePage/homePageHero.webp";
+import blogHeroImage from "../../../assets/blogPage/blogPageHero.jpeg";
 
 export default function BlogHero() {
   return (
@@ -11,7 +11,7 @@ export default function BlogHero() {
     >
       <Stack
         component={"img"}
-        src={homeHeroImage}
+        src={blogHeroImage}
         sx={{ height: "100%", objectFit: "cover", width: "100%" }}
       />
     </Box>
