@@ -1,6 +1,7 @@
 import axios from "axios";
+import { TLogin } from "../types";
 
-async function LoginController(loginData) {
+async function LoginController(loginData: TLogin) {
   try {
     const response = await axios.post(
       "http://localhost:1010/api/v1/auth/login",
@@ -8,9 +9,9 @@ async function LoginController(loginData) {
       { withCredentials: true }
     );
 
-    return response;
+    return response.data;
   } catch (error) {
-    console.error("Error with the login API", error);
+    throw error;
   }
 }
 

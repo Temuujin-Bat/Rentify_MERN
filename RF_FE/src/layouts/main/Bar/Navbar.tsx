@@ -11,16 +11,13 @@ import {
   IconButton,
 } from "@mui/material";
 
-import { useNavigate } from "react-router-dom";
 import { getAuthData } from "../../../store/auth/selectors";
 import React from "react";
 import { useLogout } from "../../../hooks/useLogout";
 
 export default function Navbar() {
-  const navigate = useNavigate();
   const logout = useLogout();
   const { authDetails } = getAuthData();
-  const isLoggedIn = false;
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -126,7 +123,7 @@ export default function Navbar() {
       </Box>
 
       {/* LOGIN AND USER */}
-      {isLoggedIn ? (
+      {authDetails?.userID ? (
         <Box>
           <IconButton onClick={handleOpenUserMenu}>
             <Avatar sx={{ backgroundColor: "rgba(255, 99, 71, 1)" }}>T</Avatar>

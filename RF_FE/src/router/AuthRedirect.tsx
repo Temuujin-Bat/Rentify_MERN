@@ -1,7 +1,8 @@
+import { ReactNode } from "react";
 import { getAuthData } from "../store/auth/selectors";
 import { Navigate } from "react-router-dom";
 
-const AuthRedirect = ({ children }) => {
+const AuthRedirect = ({ children }: { children: ReactNode }) => {
   const { tokenDetails } = getAuthData();
 
   if (tokenDetails) {
