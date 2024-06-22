@@ -7,8 +7,10 @@ export function useRegisterAPI() {
 
   const { mutate } = useMutation({
     mutationFn: RegisterController,
-    onSuccess: () => {
-      navigate("/login");
+    onSuccess: (response) => {
+      if (response) {
+        navigate("/login");
+      }
     },
     onError: (err) => {
       console.error("Error in useRegister", `${err}`);

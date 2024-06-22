@@ -1,17 +1,15 @@
-import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import {
   Avatar,
   Box,
   Button,
-  Checkbox,
   Container,
-  FormControlLabel,
   TextField,
   Typography,
   Link,
+  Stack,
 } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRegisterAPI } from "../hooks/useRegister";
 
 export default function register() {
@@ -19,94 +17,123 @@ export default function register() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { mutate } = useRegisterAPI();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsSubmitting(true);
 
-    mutate({ firstName, lastName, email, password });
+    try {
+      mutate({ firstName, lastName, email, password });
+
+      alert("Registration successful!");
+    } catch (error) {
+      alert("Registration failed. Please try again.");
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
     <Container maxWidth={"xs"}>
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: { xs: "20px", sm: "60px", md: "60px", lg: "80px" },
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          width: "100%",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+        <Avatar sx={{ bgcolor: "rgba(255, 99, 71, 1)", m: "10px" }}>
           <LockOutlined />
         </Avatar>
-        <Typography component="h1" variant="h5">
+
+        <Typography sx={{ fontWeight: "bold", fontSize: "1.2em" }}>
           Sign up
         </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-            <Grid xs={12}>
-              <TextField
-                required
-                fullWidth
-                label="First Name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </Grid>
-            <Grid xs={12}>
-              <TextField
-                required
-                fullWidth
-                label="Last Name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </Grid>
-            <Grid xs={12}>
-              <TextField
-                required
-                fullWidth
-                label="Email Address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </Grid>
-            <Grid xs={12}>
-              <TextField
-                required
-                fullWidth
-                label="Password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Grid>
-            <Grid xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid>
-          </Grid>
+
+        <Box
+          component="form"
+          noValidate
+          onSubmit={handleSubmit}
+          sx={{ mt: "10px", width: "100%" }}
+        >
+          <Stack>
+            <Typography sx={{ ml: "5px" }}>First Name*</Typography>
+            <TextField
+              required
+              fullWidth
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              placeholder="First Name"
+            />
+          </Stack>
+          <Stack sx={{ mt: "10px" }}>
+            <Typography sx={{ ml: "5px" }}>Last Name*</Typography>
+            <TextField
+              required
+              fullWidth
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              placeholder="Last Name"
+            />
+          </Stack>
+          <Stack sx={{ mt: "10px" }}>
+            <Typography sx={{ ml: "5px" }}>Email*</Typography>
+            <TextField
+              required
+              fullWidth
+              type="email"
+              autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="yourmail@email.com"
+            />
+          </Stack>
+          <Stack sx={{ mt: "10px" }}>
+            <Typography sx={{ ml: "5px" }}>Last Name*</Typography>
+            <TextField
+              required
+              fullWidth
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="********"
+            />
+          </Stack>
+
           <Button
             type="submit"
             fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            disabled={isSubmitting}
+            sx={{
+              backgroundColor: "rgba(255, 99, 71, 1)",
+              color: "white",
+              fontWeight: "bold",
+              my: "20px",
+              "&:hover": { backgroundColor: "rgba(255, 99, 71, .5)" },
+            }}
           >
-            Sign Up
+            {isSubmitting ? "Signing Up..." : "Sign Up"}
           </Button>
-          <Grid container justifyContent="center">
-            <Grid>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
         </Box>
       </Box>
-      <Copyright sx={{ mt: 5 }} />
+
+      <Link
+        underline="none"
+        sx={{ textAlign: "left", color: "black", display: "flex" }}
+        href="/login"
+      >
+        <Typography>Already have an account?</Typography>
+        <Typography
+          sx={{ ml: "5px", color: "rgba(26, 188, 156, 1)", fontWeight: "bold" }}
+        >
+          Sign in
+        </Typography>
+      </Link>
+
+      <Copyright sx={{ mt: "40px" }} />
     </Container>
   );
 }
