@@ -17,16 +17,12 @@ export default function register() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const { mutate } = useRegisterAPI();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsSubmitting(true);
 
     mutate({ firstName, lastName, email, password });
-
-    setIsSubmitting(false);
   };
 
   return (
@@ -100,7 +96,6 @@ export default function register() {
           <Button
             type="submit"
             fullWidth
-            disabled={isSubmitting}
             sx={{
               backgroundColor: "rgba(255, 99, 71, 1)",
               color: "white",
@@ -109,7 +104,7 @@ export default function register() {
               "&:hover": { backgroundColor: "rgba(255, 99, 71, .5)" },
             }}
           >
-            {isSubmitting ? "Signing Up..." : "Sign Up"}
+            Sign Up
           </Button>
         </Box>
       </Box>

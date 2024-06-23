@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import RegisterController from "../services/register.api";
 import { isAxiosError } from "axios";
+import { toast } from "react-toastify";
 
 export function useRegisterAPI() {
   const navigate = useNavigate();
@@ -10,15 +11,31 @@ export function useRegisterAPI() {
     mutationFn: RegisterController,
     onSuccess: (response) => {
       if (response?.data?.msg) {
-        console.log(response.data);
+        toast.success("Registered successfully!", {
+          autoClose: 1000,
+          closeButton: false,
+          pauseOnHover: false,
+          hideProgressBar: true,
+        });
+
         navigate("/login");
       }
     },
     onError: (error) => {
       if (isAxiosError(error)) {
-        console.log(error.response?.data?.msg);
+        toast.error(error.response?.data?.msg, {
+          autoClose: 2000,
+          closeButton: false,
+          pauseOnHover: false,
+          hideProgressBar: true,
+        });
       } else {
-        console.log("Unknown error occurred:", error.message);
+        toast.error("An unknown error occurred: " + error.message, {
+          autoClose: 2000,
+          closeButton: false,
+          pauseOnHover: false,
+          hideProgressBar: true,
+        });
       }
     },
   });
