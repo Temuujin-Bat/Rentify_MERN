@@ -58,9 +58,7 @@ export const login = async (req, res) => {
     );
 
     if (!isPasswordCorrect) {
-      return res
-        .status(401)
-        .json({ msg: "Email or password input is incorrect!" });
+      return res.status(401).json({ msg: "Email or password is incorrect!" });
     }
 
     const token = createJWT({ userID: userData._id, name: userData.firstName });

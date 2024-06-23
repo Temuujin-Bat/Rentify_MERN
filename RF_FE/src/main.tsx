@@ -1,4 +1,6 @@
 import React, { Suspense } from "react";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { BrowserRouter } from "react-router-dom";
@@ -23,6 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <BrowserRouter>
           <Suspense fallback={<LazyLoadingMUI />}>
             <App />
+            <ToastContainer />
           </Suspense>
         </BrowserRouter>
       </QueryClientProvider>
