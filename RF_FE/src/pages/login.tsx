@@ -34,7 +34,7 @@ export default function Login() {
           width: "100%",
         }}
       >
-        <Avatar sx={{ bgcolor: "rgba(255, 99, 71, 1)", m: "10px" }}>
+        <Avatar sx={{ bgcolor: "rgba(26, 188, 156, 1)", m: "10px" }}>
           <LockOutlined />
         </Avatar>
 
@@ -43,8 +43,7 @@ export default function Login() {
         </Typography>
 
         <Box
-          component="form"
-          noValidate
+          component={"form"}
           onSubmit={handleSubmit}
           sx={{ mt: "10px", width: "100%" }}
         >
@@ -53,10 +52,11 @@ export default function Login() {
             <TextField
               required
               fullWidth
+              type="email"
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
+              placeholder="yourmail@email.com"
             />
           </Stack>
 
@@ -69,7 +69,7 @@ export default function Login() {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
+              placeholder="********"
               sx={{ mb: "10px" }}
             />
           </Stack>

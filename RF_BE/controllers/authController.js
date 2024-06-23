@@ -21,11 +21,20 @@ export const register = async (req, res) => {
     const hashedPassword = await hashPassword(password);
     req.body.password = hashedPassword;
 
-    const user = await User.create(req.body);
-    res.status(201).json({ msg: "Registered Successfully", user });
+    const userData = await User.create(req.body);
+
+    const user = {
+      userID: userData._id,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      email: userData.email,
+    };
+
+    return res.status(201).json({ msg: "Registered Successfully", user });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Error inside authController.js/register" });
+    return res
+      .status(500)
+      .json({ error: "Error inside authController.js/register" });
   }
 };
 
@@ -71,9 +80,10 @@ export const login = async (req, res) => {
       email: userData.email,
     };
 
-    res.status(200).json({ msg: "User logged in", token, user });
+    return res.status(200).json({ msg: "User logged in", token, user });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Error inside authController.js/login" });
+    return res
+      .status(500)
+      .json({ error: "Error inside authController.js/login" });
   }
 };
