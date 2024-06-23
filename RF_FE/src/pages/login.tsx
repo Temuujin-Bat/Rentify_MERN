@@ -43,8 +43,7 @@ export default function Login() {
         </Typography>
 
         <Box
-          component="form"
-          noValidate
+          component={"form"}
           onSubmit={handleSubmit}
           sx={{ mt: "10px", width: "100%" }}
         >

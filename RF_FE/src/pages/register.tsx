@@ -24,13 +24,7 @@ export default function register() {
     event.preventDefault();
     setIsSubmitting(true);
 
-    try {
-      mutate({ firstName, lastName, email, password });
-
-      alert("Registration successful!");
-    } catch (error) {
-      alert("Registration failed. Please try again.");
-    }
+    mutate({ firstName, lastName, email, password });
 
     setIsSubmitting(false);
   };
@@ -55,8 +49,7 @@ export default function register() {
         </Typography>
 
         <Box
-          component="form"
-          noValidate
+          component={"form"}
           onSubmit={handleSubmit}
           sx={{ mt: "10px", width: "100%" }}
         >
@@ -93,11 +86,12 @@ export default function register() {
             />
           </Stack>
           <Stack sx={{ mt: "10px" }}>
-            <Typography sx={{ ml: "5px" }}>Last Name*</Typography>
+            <Typography sx={{ ml: "5px" }}>Password*</Typography>
             <TextField
               required
               fullWidth
               value={password}
+              type="password"
               onChange={(e) => setPassword(e.target.value)}
               placeholder="********"
             />

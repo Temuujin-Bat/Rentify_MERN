@@ -1,6 +1,7 @@
 import axios from "axios";
+import { TRegister } from "../types";
 
-async function RegisterController(registerData) {
+async function RegisterController(registerData: TRegister) {
   try {
     const response = await axios.post(
       "http://localhost:1010/api/v1/auth/register",
