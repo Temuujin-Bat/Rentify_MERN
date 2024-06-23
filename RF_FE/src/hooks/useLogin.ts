@@ -27,6 +27,7 @@ export function useLoginAPI() {
           pauseOnHover: false,
           hideProgressBar: true,
         });
+
         navigate("/");
       }
     },
