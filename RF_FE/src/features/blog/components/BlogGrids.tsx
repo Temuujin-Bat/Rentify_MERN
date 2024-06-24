@@ -39,7 +39,7 @@ export default function BlogGrids() {
                 backgroundColor: "rgba(255, 99, 71, .1)",
               }}
             >
-              <Typography sx={{ fontWeight: "bold" }}>
+              <Typography sx={{ fontWeight: "bold", fontSize: "1.1em" }}>
                 Moving out for the first time? Then come get tips here!
               </Typography>
               <Box
