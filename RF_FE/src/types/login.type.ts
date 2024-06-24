@@ -4,8 +4,8 @@ export interface TLogin {
 }
 
 export interface TLoginStore {
-  tokenDetails: string | null;
-  authDetails: any | null;
+  token: string | null;
+  userDetails: any | null;
 }
 
 export interface TLoginDetails {

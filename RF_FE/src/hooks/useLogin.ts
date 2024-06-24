@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import LoginController from "../services/login.api";
 import { useDispatch } from "react-redux";
-import { setAuth, setToken } from "../store/auth/slice";
+import { setUserDetails, setToken } from "../store/auth/slice";
 import { isAxiosError } from "axios";
 import { toast } from "react-toastify";
 
@@ -19,7 +19,7 @@ export function useLoginAPI() {
         sessionStorage.setItem("token", token);
         sessionStorage.setItem("user", JSON.stringify(user));
         dispatch(setToken(token));
-        dispatch(setAuth(user));
+        dispatch(setUserDetails(user));
 
         toast.success("Login successful!", {
           autoClose: 1000,
