@@ -1,3 +1,4 @@
+import React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   Link,
@@ -12,12 +13,13 @@ import {
 } from "@mui/material";
 
 import { getAuthData } from "../../../store/auth/selectors";
-import React from "react";
-import { useLogout } from "../../../hooks/useLogout";
+import { useDispatch } from "react-redux";
+import { logout } from "../../../store/auth/slice";
+import { toast } from "react-toastify";
 
 export default function Navbar() {
-  const logout = useLogout();
-  const { authDetails } = getAuthData();
+  const dispatch = useDispatch();
+  const { userDetails } = getAuthData();
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -39,6 +41,16 @@ export default function Navbar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    toast.success("Logout successful", {
+      autoClose: 1000,
+      closeButton: false,
+      pauseOnHover: false,
+      hideProgressBar: true,
+    });
   };
 
   return (
@@ -123,7 +135,7 @@ export default function Navbar() {
       </Box>
 
       {/* LOGIN AND USER */}
-      {authDetails?.userID ? (
+      {userDetails?.userID ? (
         <Box>
           <IconButton onClick={handleOpenUserMenu}>
             <Avatar sx={{ backgroundColor: "rgba(255, 99, 71, 1)" }}>T</Avatar>
@@ -144,20 +156,40 @@ export default function Navbar() {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            {settings.map((setting) => (
-              <Link key={setting.name} underline="none" href={`${setting.url}`}>
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography
-                    sx={{
-                      color: "rgba(255, 99, 71, 1)",
-                      width: "100%",
-                    }}
-                  >
-                    {setting.name}
-                  </Typography>
-                </MenuItem>
-              </Link>
-            ))}
+            <Link underline="none" href="/user/info">
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography
+                  sx={{
+                    color: "rgba(255, 99, 71, 1)",
+                    width: "100%",
+                  }}
+                >
+                  Edit Profile
+                </Typography>
+              </MenuItem>
+            </Link>
+            <Link underline="none" href="/user/apartments">
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography
+                  sx={{
+                    color: "rgba(255, 99, 71, 1)",
+                    width: "100%",
+                  }}
+                >
+                  My Apartments
+                </Typography>
+              </MenuItem>
+            </Link>
+            <MenuItem onClick={handleLogout}>
+              <Typography
+                sx={{
+                  color: "rgba(255, 99, 71, 1)",
+                  width: "100%",
+                }}
+              >
+                Logout
+              </Typography>
+            </MenuItem>
           </Menu>
         </Box>
       ) : (
@@ -179,10 +211,4 @@ const pages = [
   { url: "apartments", name: "Apartments" },
   { url: "blog", name: "Blog" },
   { url: "addApartment", name: "Add Apartment" },
-];
-
-const settings = [
-  { name: "Edit Profile", url: "/user/info" },
-  { name: "My Apartments", url: "/user/apartments" },
-  { name: "Logout", url: "/logout" },
 ];

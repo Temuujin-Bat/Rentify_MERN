@@ -8,8 +8,8 @@ const authDetails = sessionStorage.getItem("user");
 const parsedAuthDetails = authDetails ? JSON.parse(authDetails) : null;
 
 const initialState: TLoginStore = {
-  tokenDetails: sessionStorage.getItem("token"),
-  authDetails: parsedAuthDetails,
+  token: sessionStorage.getItem("token"),
+  userDetails: parsedAuthDetails,
 };
 
 const authSlice = createSlice({
@@ -18,5 +18,5 @@ const authSlice = createSlice({
   reducers,
 });
 
-export const { setToken, setAuth } = authSlice.actions;
+export const { setToken, setUserDetails, logout } = authSlice.actions;
 export default authSlice.reducer;
