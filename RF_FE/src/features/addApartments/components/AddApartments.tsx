@@ -1,13 +1,14 @@
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Button, FormControl } from "@mui/material";
-import { useState } from "react";
+import React, { useState } from "react";
 import AddAdsAddress from "./AddAdsAddress";
 import AddAdsDescription from "./AddAdsDescription";
 import AddAdsContact from "./AddAdsContact";
 import { useAddApartmentAPI } from "../../../hooks/useApartments";
+import { TApartments } from "../../../types";
 
 export default function AddApartments() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<TApartments>({
     name: "Temuujin Bat Erdene",
     phone: "0543892359",
     price: "1200",
@@ -38,15 +39,15 @@ export default function AddApartments() {
 
   const { mutate: addApartment } = useAddApartmentAPI();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     addApartment({ formData });
   };
 
   return (
-    <FormControl component="form" onSubmit={handleSubmit}>
-      <Grid container spacing={2}>
+    <FormControl component={"form"} onSubmit={handleSubmit}>
+      <Grid container spacing={2} sx={{ mt: "1em" }}>
         <Grid xs={12} sm={12} md={12} lg={12}>
           <AddAdsAddress formData={formData} setFormData={setFormData} />
         </Grid>
@@ -63,6 +64,8 @@ export default function AddApartments() {
               background: "rgba(255, 99, 71, 1)",
               "&:hover": { background: "rgba(255, 99, 71, .6)" },
               color: "white",
+              height: "3em",
+              fontWeight: "bold",
             }}
             fullWidth
           >

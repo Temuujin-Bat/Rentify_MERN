@@ -4,27 +4,62 @@ import {
   TextField,
   Typography,
   InputAdornment,
+  Stack,
+  Link,
+  Tooltip,
+  Paper,
 } from "@mui/material";
+import { TApartments } from "../../../types";
 
-export default function AddAdsAddress({ formData, setFormData }) {
+export default function AddAdsAddress({
+  formData,
+  setFormData,
+}: {
+  formData: TApartments;
+  setFormData: React.Dispatch<React.SetStateAction<TApartments>>;
+}) {
   return (
-    <>
-      <Typography>Apartment Information</Typography>
+    <Paper
+      elevation={10}
+      sx={{ padding: { xs: "5px", sm: "20px", md: "20px", lg: "20px" } }}
+    >
+      <Typography
+        sx={{
+          fontSize: "1.5em",
+          fontWeight: "bold",
+          color: "rgba(255, 99, 71, 1)",
+          mb: ".5em",
+        }}
+      >
+        Apartment Information
+      </Typography>
 
-      <Grid xs={12} sm={12} md={12} lg={12} container spacing={2}>
+      <Grid container spacing={2}>
         {/* CITY */}
-        <Grid xs={12} sm={6} md={12} lg={12}>
+        <Grid xs={12} sm={6} md={6} lg={6}>
           <Autocomplete
             disablePortal
             options={cities}
-            renderInput={(params) => <TextField {...params} label="City" />}
+            renderInput={(params) => (
+              <Stack>
+                <Typography
+                  sx={{
+                    ml: "5px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  City*
+                </Typography>
+                <TextField {...params} />
+              </Stack>
+            )}
             value={formData.address.city}
             onChange={(_, newValue) => {
               setFormData((prevData) => ({
                 ...prevData,
                 address: {
                   ...prevData.address,
-                  city: newValue,
+                  city: newValue || "",
                 },
               }));
             }}
@@ -32,12 +67,18 @@ export default function AddAdsAddress({ formData, setFormData }) {
         </Grid>
 
         {/* STREET */}
-        <Grid xs={12} sm={6} md={12} lg={12}>
+        <Grid xs={12} sm={6} md={6} lg={6}>
+          <Typography
+            sx={{
+              ml: "5px",
+              fontWeight: "bold",
+            }}
+          >
+            Street Name*
+          </Typography>
           <TextField
             fullWidth
             required
-            label="Street Name"
-            autoComplete="off"
             value={formData.address.street}
             onChange={(event) => {
               const value = event.target.value;
@@ -53,12 +94,18 @@ export default function AddAdsAddress({ formData, setFormData }) {
         </Grid>
 
         {/* HOUSE NUMBER */}
-        <Grid xs={12} sm={4} md={12} lg={12}>
+        <Grid xs={12} sm={4} md={4} lg={3}>
+          <Typography
+            sx={{
+              ml: "5px",
+              fontWeight: "bold",
+            }}
+          >
+            Building Number*
+          </Typography>
           <TextField
             fullWidth
             required
-            label="Building number"
-            autoComplete="off"
             value={formData.address.buildingNumber}
             onChange={(event) => {
               const value = event.target.value;
@@ -74,12 +121,18 @@ export default function AddAdsAddress({ formData, setFormData }) {
         </Grid>
 
         {/* FLOOR NUMBER */}
-        <Grid xs={12} sm={4} md={12} lg={12}>
+        <Grid xs={12} sm={4} md={4} lg={3}>
+          <Typography
+            sx={{
+              ml: "5px",
+              fontWeight: "bold",
+            }}
+          >
+            Floor Number*
+          </Typography>
           <TextField
             fullWidth
             required
-            label="Floor number"
-            autoComplete="off"
             value={formData.apartment.floor}
             onChange={(event) => {
               const value = event.target.value;
@@ -95,12 +148,18 @@ export default function AddAdsAddress({ formData, setFormData }) {
         </Grid>
 
         {/* NUMBER OF ROOMS */}
-        <Grid xs={12} sm={4} md={12} lg={12}>
+        <Grid xs={12} sm={4} md={4} lg={3}>
+          <Typography
+            sx={{
+              ml: "5px",
+              fontWeight: "bold",
+            }}
+          >
+            Number Of Rooms*
+          </Typography>
           <TextField
             fullWidth
             required
-            label="Number of rooms"
-            autoComplete="off"
             value={formData.apartment.rooms}
             onChange={(event) => {
               const value = event.target.value;
@@ -115,32 +174,19 @@ export default function AddAdsAddress({ formData, setFormData }) {
           />
         </Grid>
 
-        {/* MONTHLY PAYMENT */}
-        <Grid xs={12} sm={4} md={12} lg={12}>
-          <TextField
-            fullWidth
-            required
-            label="Monthly payment"
-            InputProps={{
-              endAdornment: <InputAdornment position="start">$</InputAdornment>,
-            }}
-            value={formData.price}
-            onChange={(event) => {
-              const value = event.target.value;
-              setFormData((prevData) => ({
-                ...prevData,
-                price: value,
-              }));
-            }}
-          />
-        </Grid>
-
         {/* SIZE OF APARTMENT */}
-        <Grid xs={12} sm={4} md={12} lg={12}>
+        <Grid xs={12} sm={4} md={4} lg={3}>
+          <Typography
+            sx={{
+              ml: "5px",
+              fontWeight: "bold",
+            }}
+          >
+            Size Of Asset
+          </Typography>
           <TextField
             fullWidth
             required
-            label="Size of asset"
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">m2</InputAdornment>
@@ -160,14 +206,69 @@ export default function AddAdsAddress({ formData, setFormData }) {
           />
         </Grid>
 
-        {/* POSTAL CODE */}
-        <Grid xs={12} sm={4} md={12} lg={12}>
+        {/* MONTHLY PAYMENT */}
+        <Grid xs={12} sm={4} md={4} lg={6}>
+          <Typography
+            sx={{
+              ml: "5px",
+              fontWeight: "bold",
+            }}
+          >
+            Monthly Payment*
+          </Typography>
           <TextField
             fullWidth
             required
-            label="Postal code"
+            InputProps={{
+              endAdornment: <InputAdornment position="start">$</InputAdornment>,
+            }}
+            value={formData.price}
+            onChange={(event) => {
+              const value = event.target.value;
+              setFormData((prevData) => ({
+                ...prevData,
+                price: value,
+              }));
+            }}
+          />
+        </Grid>
+
+        {/* POSTAL CODE */}
+        <Grid xs={12} sm={4} md={4} lg={6}>
+          <Typography
+            sx={{
+              ml: "5px",
+              fontWeight: "bold",
+            }}
+          >
+            Postal Code*
+          </Typography>
+          <TextField
+            fullWidth
+            required
             InputProps={{
               autoComplete: "new-password",
+              endAdornment: (
+                <InputAdornment position="start">
+                  <Tooltip title="Zip Code/Postal Code Help">
+                    <Link
+                      target="_blank"
+                      href="https://israelpost.co.il/%D7%A9%D7%99%D7%A8%D7%95%D7%AA%D7%99%D7%9D/%D7%90%D7%99%D7%AA%D7%95%D7%A8-%D7%9E%D7%99%D7%A7%D7%95%D7%93/"
+                      sx={{
+                        color: "blue",
+
+                        "&:hover": {
+                          textDecoration: "underline",
+                        },
+                        fontWeight: "bold",
+                        fontSize: "14px",
+                      }}
+                    >
+                      Find Postal Code
+                    </Link>
+                  </Tooltip>
+                </InputAdornment>
+              ),
             }}
             inputProps={{
               minLength: 7,
@@ -196,7 +297,7 @@ export default function AddAdsAddress({ formData, setFormData }) {
           />
         </Grid>
       </Grid>
-    </>
+    </Paper>
   );
 }
 

@@ -1,6 +1,11 @@
 import axios from "axios";
+import { TApartments } from "../types";
 
-const CreateApartmentController = async ({ formData }) => {
+const CreateApartmentController = async ({
+  formData,
+}: {
+  formData: TApartments;
+}) => {
   try {
     const response = await axios.post(
       "http://localhost:1010/api/v1/apartments",
@@ -9,12 +14,10 @@ const CreateApartmentController = async ({ formData }) => {
         withCredentials: true,
       }
     );
+
     return response.data;
   } catch (error) {
-    console.error(
-      "Error with the addApartment.api.ts inside of services!!",
-      error
-    );
+    throw error;
   }
 };
 

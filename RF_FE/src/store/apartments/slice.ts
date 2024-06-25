@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { reducers } from "./reducers";
+import { TReduxApartments } from "../../types";
 
-const initialState = {
+const initialState: TReduxApartments = {
   apartments: [],
   singleApartment: null,
   userApartments: [],

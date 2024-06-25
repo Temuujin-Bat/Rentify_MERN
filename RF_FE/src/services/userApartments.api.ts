@@ -18,7 +18,7 @@ async function UserApartmentsController() {
   }
 }
 
-async function UserSingleApartmentController(id) {
+async function UserSingleApartmentController(id: string) {
   try {
     const result = await axios.get(
       `http://localhost:1010/api/v1/user/apartment/${id}`,
@@ -36,7 +36,7 @@ async function UserSingleApartmentController(id) {
   }
 }
 
-async function UserDeleteApartmentController(id) {
+async function UserDeleteApartmentController(id: string) {
   try {
     await axios.delete(`http://localhost:1010/api/v1/user/apartment/${id}`, {
       withCredentials: true,
@@ -49,7 +49,7 @@ async function UserDeleteApartmentController(id) {
   }
 }
 
-async function UserEditApartmentController(id, updatedData) {
+async function UserEditApartmentController(id: string, updatedData) {
   try {
     await axios.put(
       `http://localhost:1010/api/v1/user/apartment/${id}`,

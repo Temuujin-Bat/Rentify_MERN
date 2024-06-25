@@ -1,7 +1,7 @@
 import { getAuthData } from "../store/auth/selectors";
 
 export function useAuth() {
-  const { tokenDetails } = getAuthData();
+  const { token } = getAuthData();
 
-  return { isLoggedIn: !!tokenDetails };
+  return { isLoggedIn: !!token };
 }

@@ -3,9 +3,14 @@ import { Container } from "@mui/material";
 
 import { useUserApartmentsAPI } from "../hooks/useApartments";
 import { UserApartmentsGrids } from "../features/apartments";
+import { LoadingMUI } from "../components";
 
 export default function userApartments() {
-  useUserApartmentsAPI();
+  const { isLoading } = useUserApartmentsAPI();
+
+  if (isLoading) {
+    return <LoadingMUI />;
+  }
 
   return (
     <>

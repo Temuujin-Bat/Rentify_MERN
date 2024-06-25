@@ -20,6 +20,8 @@ import {
   UserEditApartmentController,
   UserSingleApartmentController,
 } from "../services/userApartments.api";
+import { toast } from "react-toastify";
+import { isAxiosError } from "axios";
 
 export function useGetApartmentsAPI(city: string | null) {
   const dispatch = useDispatch();
@@ -62,9 +64,30 @@ export function useAddApartmentAPI() {
     mutationFn: CreateApartmentController,
     onSuccess: () => {
       navigate("/user/apartments");
+
+      toast.success("Apartment Added Successfully!", {
+        autoClose: 1000,
+        closeButton: false,
+        pauseOnHover: false,
+        hideProgressBar: true,
+      });
     },
-    onError: (err) => {
-      console.error("Error in useApartments", `${err}`);
+    onError: (error) => {
+      if (isAxiosError(error)) {
+        toast.error(error.response?.data?.msg, {
+          autoClose: 2000,
+          closeButton: false,
+          pauseOnHover: false,
+          hideProgressBar: true,
+        });
+      } else {
+        toast.error("An unknown error occurred: " + error.message, {
+          autoClose: 2000,
+          closeButton: false,
+          pauseOnHover: false,
+          hideProgressBar: true,
+        });
+      }
     },
   });
 
@@ -74,7 +97,7 @@ export function useAddApartmentAPI() {
 export function useUserApartmentsAPI() {
   const dispatch = useDispatch();
 
-  const { data, isSuccess } = useQuery({
+  const { data, isSuccess, isLoading } = useQuery({
     queryKey: ["userApartments"],
     queryFn: () => UserApartmentsController(),
   });
@@ -84,9 +107,11 @@ export function useUserApartmentsAPI() {
       dispatch(setUserApartments(data));
     }
   }, [isSuccess, data]);
+
+  return { isLoading };
 }
 
-export function useUserSingleApartmentAPI(id) {
+export function useUserSingleApartmentAPI(id: string) {
   const dispatch = useDispatch();
 
   const { data, isSuccess } = useQuery({
@@ -101,7 +126,7 @@ export function useUserSingleApartmentAPI(id) {
   }, [isSuccess, data]);
 }
 
-export function useUserDeleteApartmentAPI(id) {
+export function useUserDeleteApartmentAPI(id: string) {
   const navigate = useNavigate();
 
   const { mutate } = useMutation({
@@ -117,7 +142,7 @@ export function useUserDeleteApartmentAPI(id) {
   return { mutate };
 }
 
-export function useUserEditApartmentAPI(id, updatedData) {
+export function useUserEditApartmentAPI(id: string, updatedData) {
   const navigate = useNavigate();
 
   const { mutate } = useMutation({
