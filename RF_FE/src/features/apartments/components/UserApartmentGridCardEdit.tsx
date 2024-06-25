@@ -1,5 +1,5 @@
 import { Edit } from "@mui/icons-material";
-import { Link, Typography } from "@mui/material";
+import { Link, Typography, Box } from "@mui/material";
 import { TUserApartments } from "../../../types";
 
 export default function UserApartmentGridCardEdit({
@@ -8,32 +8,42 @@ export default function UserApartmentGridCardEdit({
   apartment: TUserApartments;
 }) {
   return (
-    <Link
+    <Box
       sx={{
-        border: "2px solid rgba(50, 205, 50, 1)",
-        borderRadius: "100px",
-        height: "70px",
-        width: "70px",
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        flexDirection: "column",
-        "&:hover": {
-          border: "2px solid rgba(50, 205, 50, .5)",
-          boxShadow: "1",
-        },
       }}
-      underline="none"
-      href={`${`/user/apartment/edit/${apartment._id}`}`}
     >
-      <Edit
+      <Link
         sx={{
-          color: "rgba(255, 99, 71, 1)",
+          border: "2px solid rgba(50, 205, 50, 1)",
+          borderRadius: "100px",
+          height: "45px",
+          width: "45px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          "&:hover": {
+            border: "2px solid rgba(50, 205, 50, .5)",
+            boxShadow: "1",
+            cursor: "pointer",
+          },
         }}
-      />
+        underline="none"
+        href={`${`/user/apartment/edit/${apartment._id}`}`}
+      >
+        <Edit
+          sx={{
+            color: "rgba(255, 99, 71, 1)",
+          }}
+        />
+      </Link>
       <Typography sx={{ fontSize: ".8em", fontWeight: "bold" }}>
         Edit
       </Typography>
-    </Link>
+    </Box>
   );
 }

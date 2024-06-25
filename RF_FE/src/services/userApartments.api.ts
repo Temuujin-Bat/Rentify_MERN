@@ -11,10 +11,7 @@ async function UserApartmentsController() {
 
     return result.data;
   } catch (error) {
-    console.error(
-      "Error with the apartment.api.ts inside of services!!",
-      error
-    );
+    throw error;
   }
 }
 

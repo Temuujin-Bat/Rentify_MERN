@@ -44,7 +44,9 @@ export default function editApartment() {
     },
   });
 
-  useGetSingleApartmentAPI(id);
+  if (id) {
+    useGetSingleApartmentAPI(id);
+  }
 
   const { userSingleApartment } = getApartmentsData();
 

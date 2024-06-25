@@ -1,6 +1,5 @@
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Box, Typography, Paper } from "@mui/material";
-import { Apartment, Bed, ViewInAr } from "@mui/icons-material";
 
 import {
   UserApartmentGridCardDelete,
@@ -47,36 +46,6 @@ export default function UserApartmentGridCard({
         <Box
           sx={{
             display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-            height: "100px",
-          }}
-        >
-          <Box sx={{ textAlign: "center" }}>
-            <Bed sx={{ color: "rgba(26, 188, 156, 1)" }} />
-            <Typography sx={{ color: "rgba(255, 99, 71, 1)" }}>
-              Rooms
-            </Typography>
-            <Typography>{apartment?.apartment?.rooms}</Typography>
-          </Box>
-
-          <Box sx={{ textAlign: "center" }}>
-            <Apartment sx={{ color: "rgba(26, 188, 156, 1)" }} />
-
-            <Typography sx={{ color: "rgba(255, 99, 71, 1)" }}>Type</Typography>
-            <Typography>Apartment</Typography>
-          </Box>
-
-          <Box sx={{ textAlign: "center" }}>
-            <ViewInAr sx={{ color: "rgba(26, 188, 156, 1)" }} />
-            <Typography sx={{ color: "rgba(255, 99, 71, 1)" }}>Size</Typography>
-            <Typography>{apartment?.apartment?.size} m2</Typography>
-          </Box>
-        </Box>
-
-        <Box
-          sx={{
-            display: "flex",
             alignItems: "center",
             justifyContent: "space-around",
             backgroundColor: "rgba(255, 99, 71, .1)",
@@ -91,11 +60,19 @@ export default function UserApartmentGridCard({
           </Box>
 
           <Typography sx={{ fontWeight: "bold" }}>
-            {apartment?.address?.street}
+            {apartment?.address?.street} {apartment?.address?.buildingNumber}
           </Typography>
         </Box>
 
-        <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+
+            boxShadow: "10",
+            padding: "10px",
+          }}
+        >
           <UserApartmentGridCardDelete apartment={apartment} />
 
           <UserApartmentGridCardEdit apartment={apartment} />

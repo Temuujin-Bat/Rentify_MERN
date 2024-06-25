@@ -132,10 +132,17 @@ export function useUserDeleteApartmentAPI(id: string) {
   const { mutate } = useMutation({
     mutationFn: () => UserDeleteApartmentController(id),
     onSuccess: () => {
-      navigate("/user/apartments");
+      navigate("/addApartment");
+
+      toast.success("Deleted successfully!", {
+        autoClose: 1000,
+        closeButton: false,
+        pauseOnHover: false,
+        hideProgressBar: true,
+      });
     },
     onError: (err) => {
-      console.error("Error in useApartments", `${err}`);
+      throw err;
     },
   });
 

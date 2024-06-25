@@ -1,12 +1,10 @@
 import { Delete } from "@mui/icons-material";
-import { Button, Typography, Modal, Box } from "@mui/material";
+import { Button, Typography, Modal, Box, Link, Stack } from "@mui/material";
 import { useState } from "react";
 
-import {
-  useUserDeleteApartmentAPI,
-  useUserSingleApartmentAPI,
-} from "../../../hooks/useApartments";
+import { useUserDeleteApartmentAPI } from "../../../hooks/useApartments";
 import { TUserApartments } from "../../../types";
+import img from "../../../assets/userApartments/UserApartmentDelete.jpg";
 
 export default function UserApartmentGridCardDelete({
   apartment,
@@ -17,40 +15,59 @@ export default function UserApartmentGridCardDelete({
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
 
-  if (apartment?._id) {
-    console.log(apartment?._id);
+  const { mutate: deleteApartment } = useUserDeleteApartmentAPI(
+    apartment?._id || ""
+  );
 
-    useUserSingleApartmentAPI(apartment?._id);
-  }
-
-  const { mutate } = useUserDeleteApartmentAPI(apartment?._id || "");
+  const handleDelete = () => {
+    deleteApartment();
+    handleClose();
+  };
 
   return (
-    <Button
-      onClick={handleOpen}
-      sx={{
-        border: "2px solid rgba(50, 205, 50, 1)",
-        borderRadius: "100px",
-        height: "70px",
-        width: "70px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        "&:hover": {
-          border: "2px solid rgba(50, 205, 50, .5)",
-          boxShadow: "1",
-        },
-      }}
-    >
-      <Delete
+    <>
+      <Box
         sx={{
-          color: "rgba(255, 99, 71, 1)",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
         }}
-      />
-      <Typography sx={{ fontSize: ".8em", fontWeight: "bold" }}>
-        Delete
-      </Typography>
+      >
+        <Link
+          sx={{
+            border: "2px solid rgba(50, 205, 50, 1)",
+            borderRadius: "100px",
+            height: "45px",
+            width: "45px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            "&:hover": {
+              border: "2px solid rgba(50, 205, 50, .5)",
+              boxShadow: "1",
+              cursor: "pointer",
+            },
+          }}
+          underline="none"
+          onClick={handleOpen}
+        >
+          <Delete
+            sx={{
+              color: "rgba(255, 99, 71, 1)",
+            }}
+          />
+        </Link>
+        <Typography
+          sx={{
+            fontSize: ".8em",
+            fontWeight: "bold",
+          }}
+        >
+          Delete
+        </Typography>
+      </Box>
 
       <Modal open={isOpen} onClose={handleClose}>
         <Box
@@ -69,27 +86,33 @@ export default function UserApartmentGridCardDelete({
             justifyContent: "center",
           }}
         >
-          <Typography>Deleting The AD</Typography>
-          <Typography>This will delete the AD permanently</Typography>
-          <Box>
+          <Stack sx={{ width: "100px" }}>
+            <Stack component={"img"} src={img} sx={{ objectFit: "cover" }} />
+          </Stack>
+
+          <Typography sx={{ fontWeight: "bold", textAlign: "center" }}>
+            This will delete the apartment permanently!!!
+          </Typography>
+          <Box sx={{ mt: "20px" }}>
             <Button
               sx={{
-                borderRadius: "20px",
+                borderRadius: "100px",
                 color: "rgba(255, 99, 71, 1)",
                 fontWeight: "bold",
-                border: "2px solid rgba(50, 205, 50, 1)",
+                border: "2px solid rgba(255, 99, 71, 1)",
                 fontSize: ".6em",
+                mr: "5px",
               }}
-              onClick={() => mutate(apartment?._id)}
+              onClick={handleDelete}
             >
               Yes
             </Button>
             <Button
               sx={{
                 borderRadius: "20px",
-                color: "rgba(255, 99, 71, 1)",
+                color: "rgba(50, 205, 50, 1)",
                 fontWeight: "bold",
-                border: "2px solid rgba(0,0,0,.3)",
+                border: "2px solid rgba(50, 205, 50, 1)",
                 fontSize: ".6em",
               }}
               onClick={handleClose}
@@ -99,6 +122,6 @@ export default function UserApartmentGridCardDelete({
           </Box>
         </Box>
       </Modal>
-    </Button>
+    </>
   );
 }
