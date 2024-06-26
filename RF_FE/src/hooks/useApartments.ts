@@ -26,7 +26,7 @@ import { TApartments } from "../types";
 export function useGetApartmentsAPI(city: string | null) {
   const dispatch = useDispatch();
 
-  const { data, isSuccess, isLoading, isError } = useQuery({
+  const { data, isSuccess, isLoading } = useQuery({
     queryKey: ["apartments", city],
     queryFn: () => ApartmentsController(city),
   });
@@ -37,13 +37,13 @@ export function useGetApartmentsAPI(city: string | null) {
     }
   }, [isSuccess, data]);
 
-  return { isLoading, isError };
+  return { isLoading, data };
 }
 
 export function useGetSingleApartmentAPI(id: string) {
   const dispatch = useDispatch();
 
-  const { data, isSuccess, isLoading, isError } = useQuery({
+  const { data, isSuccess, isLoading } = useQuery({
     queryKey: ["apartment", id],
     queryFn: () => SingleApartmentController(id),
   });
@@ -54,7 +54,7 @@ export function useGetSingleApartmentAPI(id: string) {
     }
   }, [isSuccess, data]);
 
-  return { isLoading, isError };
+  return { isLoading };
 }
 
 export function useAddApartmentAPI() {
@@ -121,7 +121,7 @@ export function useUserSingleApartmentAPI(id: string) {
 
   useEffect(() => {
     if (isSuccess && data) {
-      dispatch(setUserSingleApartment(data));
+      dispatch(setUserApartments(data));
     }
   }, [isSuccess, data]);
 }

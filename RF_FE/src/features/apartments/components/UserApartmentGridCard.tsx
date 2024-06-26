@@ -7,12 +7,12 @@ import {
   UserApartmentGridCardShowAD,
 } from "../index";
 
-import { TUserApartments } from "../../../types";
+import { TApartments } from "../../../types";
 
 export default function UserApartmentGridCard({
   apartment,
 }: {
-  apartment: TUserApartments;
+  apartment: TApartments;
 }) {
   return (
     <Grid xs={12} sm={6} md={6} lg={6}>
@@ -39,7 +39,7 @@ export default function UserApartmentGridCard({
           </Typography>
 
           <Typography sx={{ mr: "20px" }}>
-            {new Date(apartment?.createdAt).toLocaleDateString("en-GB")}
+            {new Date(apartment?.createdAt || "").toLocaleDateString("en-GB")}
           </Typography>
         </Box>
 

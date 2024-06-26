@@ -48,7 +48,11 @@ export default function Login() {
           sx={{ mt: "10px", width: "100%" }}
         >
           <Stack>
-            <Typography sx={{ ml: "5px" }}>Email*</Typography>
+            <Typography
+              sx={{ ml: "5px", fontWeight: "bold", fontSize: ".8em" }}
+            >
+              Email*
+            </Typography>
             <TextField
               required
               fullWidth
@@ -61,7 +65,11 @@ export default function Login() {
           </Stack>
 
           <Stack sx={{ mt: "10px" }}>
-            <Typography sx={{ ml: "5px" }}>Password*</Typography>
+            <Typography
+              sx={{ ml: "5px", fontWeight: "bold", fontSize: ".8em" }}
+            >
+              Password*
+            </Typography>
             <TextField
               required
               fullWidth

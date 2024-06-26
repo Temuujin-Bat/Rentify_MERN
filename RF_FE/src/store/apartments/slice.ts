@@ -1,13 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { reducers } from "./reducers";
-import { TReduxApartments } from "../../types";
+import { TApartmentsStore } from "../../types";
 
-const initialState: TReduxApartments = {
+const initialState: TApartmentsStore = {
   apartments: [],
   singleApartment: null,
   userApartments: [],
-  userSingleApartment: null,
 };
 
 const apartmentsSlice = createSlice({

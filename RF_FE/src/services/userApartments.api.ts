@@ -1,4 +1,5 @@
 import axios from "axios";
+import { TApartments } from "../types";
 
 async function UserApartmentsController() {
   try {
@@ -46,7 +47,10 @@ async function UserDeleteApartmentController(id: string) {
   }
 }
 
-async function UserEditApartmentController(id: string, updatedData) {
+async function UserEditApartmentController(
+  id: string,
+  updatedData: TApartments
+) {
   try {
     await axios.put(
       `http://localhost:1010/api/v1/user/apartment/${id}`,

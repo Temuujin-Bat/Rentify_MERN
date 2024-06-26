@@ -50,7 +50,11 @@ export default function register() {
           sx={{ mt: "10px", width: "100%" }}
         >
           <Stack>
-            <Typography sx={{ ml: "5px" }}>First Name*</Typography>
+            <Typography
+              sx={{ ml: "5px", fontWeight: "bold", fontSize: ".8em" }}
+            >
+              First Name*
+            </Typography>
             <TextField
               required
               fullWidth
@@ -60,7 +64,11 @@ export default function register() {
             />
           </Stack>
           <Stack sx={{ mt: "10px" }}>
-            <Typography sx={{ ml: "5px" }}>Last Name*</Typography>
+            <Typography
+              sx={{ ml: "5px", fontWeight: "bold", fontSize: ".8em" }}
+            >
+              Last Name*
+            </Typography>
             <TextField
               required
               fullWidth
@@ -70,7 +78,11 @@ export default function register() {
             />
           </Stack>
           <Stack sx={{ mt: "10px" }}>
-            <Typography sx={{ ml: "5px" }}>Email*</Typography>
+            <Typography
+              sx={{ ml: "5px", fontWeight: "bold", fontSize: ".8em" }}
+            >
+              Email*
+            </Typography>
             <TextField
               required
               fullWidth
@@ -82,7 +94,11 @@ export default function register() {
             />
           </Stack>
           <Stack sx={{ mt: "10px" }}>
-            <Typography sx={{ ml: "5px" }}>Password*</Typography>
+            <Typography
+              sx={{ ml: "5px", fontWeight: "bold", fontSize: ".8em" }}
+            >
+              Password*
+            </Typography>
             <TextField
               required
               fullWidth

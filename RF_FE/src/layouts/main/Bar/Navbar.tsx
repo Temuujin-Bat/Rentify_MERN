@@ -156,7 +156,7 @@ export default function Navbar() {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            <Link underline="none" href="/user/info">
+            <Link underline="none" href="/profile">
               <MenuItem onClick={handleCloseUserMenu}>
                 <Typography
                   sx={{
@@ -164,7 +164,7 @@ export default function Navbar() {
                     width: "100%",
                   }}
                 >
-                  Edit Profile
+                  Profile
                 </Typography>
               </MenuItem>
             </Link>

@@ -1,5 +1,6 @@
 export { default as ApartmentsFilter } from "./components/ApartmentsFilter";
 export { default as ApartmentsGrids } from "./components/ApartmentsGrids";
+export { default as ApartmentsNoPosts } from "./components/ApartmentsNoPosts";
 export { default as ApartmentsGridsImagesList } from "./components/ApartmentsGridsImagesList";
 
 export { default as SingleApartmentHeroImages } from "./components/SingleApartmentHeroImages";

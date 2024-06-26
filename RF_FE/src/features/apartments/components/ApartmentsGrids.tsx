@@ -11,19 +11,20 @@ import { Apartment, Bed, ViewInAr } from "@mui/icons-material";
 
 import ApartmentsGridsImagesList from "./ApartmentsGridsImagesList";
 import { getApartmentsData } from "../../../store/apartments/selectors";
+import { TApartments } from "../../../types";
 
 export default function ApartmentsGrids() {
   const { apartments } = getApartmentsData();
 
   return (
     <Grid container spacing={3} sx={{ marginTop: "30px" }}>
-      {apartments.map((apartment, index) => (
+      {apartments.map((apartment: TApartments) => (
         <Grid
           xs={12}
           sm={6}
           md={6}
           lg={4}
-          key={index}
+          key={apartment?._id}
           sx={{
             transition: "box-shadow 0.3s ease-in-out",
             "&:hover": { boxShadow: 10 },
