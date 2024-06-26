@@ -1,7 +1,11 @@
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import Container from "@mui/material/Container";
 
-import { ApartmentsFilter, ApartmentsGrids } from "../features/apartments";
+import {
+  ApartmentsFilter,
+  ApartmentsGrids,
+  ApartmentsNoPosts,
+} from "../features/apartments";
 import { useGetApartmentsAPI } from "../hooks/useApartments";
 import { useParamsURL } from "../hooks/useParamsURL";
 import { LoadingMUI } from "../components";
@@ -9,14 +13,10 @@ import { LoadingMUI } from "../components";
 export default function apartments() {
   const result = useParamsURL().get("city");
 
-  const { isLoading, isError } = useGetApartmentsAPI(result);
+  const { isLoading, data } = useGetApartmentsAPI(result);
 
   if (isLoading) {
     return <LoadingMUI />;
-  }
-
-  if (isError) {
-    return <div>Error loading apartments: {isError}</div>;
   }
 
   return (
@@ -26,7 +26,11 @@ export default function apartments() {
       </Grid>
 
       <Grid xs={12} sm={12} md={12} lg={12}>
-        <ApartmentsGrids />
+        {data && data?.length ? (
+          <ApartmentsGrids />
+        ) : (
+          <ApartmentsNoPosts result={result || ""} />
+        )}
       </Grid>
     </Container>
   );

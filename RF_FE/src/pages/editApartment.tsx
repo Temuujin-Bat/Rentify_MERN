@@ -52,7 +52,7 @@ export default function editApartment() {
     return <div>Error: Apartment ID is missing</div>;
   }
 
-  const { isLoading, isError } = useGetSingleApartmentAPI(id);
+  const { isLoading } = useGetSingleApartmentAPI(id);
 
   const { singleApartment } = getApartmentsData();
 
@@ -72,10 +72,6 @@ export default function editApartment() {
 
   if (isLoading) {
     return <LoadingMUI />;
-  }
-
-  if (isError) {
-    return <div>Error loading apartments: {isError}</div>;
   }
 
   return (

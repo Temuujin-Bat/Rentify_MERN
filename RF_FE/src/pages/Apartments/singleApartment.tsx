@@ -14,14 +14,10 @@ export default function singleApartment() {
   const { id } = useParams();
 
   if (id) {
-    const { isLoading, isError } = useGetSingleApartmentAPI(id);
+    const { isLoading } = useGetSingleApartmentAPI(id);
 
     if (isLoading) {
       return <LoadingMUI />;
-    }
-
-    if (isError) {
-      return <div>Error loading apartments: {isError}</div>;
     }
   }
 

@@ -14,7 +14,7 @@ const LazyLogin = lazy(() => import("../pages/login"));
 const LazyRegister = lazy(() => import("../pages/register"));
 const LazyUserApartments = lazy(() => import("../pages/userApartments"));
 const LazyUserEditApartment = lazy(() => import("../pages/editApartment"));
-import LazyUserInfo from "../pages/userInfo";
+const LazyProfile = lazy(() => import("../pages/profile"));
 
 import { AuthRedirect } from "./AuthRedirect";
 import { ProtectedRoute } from "./ProtectedRoute";
@@ -85,10 +85,10 @@ const InitRoutes = () => {
           ),
         },
         {
-          path: "/user/info",
+          path: "/profile",
           element: (
             <ProtectedRoute>
-              <LazyUserInfo />
+              <LazyProfile />
             </ProtectedRoute>
           ),
         },

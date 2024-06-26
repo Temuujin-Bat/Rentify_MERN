@@ -9,10 +9,7 @@ async function ApartmentsController(city: string | null) {
 
     return result.data.apartments;
   } catch (error) {
-    console.error(
-      "Error with the apartment.api.ts inside of services!!",
-      error
-    );
+    throw error;
   }
 }
 

@@ -3,13 +3,13 @@ import { Button, Typography, Modal, Box, Link, Stack } from "@mui/material";
 import { useState } from "react";
 
 import { useUserDeleteApartmentAPI } from "../../../hooks/useApartments";
-import { TUserApartments } from "../../../types";
+import { TApartments } from "../../../types";
 import img from "../../../assets/userApartments/UserApartmentDelete.jpg";
 
 export default function UserApartmentGridCardDelete({
   apartment,
 }: {
-  apartment: TUserApartments;
+  apartment: TApartments;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = () => setIsOpen(true);

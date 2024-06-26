@@ -1,24 +1,24 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { TReduxApartments } from "../../types";
+import { TApartmentsStore } from "../../types";
 
 const reducers = {
   setApartments: (
-    state: TReduxApartments,
-    action: PayloadAction<TReduxApartments["apartments"]>
+    state: TApartmentsStore,
+    action: PayloadAction<TApartmentsStore["apartments"]>
   ) => ({
     ...state,
     apartments: action.payload,
   }),
   setSingleApartment: (
-    state: TReduxApartments,
-    action: PayloadAction<TReduxApartments["singleApartment"]>
+    state: TApartmentsStore,
+    action: PayloadAction<TApartmentsStore["singleApartment"]>
   ) => ({
     ...state,
     singleApartment: action.payload,
   }),
   setUserApartments: (
-    state: TReduxApartments,
-    action: PayloadAction<TReduxApartments["userApartments"]>
+    state: TApartmentsStore,
+    action: PayloadAction<TApartmentsStore["userApartments"]>
   ) => ({
     ...state,
     userApartments: action.payload,

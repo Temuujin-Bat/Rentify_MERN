@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Box, Typography } from "@mui/material";
 
-import { TUserApartments } from "../../../types";
+import { TApartments } from "../../../types";
 
 import { getApartmentsData } from "../../../store/apartments/selectors";
 import UserApartmentGridCard from "./UserApartmentGridCard";
@@ -23,7 +23,7 @@ export default function UserApartmentsGridPosts() {
       </Typography>
 
       <Grid container spacing={3}>
-        {userApartments.map((apartment: TUserApartments) => (
+        {userApartments.map((apartment: TApartments) => (
           <UserApartmentGridCard apartment={apartment} key={apartment?._id} />
         ))}
       </Grid>

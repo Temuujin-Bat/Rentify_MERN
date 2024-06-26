@@ -1,11 +1,11 @@
 import { Visibility } from "@mui/icons-material";
 import { Link, Typography, Box } from "@mui/material";
-import { TUserApartments } from "../../../types";
+import { TApartments } from "../../../types";
 
 export default function UserApartmentGridCardShowAD({
   apartment,
 }: {
-  apartment: TUserApartments;
+  apartment: TApartments;
 }) {
   return (
     <Box

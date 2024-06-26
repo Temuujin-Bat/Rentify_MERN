@@ -53,8 +53,8 @@ export default function SingleApartmentLeft() {
         </Typography>
         <Typography sx={{ fontWeight: "bold" }}>
           {singleApartment?.apartment?.rooms}{" "}
-          {singleApartment?.apartment?.rooms === 1 ? "Room" : "Rooms"} Apartment
-          for Rent in {singleApartment?.address?.street}{" "}
+          {singleApartment?.apartment?.rooms === "1" ? "Room" : "Rooms"}{" "}
+          Apartment for Rent in {singleApartment?.address?.street}{" "}
           {singleApartment?.address?.buildingNumber}
         </Typography>
 
