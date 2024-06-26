@@ -16,10 +16,6 @@ const apartmentsSlice = createSlice({
   reducers,
 });
 
-export const {
-  setApartments,
-  setSingleApartment,
-  setUserApartments,
-  setUserSingleApartment,
-} = apartmentsSlice.actions;
+export const { setApartments, setSingleApartment, setUserApartments } =
+  apartmentsSlice.actions;
 export default apartmentsSlice.reducer;

@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
-import { Button, FormControl } from "@mui/material";
+import { Button, Container, FormControl } from "@mui/material";
 import { useState, useEffect } from "react";
 import {
   AddAdsAddress,
@@ -14,9 +14,11 @@ import {
 } from "../hooks/useApartments";
 import { getApartmentsData } from "../store/apartments/selectors";
 
+import { LoadingMUI } from "../components";
+import { TApartments } from "../types";
+
 export default function editApartment() {
-  const { id } = useParams();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<TApartments>({
     name: "",
     phone: "",
     price: "",
@@ -44,52 +46,68 @@ export default function editApartment() {
     },
   });
 
-  if (id) {
-    useGetSingleApartmentAPI(id);
+  const { id } = useParams<{ id: string }>();
+
+  if (!id) {
+    return <div>Error: Apartment ID is missing</div>;
   }
 
-  const { userSingleApartment } = getApartmentsData();
+  const { isLoading, isError } = useGetSingleApartmentAPI(id);
+
+  const { singleApartment } = getApartmentsData();
 
   useEffect(() => {
-    if (userSingleApartment) {
-      setFormData(userSingleApartment);
+    if (singleApartment) {
+      setFormData(singleApartment);
     }
-  }, [userSingleApartment]);
+  }, [singleApartment]);
 
   const { mutate: editApartment } = useUserEditApartmentAPI(id, formData);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    editApartment({ id, ...formData });
+    editApartment();
   };
 
+  if (isLoading) {
+    return <LoadingMUI />;
+  }
+
+  if (isError) {
+    return <div>Error loading apartments: {isError}</div>;
+  }
+
   return (
-    <FormControl component="form" onSubmit={handleSubmit}>
-      <Grid container spacing={2}>
-        <Grid xs={12} sm={12} md={12} lg={12}>
-          <AddAdsAddress formData={formData} setFormData={setFormData} />
+    <Container maxWidth={"lg"}>
+      <FormControl component={"form"} onSubmit={handleSubmit}>
+        <Grid container spacing={2} sx={{ mt: "1em" }}>
+          <Grid xs={12} sm={12} md={12} lg={12}>
+            <AddAdsAddress formData={formData} setFormData={setFormData} />
+          </Grid>
+          <Grid xs={12} sm={12} md={12} lg={12}>
+            <AddAdsDescription formData={formData} setFormData={setFormData} />
+          </Grid>
+          <Grid xs={12} sm={12} md={12} lg={12}>
+            <AddAdsContact formData={formData} setFormData={setFormData} />
+          </Grid>
+          <Grid xs={12} sm={12} md={12} lg={12}>
+            <Button
+              type="submit"
+              sx={{
+                background: "rgba(255, 99, 71, 1)",
+                "&:hover": { background: "rgba(255, 99, 71, .6)" },
+                color: "white",
+                height: "3em",
+                fontWeight: "bold",
+              }}
+              fullWidth
+            >
+              Update
+            </Button>
+          </Grid>
         </Grid>
-        <Grid xs={12} sm={12} md={12} lg={12}>
-          <AddAdsDescription formData={formData} setFormData={setFormData} />
-        </Grid>
-        <Grid xs={12} sm={12} md={12} lg={12}>
-          <AddAdsContact formData={formData} setFormData={setFormData} />
-        </Grid>
-        <Grid xs={12} sm={12} md={12} lg={12}>
-          <Button
-            type="submit"
-            sx={{
-              background: "rgba(255, 99, 71, 1)",
-              "&:hover": { background: "rgba(255, 99, 71, .6)" },
-              color: "white",
-            }}
-            fullWidth
-          >
-            Update
-          </Button>
-        </Grid>
-      </Grid>
-    </FormControl>
+      </FormControl>
+    </Container>
   );
 }

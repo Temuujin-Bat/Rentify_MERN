@@ -53,7 +53,7 @@ export default function AddAdsAddress({
                 <TextField {...params} />
               </Stack>
             )}
-            value={formData.address.city}
+            value={formData?.address?.city}
             onChange={(_, newValue) => {
               setFormData((prevData) => ({
                 ...prevData,

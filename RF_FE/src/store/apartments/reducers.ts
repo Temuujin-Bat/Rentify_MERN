@@ -23,13 +23,6 @@ const reducers = {
     ...state,
     userApartments: action.payload,
   }),
-  setUserSingleApartment: (
-    state: TReduxApartments,
-    action: PayloadAction<TReduxApartments["userSingleApartment"]>
-  ) => ({
-    ...state,
-    userSingleApartment: action.payload,
-  }),
 };
 
 export { reducers };

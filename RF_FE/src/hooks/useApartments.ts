@@ -10,7 +10,6 @@ import {
   setApartments,
   setSingleApartment,
   setUserApartments,
-  setUserSingleApartment,
 } from "../store/apartments/slice";
 import { useNavigate } from "react-router-dom";
 import { CreateApartmentController } from "../services/addApartment.api";
@@ -22,6 +21,7 @@ import {
 } from "../services/userApartments.api";
 import { toast } from "react-toastify";
 import { isAxiosError } from "axios";
+import { TApartments } from "../types";
 
 export function useGetApartmentsAPI(city: string | null) {
   const dispatch = useDispatch();
@@ -132,7 +132,7 @@ export function useUserDeleteApartmentAPI(id: string) {
   const { mutate } = useMutation({
     mutationFn: () => UserDeleteApartmentController(id),
     onSuccess: () => {
-      navigate("/addApartment");
+      navigate("/");
 
       toast.success("Deleted successfully!", {
         autoClose: 1000,
@@ -149,16 +149,23 @@ export function useUserDeleteApartmentAPI(id: string) {
   return { mutate };
 }
 
-export function useUserEditApartmentAPI(id: string, updatedData) {
+export function useUserEditApartmentAPI(id: string, updatedData: TApartments) {
   const navigate = useNavigate();
 
   const { mutate } = useMutation({
     mutationFn: () => UserEditApartmentController(id, updatedData),
     onSuccess: () => {
-      navigate(`/user/apartment/${id}`);
+      navigate(`/user/apartments`);
+
+      toast.success("Updated successfully!", {
+        autoClose: 1000,
+        closeButton: false,
+        pauseOnHover: false,
+        hideProgressBar: true,
+      });
     },
-    onError: (err) => {
-      console.error("Error in useApartments", `${err}`);
+    onError: (error) => {
+      throw error;
     },
   });
 

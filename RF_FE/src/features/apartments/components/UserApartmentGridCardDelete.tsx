@@ -91,7 +91,10 @@ export default function UserApartmentGridCardDelete({
           </Stack>
 
           <Typography sx={{ fontWeight: "bold", textAlign: "center" }}>
-            This will delete the apartment permanently!!!
+            This will delete the post permanently!
+          </Typography>
+          <Typography sx={{ fontWeight: "bold", textAlign: "center" }}>
+            Are you sure?
           </Typography>
           <Box sx={{ mt: "20px" }}>
             <Button
