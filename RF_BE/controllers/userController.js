@@ -1,7 +1,7 @@
 import User from "../models/userModel.js";
 import Apartment from "../models/apartmentModel.js";
 
-export const getUserInfo = async (req, res) => {
+export const getProfile = async (req, res) => {
   try {
     const userID = req.user.userID;
 
@@ -22,10 +22,53 @@ export const getUserInfo = async (req, res) => {
   }
 };
 
-export const editUserInfo = async (req, res) => {
+export const editProfile = async (req, res) => {
   try {
+    const userID = req.user.userID;
+
+    const user = await User.findById(userID);
+
+    if (!user) {
+      return res.status(404).json({ msg: `No user with id: ${userID}` });
+    }
+
+    const { firstName, lastName, phone } = req.body;
+
+    const updatedUser = {
+      firstName: firstName || user.firstName,
+      lastName: lastName || user.lastName,
+      phone: phone || user.phone,
+    };
+
+    await User.findByIdAndUpdate(userID, updatedUser);
+
+    return res.status(204).json({ msg: "Apartment edited successfully!" });
   } catch (error) {
     return res.status(500).json({ msg: "Internal Server Error" });
+  }
+};
+
+export const editApartment = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updateData = req.body;
+
+    const apartment = await Apartment.findById(id);
+
+    if (!apartment) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ msg: `No apartment with id: ${id}` });
+    }
+
+    await Apartment.findByIdAndUpdate(id, updateData);
+
+    return res.status(204).json({ msg: "Apartment deleted successfully!" });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Error editing apartment backend",
+      error: error.message,
+    });
   }
 };
 
@@ -85,30 +128,6 @@ export const deleteApartment = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       message: "Error deleting apartment backend",
-      error: error.message,
-    });
-  }
-};
-
-export const editApartment = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const updateData = req.body;
-
-    const apartment = await Apartment.findById(id);
-
-    if (!apartment) {
-      return res
-        .status(StatusCodes.NOT_FOUND)
-        .json({ msg: `No apartment with id: ${id}` });
-    }
-
-    await Apartment.findByIdAndUpdate(id, updateData);
-
-    return res.status(204).json({ msg: "Apartment deleted successfully!" });
-  } catch (error) {
-    return res.status(500).json({
-      message: "Error editing apartment backend",
       error: error.message,
     });
   }

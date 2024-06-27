@@ -2,8 +2,8 @@ import { Router } from "express";
 import {
   deleteApartment,
   editApartment,
-  editUserInfo,
-  getUserInfo,
+  getProfile,
+  editProfile,
   userApartments,
   userSingleApartment,
 } from "../controllers/userController.js";
@@ -11,8 +11,7 @@ import { authUser } from "../middlewares/authMiddleware.js";
 
 const router = Router();
 
-router.get("/info", authUser, getUserInfo);
-router.put("/edit", authUser, editUserInfo);
+router.get("/profile", authUser, getProfile, editProfile);
 
 router.get("/apartments", authUser, userApartments);
 router

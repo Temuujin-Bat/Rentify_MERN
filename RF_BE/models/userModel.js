@@ -21,6 +21,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     require: [true, "Password is required"],
   },
+  phone: {
+    type: String,
+  },
 });
 
 export default mongoose.model("User", userSchema);
