@@ -1,7 +1,7 @@
 import { Box, Button, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-import img from "../../../assets/userApartments/userApartmentNotFound.jpeg";
+import img from "../../../assets/userApartments/UserApartmentDelete.jpg";
 
 export default function UserApartmentsGridNoPosts() {
   const navigate = useNavigate();
