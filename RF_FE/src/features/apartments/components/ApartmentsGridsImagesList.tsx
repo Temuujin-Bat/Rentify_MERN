@@ -2,14 +2,32 @@ import Slider from "react-slick";
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 import { Box, IconButton } from "@mui/material";
 
-import img1 from "../../../assets/homePage/homePageHero.webp";
-import img2 from "../../../assets/homePage/homePageHero.webp";
-import img3 from "../../../assets/homePage/homePageHero.webp";
-import img4 from "../../../assets/homePage/homePageHero.webp";
+import img from "../../../assets/homePage/homePageHero.webp";
+import { MapBox } from "../../../components";
+import { TMaps } from "../../../types/maps.type";
 
-const images = [img1, img2, img3, img4];
+export default function ApartmentsGridsImagesList({
+  city,
+  street,
+  country,
+  streetNumber,
+  postalCode,
+  width,
+  height,
+}: TMaps) {
+  const images = [
+    <MapBox
+      city={city}
+      street={street}
+      country={country}
+      streetNumber={streetNumber}
+      postalCode={postalCode}
+      width={width}
+      height={height}
+    />,
+    img,
+  ];
 
-export default function ApartmentsGridsImagesList() {
   const settings = {
     infinite: true,
     speed: 500,
@@ -29,15 +47,19 @@ export default function ApartmentsGridsImagesList() {
             height: "340px",
           }}
         >
-          <Box
-            component={"img"}
-            src={img}
-            style={{
-              height: "65%",
-              width: "100%",
-              objectFit: "cover",
-            }}
-          />
+          {typeof img === "string" ? (
+            <Box
+              component={"img"}
+              src={img}
+              style={{
+                height: "65%",
+                width: "100%",
+                objectFit: "cover",
+              }}
+            />
+          ) : (
+            <Box>{img}</Box>
+          )}
         </Box>
       ))}
     </Slider>
@@ -61,9 +83,10 @@ function NextArrow(props: { onClick: () => void }) {
     >
       <ArrowForwardIos
         sx={{
-          fontSize: "1.5rem",
-          backgroundColor: "rgba(26, 188, 156, 0.1)",
+          fontSize: "1.2em",
+          backgroundColor: "rgba(26, 188, 156, 0.5)",
           borderRadius: "50%",
+          padding: "5px",
         }}
       />
     </IconButton>
@@ -87,9 +110,10 @@ function PrevArrow(props: { onClick: () => void }) {
     >
       <ArrowBackIosNew
         sx={{
-          fontSize: "1.5rem",
-          backgroundColor: "rgba(26, 188, 156, 0.1)",
+          fontSize: "1.2em",
+          backgroundColor: "rgba(26, 188, 156, 0.5)",
           borderRadius: "50%",
+          padding: "5px",
         }}
       />
     </IconButton>

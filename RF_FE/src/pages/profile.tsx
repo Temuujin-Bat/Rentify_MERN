@@ -1,3 +1,9 @@
+import { MapBox } from "../components";
+
 export default function profile() {
-  return <div>profile</div>;
+  return (
+    <div>
+      <MapBox />
+    </div>
+  );
 }

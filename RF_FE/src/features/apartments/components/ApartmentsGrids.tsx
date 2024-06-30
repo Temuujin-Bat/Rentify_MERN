@@ -36,7 +36,15 @@ export default function ApartmentsGrids() {
           >
             <Card sx={{ height: "340px" }}>
               <CardMedia sx={{ height: "65%", position: "relative" }}>
-                <ApartmentsGridsImagesList />
+                <ApartmentsGridsImagesList
+                  city={apartment?.address?.city}
+                  street={apartment?.address?.street}
+                  country="Israel"
+                  streetNumber={apartment?.address?.buildingNumber}
+                  postalCode={Number(apartment?.address?.zipCode)}
+                  width={400}
+                  height={220}
+                />
 
                 <Typography
                   sx={{
