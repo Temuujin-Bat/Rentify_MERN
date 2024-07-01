@@ -9,20 +9,36 @@ import {
   InputBase,
 } from "@mui/material";
 import { TUserInfo } from "../../../types";
-import { ArrowForwardIos } from "@mui/icons-material";
-import { useState } from "react";
+
+import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEditAccountAPI } from "../../../hooks/useUser";
 
 export default function ProfileCardsAccountInfo({
   userInfo,
 }: {
   userInfo: TUserInfo;
 }) {
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [initialEmail, setInitialEmail] = useState("");
+  const [initialPhone, setInitialPhone] = useState("");
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const { mutate } = useEditAccountAPI();
+
+  useEffect(() => {
+    if (userInfo) {
+      setEmail(userInfo.email || "");
+      setPhone(userInfo.phone || "");
+      setInitialEmail(userInfo.email || "");
+      setInitialPhone(userInfo.phone || "");
+    }
+  }, [userInfo]);
 
   const handleOpen = () => {
     setOpen(true);
+    navigate("/profile/edit-account");
   };
 
   const handleClose = () => {
@@ -30,9 +46,17 @@ export default function ProfileCardsAccountInfo({
     navigate("/profile");
   };
 
-  const handleSave = () => {
-    handleClose();
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    mutate({ email, phone });
+
+    setTimeout(() => {
+      setOpen(false);
+    }, 1000);
   };
+
+  const isButtonDisabled = email === initialEmail && phone === initialPhone;
 
   return (
     <>
@@ -81,6 +105,7 @@ export default function ProfileCardsAccountInfo({
               cursor: "pointer",
               backgroundColor: "rgba(0, 0, 0, .1)",
             },
+            borderBottom: "1px solid rgba(0, 0, 0, .1)",
           }}
         >
           <Stack>
@@ -88,10 +113,6 @@ export default function ProfileCardsAccountInfo({
             <Typography sx={{ fontWeight: "bold", fontSize: ".9em" }}>
               {userInfo?.email}
             </Typography>
-          </Stack>
-
-          <Stack>
-            <ArrowForwardIos sx={{ color: "rgba(0,0,0,1)" }} />
           </Stack>
         </Link>
 
@@ -115,15 +136,16 @@ export default function ProfileCardsAccountInfo({
               {userInfo?.phone ? userInfo?.phone : "None"}
             </Typography>
           </Stack>
-
-          <Stack>
-            <ArrowForwardIos sx={{ color: "rgba(0,0,0,1)" }} />
-          </Stack>
         </Link>
       </Paper>
 
       <Modal open={open} onClose={handleClose}>
-        <Container maxWidth={"sm"} sx={{ outline: "none" }}>
+        <Container
+          maxWidth={"sm"}
+          sx={{ outline: "none" }}
+          component={"form"}
+          onSubmit={submitHandler}
+        >
           <Box
             sx={{
               p: "20px",
@@ -135,7 +157,7 @@ export default function ProfileCardsAccountInfo({
             <Typography
               sx={{ fontWeight: "bold", letterSpacing: "1px", ml: "5px" }}
             >
-              Edit name
+              Edit Account Info
             </Typography>
 
             <Box sx={{ mt: "25px" }}>
@@ -151,7 +173,8 @@ export default function ProfileCardsAccountInfo({
                   fontSize: "0.8em",
                   padding: "3px 12px",
                 }}
-                defaultValue={userInfo?.email}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </Box>
 
@@ -168,8 +191,12 @@ export default function ProfileCardsAccountInfo({
                   fontSize: "0.8em",
                   padding: "3px 12px",
                 }}
-                defaultValue={userInfo?.phone}
                 placeholder="05*-1234567"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                inputProps={{
+                  maxLength: 10,
+                }}
               />
             </Box>
 
@@ -182,19 +209,28 @@ export default function ProfileCardsAccountInfo({
               <Stack
                 sx={{
                   padding: "5px 15px",
-                  backgroundColor: "rgba(255, 99, 71, .9)",
-                  border: "1px solid rgba(255, 99, 71, .9)",
+                  backgroundColor: isButtonDisabled
+                    ? "rgba(128, 128, 128, 0.4)"
+                    : "rgba(255, 99, 71, .9)",
+                  border: isButtonDisabled
+                    ? "1px solid rgba(128, 128, 128, 0)"
+                    : "1px solid rgba(255, 99, 71, .9)",
                   borderRadius: "3px",
                   fontWeight: "bold",
                   color: "white",
                   "&:hover": {
-                    cursor: "pointer",
-                    backgroundColor: "rgba(255, 99, 71, 1)",
-                    border: "1px solid rgba(255, 99, 71, 1)",
+                    cursor: isButtonDisabled ? "regular" : "pointer",
+                    backgroundColor: isButtonDisabled
+                      ? "rgba(128, 128, 128, 0.4)"
+                      : "rgba(255, 99, 71, 1)",
+                    border: isButtonDisabled
+                      ? "1px solid rgba(128, 128, 128, 0)"
+                      : "1px solid rgba(255, 99, 71, 1)",
                   },
                 }}
                 component={"button"}
-                onClick={handleSave}
+                type="submit"
+                disabled={isButtonDisabled}
               >
                 Save
               </Stack>
@@ -212,6 +248,7 @@ export default function ProfileCardsAccountInfo({
                 }}
                 component={"button"}
                 onClick={handleClose}
+                type="button"
               >
                 Cancel
               </Stack>

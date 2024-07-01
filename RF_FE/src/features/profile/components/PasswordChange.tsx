@@ -1,11 +1,22 @@
-import { Container, InputBase, Link, Stack, Typography } from "@mui/material";
+import {
+  Container,
+  InputBase,
+  Link,
+  Stack,
+  Typography,
+  IconButton,
+  InputAdornment,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useEditPasswordAPI } from "../hooks/useUser";
+import { useEditPasswordAPI } from "../../../hooks/useUser";
 import { useState } from "react";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
-export default function passwordChange() {
+export default function PasswordChange() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
   const navigate = useNavigate();
 
   const { mutate } = useEditPasswordAPI();
@@ -16,10 +27,18 @@ export default function passwordChange() {
     mutate({ currentPassword, newPassword });
   };
 
+  const handleToggleCurrentPasswordVisibility = () => {
+    setShowCurrentPassword(!showCurrentPassword);
+  };
+
+  const handleToggleNewPasswordVisibility = () => {
+    setShowNewPassword(!showNewPassword);
+  };
+
   return (
     <Container
       maxWidth={"xs"}
-      sx={{ m: "20px 0px 0px 40px" }}
+      sx={{ mt: "40px" }}
       component={"form"}
       onSubmit={submitHandler}
     >
@@ -57,9 +76,24 @@ export default function passwordChange() {
             padding: "3px 12px",
           }}
           placeholder="Current password"
-          type="password"
+          type={showCurrentPassword ? "text" : "password"}
           value={currentPassword}
           onChange={(e) => setCurrentPassword(e.target.value)}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                onClick={handleToggleCurrentPasswordVisibility}
+                edge="end"
+                sx={{ p: 1 }}
+              >
+                {showCurrentPassword ? (
+                  <VisibilityOff sx={{ fontSize: ".8em" }} />
+                ) : (
+                  <Visibility sx={{ fontSize: ".8em" }} />
+                )}
+              </IconButton>
+            </InputAdornment>
+          }
         />
         <Link
           underline="none"
@@ -90,10 +124,21 @@ export default function passwordChange() {
             fontSize: "0.8em",
             padding: "3px 12px",
           }}
-          type="password"
+          type={showNewPassword ? "text" : "password"}
           placeholder="New password"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                onClick={handleToggleNewPasswordVisibility}
+                edge="end"
+                sx={{ p: 1 }}
+              >
+                {showNewPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
         />
         <Typography sx={{ fontSize: ".8em", color: "rgba(0,0,0,.8)" }}>
           8-characters minimum

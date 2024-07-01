@@ -9,14 +9,21 @@ const LazySingleApartment = lazy(
   () => import("../pages/Apartments/singleApartment")
 );
 const LazyBlog = lazy(() => import("../pages/blog"));
-const LazyAddApartment = lazy(() => import("../pages/addApartment"));
+const LazyAddApartment = lazy(
+  () => import("../features/apartments/components/AddApartment")
+);
 const LazyLogin = lazy(() => import("../pages/login"));
 const LazyRegister = lazy(() => import("../pages/register"));
-const LazyUserApartments = lazy(() => import("../pages/userApartments"));
-const LazyUserEditApartment = lazy(() => import("../pages/editApartment"));
+const LazyUserApartments = lazy(
+  () => import("../pages/Apartments/userApartments")
+);
+const LazyUserEditApartment = lazy(
+  () => import("../features/apartments/components/EditApartment")
+);
 const LazyProfile = lazy(() => import("../pages/profile"));
-import Profile from "../pages/profile";
-import PasswordChange from "../pages/passwordChange";
+const LazyPasswordChange = lazy(
+  () => import("../features/profile/components/PasswordChange")
+);
 
 import { AuthRedirect } from "./AuthRedirect";
 import { ProtectedRoute } from "./ProtectedRoute";
@@ -90,7 +97,31 @@ const InitRoutes = () => {
           path: "/profile",
           element: (
             <ProtectedRoute>
-              <Profile />
+              <LazyProfile />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "/profile/edit-name",
+          element: (
+            <ProtectedRoute>
+              <LazyProfile />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "/profile/edit-account",
+          element: (
+            <ProtectedRoute>
+              <LazyProfile />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "/profile/edit-profile",
+          element: (
+            <ProtectedRoute>
+              <LazyProfile />
             </ProtectedRoute>
           ),
         },
@@ -98,7 +129,7 @@ const InitRoutes = () => {
           path: "/password-change",
           element: (
             <ProtectedRoute>
-              <PasswordChange />
+              <LazyPasswordChange />
             </ProtectedRoute>
           ),
         },

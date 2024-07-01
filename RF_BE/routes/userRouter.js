@@ -1,8 +1,11 @@
 import { Router } from "express";
 import {
   deleteApartment,
+  editAccount,
   editApartment,
+  editName,
   editPassword,
+  editProfile,
   getProfile,
   userApartments,
   userSingleApartment,
@@ -12,7 +15,9 @@ import { authUser } from "../middlewares/authMiddleware.js";
 const router = Router();
 
 router.get("/profile", authUser, getProfile);
-router.put("/profile/edit-name", authUser, getProfile);
+router.put("/profile/edit-name", authUser, editName);
+router.put("/profile/edit-profile", authUser, editProfile);
+router.put("/profile/edit-account", authUser, editAccount);
 router.put("/password-change", authUser, editPassword);
 
 router.get("/apartments", authUser, userApartments);

@@ -17,7 +17,34 @@ export const getProfile = async (req, res) => {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
+      phone: user?.phone,
+      birthday: user?.birthday,
     });
+  } catch (error) {
+    return res.status(500).json({ msg: "Internal Server Error" });
+  }
+};
+
+export const editProfile = async (req, res) => {
+  try {
+    const userID = req.user.userID;
+    const user = await User.findById(userID);
+    if (!user) {
+      return res.status(404).json({ msg: `No user with id: ${userID}` });
+    }
+
+    const { day, month, year } = req.body;
+    const birthday = new Date(year, month - 1, day);
+
+    await User.findByIdAndUpdate(
+      userID,
+      {
+        birthday,
+      },
+      { new: true }
+    );
+
+    return res.json({ msg: "Profile updated successfully" });
   } catch (error) {
     return res.status(500).json({ msg: "Internal Server Error" });
   }
@@ -38,7 +65,28 @@ export const editName = async (req, res) => {
       lastName: lastName,
     });
 
-    return res.json({ msg: "Password updated successfully" });
+    return res.json({ msg: "Name updated successfully" });
+  } catch (error) {
+    return res.status(500).json({ msg: "Internal Server Error" });
+  }
+};
+
+export const editAccount = async (req, res) => {
+  try {
+    const userID = req.user.userID;
+    const user = await User.findById(userID);
+    if (!user) {
+      return res.status(404).json({ msg: `No user with id: ${userID}` });
+    }
+
+    const { email, phone } = req.body;
+
+    await User.findByIdAndUpdate(userID, {
+      email: email,
+      phone: phone,
+    });
+
+    return res.json({ msg: "Email or phone updated successfully" });
   } catch (error) {
     return res.status(500).json({ msg: "Internal Server Error" });
   }

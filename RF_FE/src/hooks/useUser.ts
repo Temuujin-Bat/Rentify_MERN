@@ -1,10 +1,13 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 import {
+  UserAccountController,
   UserInfoController,
+  UserNameController,
   UserPasswordController,
+  UserProfileController,
 } from "../services/user.api";
 import { setUserInfo } from "../store/user/slice";
 import { toast } from "react-toastify";
@@ -51,6 +54,90 @@ export function useEditPasswordAPI() {
         pauseOnHover: false,
         hideProgressBar: true,
       });
+    },
+  });
+
+  return { mutate };
+}
+
+export function useEditNameAPI() {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: UserNameController,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+
+      toast.success("Name changed successfully!", {
+        autoClose: 1000,
+        closeButton: false,
+        pauseOnHover: false,
+        hideProgressBar: true,
+      });
+
+      setTimeout(() => {
+        navigate("/profile");
+      }, 1000);
+    },
+    onError: () => {
+      toast.error("error");
+    },
+  });
+
+  return { mutate };
+}
+
+export function useEditAccountAPI() {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: UserAccountController,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+
+      toast.success("Account info changed successfully!", {
+        autoClose: 1000,
+        closeButton: false,
+        pauseOnHover: false,
+        hideProgressBar: true,
+      });
+
+      setTimeout(() => {
+        navigate("/profile");
+      }, 1000);
+    },
+    onError: () => {
+      toast.error("error");
+    },
+  });
+
+  return { mutate };
+}
+
+export function useEditProfileAPI() {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: UserProfileController,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+
+      toast.success("Profile info changed successfully!", {
+        autoClose: 1000,
+        closeButton: false,
+        pauseOnHover: false,
+        hideProgressBar: true,
+      });
+
+      setTimeout(() => {
+        navigate("/profile");
+      }, 1000);
+    },
+    onError: () => {
+      toast.error("error");
     },
   });
 

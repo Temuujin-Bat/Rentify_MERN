@@ -11,19 +11,35 @@ import {
   InputBase,
 } from "@mui/material";
 import { TUserInfo } from "../../../types";
-import { useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEditNameAPI } from "../../../hooks/useUser";
 
 export default function ProfileCardsPhotoInformation({
   userInfo,
 }: {
   userInfo: TUserInfo;
 }) {
+  const { mutate } = useEditNameAPI();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [initialFirstName, setInitialFirstName] = useState("");
+  const [initialLastName, setInitialLastName] = useState("");
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (userInfo) {
+      setFirstName(userInfo.firstName || "");
+      setLastName(userInfo.lastName || "");
+      setInitialFirstName(userInfo.firstName || "");
+      setInitialLastName(userInfo.lastName || "");
+    }
+  }, [userInfo]);
+
   const handleOpen = () => {
     setOpen(true);
+    navigate("/profile/edit-name");
   };
 
   const handleClose = () => {
@@ -31,9 +47,18 @@ export default function ProfileCardsPhotoInformation({
     navigate("/profile");
   };
 
-  const handleSave = () => {
-    handleClose();
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    mutate({ firstName, lastName });
+
+    setTimeout(() => {
+      setOpen(false);
+    }, 1000);
   };
+
+  const isButtonDisabled =
+    firstName === initialFirstName && lastName === initialLastName;
 
   return (
     <>
@@ -97,7 +122,6 @@ export default function ProfileCardsPhotoInformation({
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-
             padding: "15px",
           }}
         >
@@ -130,7 +154,12 @@ export default function ProfileCardsPhotoInformation({
       </Paper>
 
       <Modal open={open} onClose={handleClose}>
-        <Container maxWidth={"sm"} sx={{ outline: "none" }}>
+        <Container
+          maxWidth={"sm"}
+          sx={{ outline: "none" }}
+          component={"form"}
+          onSubmit={submitHandler}
+        >
           <Box
             sx={{
               p: "20px",
@@ -158,7 +187,8 @@ export default function ProfileCardsPhotoInformation({
                   fontSize: "0.8em",
                   padding: "3px 12px",
                 }}
-                defaultValue={userInfo?.firstName}
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </Box>
 
@@ -175,7 +205,8 @@ export default function ProfileCardsPhotoInformation({
                   fontSize: "0.8em",
                   padding: "3px 12px",
                 }}
-                defaultValue={userInfo?.lastName}
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
               />
             </Box>
 
@@ -188,19 +219,28 @@ export default function ProfileCardsPhotoInformation({
               <Stack
                 sx={{
                   padding: "5px 15px",
-                  backgroundColor: "rgba(255, 99, 71, .9)",
-                  border: "1px solid rgba(255, 99, 71, .9)",
+                  backgroundColor: isButtonDisabled
+                    ? "rgba(128, 128, 128, 0.4)"
+                    : "rgba(255, 99, 71, .9)",
+                  border: isButtonDisabled
+                    ? "1px solid rgba(128, 128, 128, 0)"
+                    : "1px solid rgba(255, 99, 71, .9)",
                   borderRadius: "3px",
                   fontWeight: "bold",
                   color: "white",
                   "&:hover": {
-                    cursor: "pointer",
-                    backgroundColor: "rgba(255, 99, 71, 1)",
-                    border: "1px solid rgba(255, 99, 71, 1)",
+                    cursor: isButtonDisabled ? "regular" : "pointer",
+                    backgroundColor: isButtonDisabled
+                      ? "rgba(128, 128, 128, 0.4)"
+                      : "rgba(255, 99, 71, 1)",
+                    border: isButtonDisabled
+                      ? "1px solid rgba(128, 128, 128, 0)"
+                      : "1px solid rgba(255, 99, 71, 1)",
                   },
                 }}
                 component={"button"}
-                onClick={handleSave}
+                type="submit"
+                disabled={isButtonDisabled}
               >
                 Save
               </Stack>
@@ -218,6 +258,7 @@ export default function ProfileCardsPhotoInformation({
                 }}
                 component={"button"}
                 onClick={handleClose}
+                type="button"
               >
                 Cancel
               </Stack>

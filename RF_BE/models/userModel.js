@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: String,
   },
+  birthday: {
+    type: Date,
+    required: false,
+  },
 });
 
 export default mongoose.model("User", userSchema);

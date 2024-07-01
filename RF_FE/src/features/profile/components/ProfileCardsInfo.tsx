@@ -9,21 +9,65 @@ import {
   InputBase,
   Tooltip,
 } from "@mui/material";
-import { ArrowForwardIos } from "@mui/icons-material";
+
 import { TUserInfo } from "../../../types";
-import { useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEditProfileAPI } from "../../../hooks/useUser";
 
 export default function ProfileCardsInfo({
   userInfo,
 }: {
   userInfo: TUserInfo;
 }) {
+  const [day, setDay] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
+  const [initialDay, setInitialDay] = useState("");
+  const [initialMonth, setInitialMonth] = useState("");
+  const [initialYear, setInitialYear] = useState("");
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const { mutate } = useEditProfileAPI();
+
+  useEffect(() => {
+    if (userInfo) {
+      setDay(
+        userInfo.birthday
+          ? new Date(userInfo.birthday).getDate().toString()
+          : ""
+      );
+      setMonth(
+        userInfo.birthday
+          ? (new Date(userInfo.birthday).getMonth() + 1).toString()
+          : ""
+      );
+      setYear(
+        userInfo.birthday
+          ? new Date(userInfo.birthday).getFullYear().toString()
+          : ""
+      );
+      setInitialDay(
+        userInfo.birthday
+          ? new Date(userInfo.birthday).getDate().toString()
+          : ""
+      );
+      setInitialMonth(
+        userInfo.birthday
+          ? (new Date(userInfo.birthday).getMonth() + 1).toString()
+          : ""
+      );
+      setInitialYear(
+        userInfo.birthday
+          ? new Date(userInfo.birthday).getFullYear().toString()
+          : ""
+      );
+    }
+  }, [userInfo]);
 
   const handleOpen = () => {
     setOpen(true);
+    navigate("/profile/edit-profile");
   };
 
   const handleClose = () => {
@@ -31,9 +75,27 @@ export default function ProfileCardsInfo({
     navigate("/profile");
   };
 
-  const handleSave = () => {
-    handleClose();
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    mutate({ day, month, year });
+
+    setTimeout(() => {
+      setOpen(false);
+    }, 1000);
   };
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
+  const isButtonDisabled =
+    day === initialDay && month === initialMonth && year === initialYear;
 
   return (
     <>
@@ -88,12 +150,8 @@ export default function ProfileCardsInfo({
           <Stack>
             <Typography>Date of birth</Typography>
             <Typography sx={{ fontWeight: "bold", fontSize: ".9em" }}>
-              {userInfo?.birthday ? userInfo?.birthday : "None"}
+              {userInfo?.birthday ? formatDate(userInfo.birthday) : "None"}
             </Typography>
-          </Stack>
-
-          <Stack>
-            <ArrowForwardIos sx={{ color: "rgba(0,0,0,1)" }} />
           </Stack>
         </Link>
 
@@ -117,15 +175,16 @@ export default function ProfileCardsInfo({
               Israel
             </Typography>
           </Stack>
-
-          <Stack>
-            <ArrowForwardIos sx={{ color: "rgba(0,0,0,1)" }} />
-          </Stack>
         </Link>
       </Paper>
 
       <Modal open={open} onClose={handleClose}>
-        <Container maxWidth={"sm"} sx={{ outline: "none" }}>
+        <Container
+          maxWidth={"sm"}
+          sx={{ outline: "none" }}
+          component={"form"}
+          onSubmit={submitHandler}
+        >
           <Box
             sx={{
               p: "20px",
@@ -153,9 +212,8 @@ export default function ProfileCardsInfo({
                     fontSize: "0.8em",
                     padding: "3px 12px",
                   }}
-                  onInput={(e) =>
-                    (e.target.value = e.target.value.replace(/\D/g, ""))
-                  }
+                  value={day}
+                  onChange={(e) => setDay(e.target.value)}
                 />
                 <InputBase
                   placeholder="MM"
@@ -166,9 +224,8 @@ export default function ProfileCardsInfo({
                     fontSize: "0.8em",
                     padding: "3px 12px",
                   }}
-                  onInput={(e) =>
-                    (e.target.value = e.target.value.replace(/\D/g, ""))
-                  }
+                  value={month}
+                  onChange={(e) => setMonth(e.target.value)}
                 />
                 <InputBase
                   placeholder="YYYY"
@@ -179,9 +236,8 @@ export default function ProfileCardsInfo({
                     fontSize: "0.8em",
                     padding: "3px 12px",
                   }}
-                  onInput={(e) =>
-                    (e.target.value = e.target.value.replace(/\D/g, ""))
-                  }
+                  value={year}
+                  onChange={(e) => setYear(e.target.value)}
                 />
               </Box>
             </Box>
@@ -217,22 +273,32 @@ export default function ProfileCardsInfo({
               <Stack
                 sx={{
                   padding: "5px 15px",
-                  backgroundColor: "rgba(255, 99, 71, .9)",
-                  border: "1px solid rgba(255, 99, 71, .9)",
+                  backgroundColor: isButtonDisabled
+                    ? "rgba(128, 128, 128, 0.4)"
+                    : "rgba(255, 99, 71, .9)",
+                  border: isButtonDisabled
+                    ? "1px solid rgba(128, 128, 128, 0)"
+                    : "1px solid rgba(255, 99, 71, .9)",
                   borderRadius: "3px",
                   fontWeight: "bold",
                   color: "white",
                   "&:hover": {
-                    cursor: "pointer",
-                    backgroundColor: "rgba(255, 99, 71, 1)",
-                    border: "1px solid rgba(255, 99, 71, 1)",
+                    cursor: isButtonDisabled ? "regular" : "pointer",
+                    backgroundColor: isButtonDisabled
+                      ? "rgba(128, 128, 128, 0.4)"
+                      : "rgba(255, 99, 71, 1)",
+                    border: isButtonDisabled
+                      ? "1px solid rgba(128, 128, 128, 0)"
+                      : "1px solid rgba(255, 99, 71, 1)",
                   },
                 }}
                 component={"button"}
-                onClick={handleSave}
+                type="submit"
+                disabled={isButtonDisabled}
               >
                 Save
               </Stack>
+
               <Stack
                 sx={{
                   padding: "5px 15px",
@@ -246,6 +312,7 @@ export default function ProfileCardsInfo({
                   },
                 }}
                 component={"button"}
+                type="button"
                 onClick={handleClose}
               >
                 Cancel
