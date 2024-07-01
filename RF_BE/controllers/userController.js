@@ -1,5 +1,6 @@
 import User from "../models/userModel.js";
 import Apartment from "../models/apartmentModel.js";
+import { comparePasswords, hashPassword } from "../utils/passwordUtils.js";
 
 export const getProfile = async (req, res) => {
   try {
@@ -22,27 +23,52 @@ export const getProfile = async (req, res) => {
   }
 };
 
-export const editProfile = async (req, res) => {
+export const editName = async (req, res) => {
   try {
     const userID = req.user.userID;
-
     const user = await User.findById(userID);
-
     if (!user) {
       return res.status(404).json({ msg: `No user with id: ${userID}` });
     }
 
-    const { firstName, lastName, phone } = req.body;
+    const { firstName, lastName } = req.body;
 
-    const updatedUser = {
-      firstName: firstName || user.firstName,
-      lastName: lastName || user.lastName,
-      phone: phone || user.phone,
-    };
+    await User.findByIdAndUpdate(userID, {
+      firstName: firstName,
+      lastName: lastName,
+    });
 
-    await User.findByIdAndUpdate(userID, updatedUser);
+    return res.json({ msg: "Password updated successfully" });
+  } catch (error) {
+    return res.status(500).json({ msg: "Internal Server Error" });
+  }
+};
 
-    return res.status(204).json({ msg: "Apartment edited successfully!" });
+export const editPassword = async (req, res) => {
+  try {
+    const userID = req.user.userID;
+    const user = await User.findById(userID);
+    if (!user) {
+      return res.status(404).json({ msg: `No user with id: ${userID}` });
+    }
+
+    const { currentPassword, newPassword } = req.body;
+
+    const isPasswordCorrect = await comparePasswords(
+      currentPassword,
+      user.password
+    );
+
+    if (!isPasswordCorrect) {
+      return res.status(401).json({ msg: "Current password is incorrect!" });
+    }
+
+    const hashedPassword = await hashPassword(newPassword);
+    req.body.password = hashedPassword;
+
+    await User.findByIdAndUpdate(userID, { password: hashedPassword });
+
+    return res.json({ msg: "Password updated successfully" });
   } catch (error) {
     return res.status(500).json({ msg: "Internal Server Error" });
   }

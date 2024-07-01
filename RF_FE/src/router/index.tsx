@@ -16,6 +16,7 @@ const LazyUserApartments = lazy(() => import("../pages/userApartments"));
 const LazyUserEditApartment = lazy(() => import("../pages/editApartment"));
 const LazyProfile = lazy(() => import("../pages/profile"));
 import Profile from "../pages/profile";
+import PasswordChange from "../pages/passwordChange";
 
 import { AuthRedirect } from "./AuthRedirect";
 import { ProtectedRoute } from "./ProtectedRoute";
@@ -90,6 +91,14 @@ const InitRoutes = () => {
           element: (
             <ProtectedRoute>
               <Profile />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "/password-change",
+          element: (
+            <ProtectedRoute>
+              <PasswordChange />
             </ProtectedRoute>
           ),
         },

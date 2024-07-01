@@ -20,6 +20,7 @@ export default function ProfileCardsPasswordChange() {
           },
         },
       }}
+      href="/password-change"
     >
       <Key
         className="key-icon"

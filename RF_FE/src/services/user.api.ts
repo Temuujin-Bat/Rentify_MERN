@@ -1,4 +1,5 @@
 import axios from "axios";
+import { TPassword } from "../types";
 
 async function UserInfoController() {
   try {
@@ -15,4 +16,18 @@ async function UserInfoController() {
   }
 }
 
-export { UserInfoController };
+async function UserPasswordController(passwordData: TPassword) {
+  try {
+    await axios.put(
+      "http://localhost:1010/api/v1/user/password-change",
+      passwordData,
+      {
+        withCredentials: true,
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+}
+
+export { UserInfoController, UserPasswordController };

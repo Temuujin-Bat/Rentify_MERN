@@ -6,3 +6,8 @@ export interface TUserInfo {
   phone?: string;
   birthday?: string;
 }
+
+export interface TPassword {
+  currentPassword: string;
+  newPassword: string;
+}
