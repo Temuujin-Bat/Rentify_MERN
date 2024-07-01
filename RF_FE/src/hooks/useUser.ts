@@ -4,13 +4,11 @@ import { useEffect } from "react";
 
 import { UserInfoController } from "../services/user.api";
 import { setUserInfo } from "../store/user/slice";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
 export function useGetProfileAPI() {
   const dispatch = useDispatch();
 
-  const { data, isSuccess } = useQuery({
+  const { data, isSuccess, isLoading } = useQuery({
     queryKey: ["user"],
     queryFn: () => UserInfoController(),
   });
@@ -23,5 +21,5 @@ export function useGetProfileAPI() {
     }
   }, [isSuccess, data]);
 
-  return { data };
+  return { data, isLoading };
 }
