@@ -5,17 +5,17 @@ import {
   AddAdsAddress,
   AddAdsDescription,
   AddAdsContact,
-} from "../features/addApartments";
+} from "../../addApartments";
 
 import { useParams } from "react-router-dom";
 import {
   useGetSingleApartmentAPI,
   useUserEditApartmentAPI,
-} from "../hooks/useApartments";
-import { getApartmentsData } from "../store/apartments/selectors";
+} from "../../../hooks/useApartments";
+import { getApartmentsData } from "../../../store/apartments/selectors";
 
-import { LoadingMUI } from "../components";
-import { TApartments } from "../types";
+import { LoadingMUI } from "../../../components";
+import { TApartments } from "../../../types";
 
 export default function editApartment() {
   const [formData, setFormData] = useState<TApartments>({

@@ -15,3 +15,6 @@ export { default as UserApartmentGridCard } from "./components/UserApartmentGrid
 export { default as UserApartmentGridCardDelete } from "./components/UserApartmentGridCardDelete";
 export { default as UserApartmentGridCardEdit } from "./components/UserApartmentGridCardEdit";
 export { default as UserApartmentGridCardShowAD } from "./components/UserApartmentGridCardShowAD";
+
+export { default as AddApartment } from "./components/AddApartment";
+export { default as EditApartment } from "./components/EditApartment";

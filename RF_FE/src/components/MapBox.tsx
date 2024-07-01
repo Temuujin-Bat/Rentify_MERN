@@ -37,7 +37,7 @@ export default function MapBox({
 
   return (
     <>
-      {latitude !== null && longitude !== null && (
+      {/* {latitude !== null && longitude !== null && (
         <Map
           mapboxAccessToken={tokenMap}
           initialViewState={{
@@ -55,7 +55,8 @@ export default function MapBox({
             scale={0.8}
           />
         </Map>
-      )}
+      )} */}
+      <div>Hello</div>
     </>
   );
 }

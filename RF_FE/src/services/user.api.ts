@@ -1,4 +1,5 @@
 import axios from "axios";
+import { TAccount, TName, TPassword } from "../types";
 
 async function UserInfoController() {
   try {
@@ -15,4 +16,66 @@ async function UserInfoController() {
   }
 }
 
-export { UserInfoController };
+async function UserPasswordController(passwordData: TPassword) {
+  try {
+    await axios.put(
+      "http://localhost:1010/api/v1/user/password-change",
+      passwordData,
+      {
+        withCredentials: true,
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function UserNameController(nameData: TName) {
+  try {
+    await axios.put(
+      "http://localhost:1010/api/v1/user/profile/edit-name",
+      nameData,
+      {
+        withCredentials: true,
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function UserAccountController(accountData: TAccount) {
+  try {
+    await axios.put(
+      "http://localhost:1010/api/v1/user/profile/edit-account",
+      accountData,
+      {
+        withCredentials: true,
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function UserProfileController(profileData) {
+  try {
+    await axios.put(
+      "http://localhost:1010/api/v1/user/profile/edit-profile",
+      profileData,
+      {
+        withCredentials: true,
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+}
+
+export {
+  UserInfoController,
+  UserPasswordController,
+  UserNameController,
+  UserAccountController,
+  UserProfileController,
+};
