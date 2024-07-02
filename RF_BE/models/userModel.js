@@ -28,6 +28,12 @@ const userSchema = new mongoose.Schema({
     type: Date,
     required: false,
   },
+  resetCode: {
+    type: String,
+  },
+  resetCodeExpires: {
+    type: Date,
+  },
 });
 
 export default mongoose.model("User", userSchema);

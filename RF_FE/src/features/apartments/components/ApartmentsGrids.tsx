@@ -116,7 +116,8 @@ export default function ApartmentsGrids() {
                 </Box>
 
                 <Typography sx={{ fontWeight: "bold" }}>
-                  {apartment?.address?.street}
+                  {apartment?.address?.street}{" "}
+                  {apartment?.address?.buildingNumber}
                 </Typography>
               </CardContent>
             </Card>
