@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  rf-fe:
+    container_name: rf-fe-container
+    build:
+      context: ./RF_FE # Path to your frontend Dockerfile directory
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173" # Map container port 3000 to host port 3000
+    depends_on:
+      - rf-be # Wait for rf-be service to be ready before starting rf-fe
+
+  rf-be:
+    container_name: rf-be-container
+    build:
+      context: ./RF_BE # Path to your backend Dockerfile directory
+      dockerfile: Dockerfile
+    ports:
+      - "1010:1010" # Map container port 5000 to host port 5000
+    environment:
+      - NODE_ENV=production
