@@ -102,6 +102,14 @@ const InitRoutes = () => {
           ),
         },
         {
+          path: "/profile/edit-photo",
+          element: (
+            <ProtectedRoute>
+              <LazyProfile />
+            </ProtectedRoute>
+          ),
+        },
+        {
           path: "/profile/edit-name",
           element: (
             <ProtectedRoute>

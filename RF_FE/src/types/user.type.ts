@@ -5,6 +5,7 @@ export interface TUserInfo {
   _id: string;
   phone?: string;
   birthday?: string;
+  photo?: string;
 }
 
 export interface TPassword {

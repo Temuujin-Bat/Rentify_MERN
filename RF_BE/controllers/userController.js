@@ -19,6 +19,7 @@ export const getProfile = async (req, res) => {
       email: user.email,
       phone: user?.phone,
       birthday: user?.birthday,
+      photo: user?.photo,
     });
   } catch (error) {
     return res.status(500).json({ msg: "Internal Server Error" });

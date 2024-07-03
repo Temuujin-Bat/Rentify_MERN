@@ -60,7 +60,7 @@ export default function ProfileCardsAccountInfo({
 
   return (
     <>
-      <Paper>
+      <Paper elevation={4}>
         {/* Account Info */}
         <Box
           sx={{

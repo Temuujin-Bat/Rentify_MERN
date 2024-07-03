@@ -99,7 +99,7 @@ export default function ProfileCardsInfo({
 
   return (
     <>
-      <Paper>
+      <Paper elevation={4}>
         {/* Profile Info */}
         <Box
           sx={{

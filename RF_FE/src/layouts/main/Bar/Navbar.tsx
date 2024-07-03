@@ -16,9 +16,12 @@ import { getAuthData } from "../../../store/auth/selectors";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../store/auth/slice";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { userDetails } = getAuthData();
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -45,12 +48,15 @@ export default function Navbar() {
 
   const handleLogout = () => {
     dispatch(logout());
+
     toast.success("Logout successful", {
       autoClose: 1000,
       closeButton: false,
       pauseOnHover: false,
       hideProgressBar: true,
     });
+
+    navigate("/login");
   };
 
   return (

@@ -20,19 +20,19 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     require: [true, "Password is required"],
+    trim: true,
   },
   phone: {
     type: String,
+    trim: true,
   },
   birthday: {
     type: Date,
     required: false,
   },
-  resetCode: {
+  photo: {
     type: String,
-  },
-  resetCodeExpires: {
-    type: Date,
+    trim: true,
   },
 });
 
