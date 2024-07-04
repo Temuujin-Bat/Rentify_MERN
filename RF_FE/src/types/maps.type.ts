@@ -4,6 +4,6 @@ export interface TMaps {
   country: string;
   streetNumber: string;
   postalCode: number;
-  width?: number;
+  width?: string;
   height?: number;
 }

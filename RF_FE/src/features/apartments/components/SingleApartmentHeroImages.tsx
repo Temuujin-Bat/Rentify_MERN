@@ -112,15 +112,19 @@ export default function SingleApartmentHeroImages() {
                     height: "100%",
                   }}
                 >
-                  <Box
-                    component={"img"}
-                    src={img}
-                    style={{
-                      height: "100%",
-                      width: "100%",
-                      objectFit: "contain",
-                    }}
-                  />
+                  {typeof img === "string" ? (
+                    <Box
+                      component={"img"}
+                      src={img}
+                      style={{
+                        height: "100%",
+                        width: "100%",
+                        objectFit: "contain",
+                      }}
+                    />
+                  ) : (
+                    <Box>{img}</Box>
+                  )}
                 </Box>
               ))}
             </Slider>

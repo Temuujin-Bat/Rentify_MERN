@@ -8,6 +8,16 @@ export interface TUserInfo {
   photo?: string;
 }
 
+export interface TUserStore {
+  userInfo: TUserInfo;
+}
+
+export interface TProfile {
+  day: string;
+  month: string;
+  year: string;
+}
+
 export interface TPassword {
   currentPassword: string;
   newPassword: string;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TAccount, TName, TPassword } from "../types";
+import { TAccount, TName, TPassword, TProfile } from "../types";
 
 async function UserInfoController() {
   try {
@@ -58,7 +58,7 @@ async function UserAccountController(accountData: TAccount) {
   }
 }
 
-async function UserProfileController(profileData) {
+async function UserProfileController(profileData: TProfile) {
   try {
     await axios.put(
       "http://localhost:1010/api/v1/user/profile/edit-profile",

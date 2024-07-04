@@ -1,9 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { reducers } from "./reducers";
+import { TUserStore } from "../../types";
 
-const initialState = {
-  userInfo: {},
+const initialState: TUserStore = {
+  userInfo: {
+    email: "",
+    firstName: "",
+    lastName: "",
+    _id: "",
+  },
 };
 
 const userSlice = createSlice({

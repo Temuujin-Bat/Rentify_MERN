@@ -3,9 +3,9 @@ import { getAuthData } from "../store/auth/selectors";
 import { Navigate } from "react-router-dom";
 
 const AuthRedirect = ({ children }: { children: ReactNode }) => {
-  const { tokenDetails } = getAuthData();
+  const { token } = getAuthData();
 
-  if (tokenDetails) {
+  if (token) {
     return <Navigate to="/" />;
   }
 

@@ -42,7 +42,7 @@ export default function ApartmentsGrids() {
                   country="Israel"
                   streetNumber={apartment?.address?.buildingNumber}
                   postalCode={Number(apartment?.address?.zipCode)}
-                  width={400}
+                  width="100%"
                   height={220}
                 />
 
