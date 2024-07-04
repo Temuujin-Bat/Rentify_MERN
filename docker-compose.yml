@@ -10,6 +10,7 @@ services:
       - "5173:5173" # Map container port 3000 to host port 3000
     depends_on:
       - rf-be # Wait for rf-be service to be ready before starting rf-fe
+    command: ["npm", "run", "test"]
 
   rf-be:
     container_name: rf-be-container
@@ -19,4 +20,4 @@ services:
     ports:
       - "1010:1010" # Map container port 5000 to host port 5000
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
