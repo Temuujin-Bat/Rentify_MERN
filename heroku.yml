@@ -1,0 +1,12 @@
+setup:
+  addons:
+    - plan: heroku-postgresql:hobby-dev
+
+build:
+  docker:
+    web: ./RF_FE/Dockerfile
+    api: ./RF_BE/Dockerfile
+
+run:
+  web: npm run dev --prefix RF_FE
+  api: node server.js --prefix RF_BE
