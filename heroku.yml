@@ -1,8 +1,0 @@
-build:
-  docker:
-    web: ./RF_FE/Dockerfile # Path to your frontend Dockerfile
-    api: ./RF_BE/Dockerfile # Path to your backend Dockerfile
-
-run:
-  web: npm run dev --prefix RF_FE
-  api: node RF_BE/server.js
