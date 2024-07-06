@@ -36,8 +36,10 @@ app.use("*", (req, res) => {
   res.status(404).json({ msg: "URL Not found" });
 });
 
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/RF_FE/build")));
+  app.use(express.static(path.join(__dirname, "RF_FE", "build")));
 
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "RF_FE", "build", "index.html"));
