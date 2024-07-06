@@ -8,9 +8,6 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
-dist-ssr
-*.local
 
 # Editor directories and files
 .vscode/*
@@ -22,3 +19,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Exclude build but include specific build output directories
+/build/*
+!/build/index.html
+!/build/static

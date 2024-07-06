@@ -6,6 +6,8 @@ import * as dotenv from "dotenv";
 dotenv.config();
 const app = express();
 import cookieParser from "cookie-parser";
+import path from "path";
+import compression from "compression";
 
 import apartmentRouter from "./routes/apartmentRouter.js";
 import authRouter from "./routes/authRouter.js";
@@ -23,6 +25,7 @@ app.use(
 );
 app.use(cookieParser());
 app.use(morgan("dev"));
+app.use(compression());
 
 ///
 /// Routes
@@ -34,6 +37,20 @@ app.use("/api/v1/user", userRouter);
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "URL Not found" });
 });
+
+const __dirname = path.resolve();
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/RF_FE/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname), "RF_FE", "build", "index.html");
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("API running!");
+  });
+}
 
 ///
 /// Port and MongoDB
