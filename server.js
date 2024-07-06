@@ -7,7 +7,6 @@ dotenv.config();
 const app = express();
 import cookieParser from "cookie-parser";
 import path from "path";
-import compression from "compression";
 
 import apartmentRouter from "./routes/apartmentRouter.js";
 import authRouter from "./routes/authRouter.js";
@@ -25,7 +24,6 @@ app.use(
 );
 app.use(cookieParser());
 app.use(morgan("dev"));
-app.use(compression());
 
 ///
 /// Routes
