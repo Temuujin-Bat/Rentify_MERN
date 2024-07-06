@@ -1,4 +1,4 @@
-import { Navigate, useRoutes } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 import { lazy } from "react";
 
 import { MainLayout } from "../layouts";
@@ -67,14 +67,6 @@ const InitRoutes = () => {
             <AuthRedirect>
               <LazyLogin />
             </AuthRedirect>
-          ),
-        },
-        {
-          path: "/user",
-          element: (
-            <ProtectedRoute>
-              <Navigate to="/user/apartments" replace />
-            </ProtectedRoute>
           ),
         },
         {

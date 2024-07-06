@@ -2,8 +2,18 @@ import Apartment from "../models/apartmentModel.js";
 
 export const getAllApartments = async (req, res) => {
   try {
-    const { city } = req.query;
-    const query = city ? { "address.city": city } : {};
+    const { city, rooms } = req.query;
+
+    const query = {};
+
+    if (city) {
+      query["address.city"] = city;
+    }
+
+    if (rooms) {
+      query["apartment.rooms"] = rooms;
+    }
+
     const apartments = await Apartment.find(query);
 
     return res.status(200).json({
