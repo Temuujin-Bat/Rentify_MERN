@@ -13,14 +13,12 @@ services:
   rf-be:
     container_name: rf-be-container
     build:
-      context: ./RF_BE # Path to your backend Dockerfile directory
+      context: ./
       dockerfile: Dockerfile
     ports:
       - "1010:1010" # Map container port 5000 to host port 5000
     environment:
       - NODE_ENV=development
-    volumes:
-      - ./RF_BE:/app
 
 networks:
   app-network: # Define a custom network for the services to communicate

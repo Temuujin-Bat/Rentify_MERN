@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./assets/common.css";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { store } from "./store";
+import { store } from "./store/index.ts";
 import LazyLoadingMUI from "./components/LoadingMUI.tsx";
 
 const queryClient = new QueryClient({
