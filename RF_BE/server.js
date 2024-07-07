@@ -32,7 +32,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", userRouter);
 
 app.use("*", (req, res) => {
-  res.status(404).json({ msg: "URL Not found" });
+  res.status(404).json({ msg: "URL Not found!" });
 });
 
 ///
