@@ -6,8 +6,6 @@ import * as dotenv from "dotenv";
 dotenv.config();
 const app = express();
 import cookieParser from "cookie-parser";
-import path from "path";
-import { fileURLToPath } from "url";
 
 import apartmentRouter from "./routes/apartmentRouter.js";
 import authRouter from "./routes/authRouter.js";
@@ -33,13 +31,8 @@ app.use("/api/v1/apartments", apartmentRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", userRouter);
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-app.use(express.static(path.join(__dirname, "/RF_FE/dist")));
-
 app.use("*", (req, res) => {
-  res.sendFile(path).join(__dirname, "/RF_FE/dist", "index.html");
+  res.status(404).json({ msg: "URL Not found" });
 });
 
 ///
