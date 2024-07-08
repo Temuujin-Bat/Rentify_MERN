@@ -1,6 +1,6 @@
 const Apartment = require("../models/apartmentModel.js");
 
-export const getAllApartments = async (req, res) => {
+const getAllApartments = async (req, res) => {
   try {
     const { city, rooms } = req.query;
 
@@ -28,7 +28,7 @@ export const getAllApartments = async (req, res) => {
   }
 };
 
-export const getSingleApartment = async (req, res) => {
+const getSingleApartment = async (req, res) => {
   try {
     const apartment = await Apartment.findById(req.params.id);
 
@@ -50,7 +50,7 @@ export const getSingleApartment = async (req, res) => {
   }
 };
 
-export const addApartment = async (req, res) => {
+const addApartment = async (req, res) => {
   try {
     const { userID } = req.user;
     const newApartmentData = {
@@ -68,3 +68,5 @@ export const addApartment = async (req, res) => {
     });
   }
 };
+
+module.exports = { getAllApartments, getSingleApartment, addApartment };

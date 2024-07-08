@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const apartmentSchema = new mongoose.Schema(
   {
@@ -36,4 +36,6 @@ const apartmentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Apartment", apartmentSchema);
+const Apartment = mongoose.model("Apartment", apartmentSchema);
+
+module.exports = Apartment;

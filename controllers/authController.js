@@ -2,7 +2,7 @@ const User = require("../models/userModel.js");
 const { comparePasswords, hashPassword } = require("../utils/passwordUtils");
 const { createJWT } = require("../utils/tokenUtils");
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
   try {
     const { email, password, firstName, lastName } = req.body;
 
@@ -38,7 +38,7 @@ export const register = async (req, res) => {
   }
 };
 
-export const login = async (req, res) => {
+const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -85,3 +85,5 @@ export const login = async (req, res) => {
       .json({ error: "Error inside authController.js/login" });
   }
 };
+
+module.exports = { register, login };

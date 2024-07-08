@@ -10,8 +10,7 @@ const {
   userApartments,
   userSingleApartment,
 } = require("../controllers/userController");
-const { authUser } = require("../middlewares/authMiddleware");
-
+const authUser = require("../middlewares/authMiddleware");
 const router = Router();
 
 router.get("/profile", authUser, getProfile);
@@ -27,4 +26,4 @@ router
   .delete("/apartment/:id", authUser, deleteApartment)
   .put("/apartment/:id", authUser, editApartment);
 
-export default router;
+module.exports = router;

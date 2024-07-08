@@ -2,7 +2,7 @@ const User = require("../models/userModel");
 const Apartment = require("../models/apartmentModel");
 const { comparePasswords, hashPassword } = require("../utils/passwordUtils");
 
-export const getProfile = async (req, res) => {
+const getProfile = async (req, res) => {
   try {
     const userID = req.user.userID;
 
@@ -26,7 +26,7 @@ export const getProfile = async (req, res) => {
   }
 };
 
-export const editProfile = async (req, res) => {
+const editProfile = async (req, res) => {
   try {
     const userID = req.user.userID;
     const user = await User.findById(userID);
@@ -51,7 +51,7 @@ export const editProfile = async (req, res) => {
   }
 };
 
-export const editName = async (req, res) => {
+const editName = async (req, res) => {
   try {
     const userID = req.user.userID;
     const user = await User.findById(userID);
@@ -72,7 +72,7 @@ export const editName = async (req, res) => {
   }
 };
 
-export const editAccount = async (req, res) => {
+const editAccount = async (req, res) => {
   try {
     const userID = req.user.userID;
     const user = await User.findById(userID);
@@ -93,7 +93,7 @@ export const editAccount = async (req, res) => {
   }
 };
 
-export const editPassword = async (req, res) => {
+const editPassword = async (req, res) => {
   try {
     const userID = req.user.userID;
     const user = await User.findById(userID);
@@ -123,7 +123,7 @@ export const editPassword = async (req, res) => {
   }
 };
 
-export const editApartment = async (req, res) => {
+const editApartment = async (req, res) => {
   try {
     const { id } = req.params;
     const updateData = req.body;
@@ -147,7 +147,7 @@ export const editApartment = async (req, res) => {
   }
 };
 
-export const userApartments = async (req, res) => {
+const userApartments = async (req, res) => {
   try {
     const { userID } = req.user;
 
@@ -167,7 +167,7 @@ export const userApartments = async (req, res) => {
   }
 };
 
-export const userSingleApartment = async (req, res) => {
+const userSingleApartment = async (req, res) => {
   try {
     const apartment = await Apartment.findById(req.params.id);
 
@@ -186,7 +186,7 @@ export const userSingleApartment = async (req, res) => {
   }
 };
 
-export const deleteApartment = async (req, res) => {
+const deleteApartment = async (req, res) => {
   try {
     const { id } = req.params;
     const apartment = await Apartment.findById(id);
@@ -206,4 +206,17 @@ export const deleteApartment = async (req, res) => {
       error: error.message,
     });
   }
+};
+
+module.exports = {
+  getProfile,
+  editAccount,
+  editPassword,
+  editProfile,
+  editName,
+  editAccount,
+  userApartments,
+  deleteApartment,
+  userSingleApartment,
+  editApartment,
 };

@@ -1,6 +1,6 @@
 const { verifyJWT } = require("../utils/tokenUtils");
 
-export const authUser = (req, res, next) => {
+const authUser = (req, res, next) => {
   try {
     const { token } = req.cookies;
 
@@ -17,3 +17,5 @@ export const authUser = (req, res, next) => {
     return res.status(403).json({ msg: "Authentication invalid" });
   }
 };
+
+module.exports = authUser;
