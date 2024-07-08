@@ -14,7 +14,7 @@ const userRouter = require("./routes/userRouter");
 
 app.use(express.json());
 
-const allowedOrigins = ["http://localhost:5173"];
+const allowedOrigins = ["http://localhost:5173", "http://localhost"];
 
 const corsOptions = {
   origin: function (origin, callback) {
