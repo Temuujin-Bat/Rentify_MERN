@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../../store/auth/slice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import img from "../../../assets/navbar/r-high-resolution-logo.png";
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -110,17 +111,24 @@ export default function Navbar() {
 
       {/* LOGO */}
       <Box>
-        <Link href="/" underline="none">
+        <Link
+          href="/"
+          underline="none"
+          sx={{ display: "flex", alignItems: "center" }}
+        >
+          <Box sx={{ height: "1.5em", mr: "5px" }}>
+            <Typography component={"img"} src={img} sx={{ height: "100%" }} />
+          </Box>
           <Typography
             sx={{
               display: { xs: "none", sm: "flex", md: "flex", lg: "flex" },
               fontWeight: "bold",
               fontSize: "1.5em",
-              color: "rgba(255, 99, 71, 1)",
-              letterSpacing: ".4em",
+              color: "rgba(255, 164, 88, 1)",
+              letterSpacing: ".2em",
             }}
           >
-            Rentify
+            entify
           </Typography>
         </Link>
       </Box>
