@@ -1,4 +1,4 @@
-import { verifyJWT } from "../utils/tokenUtils.js";
+const { verifyJWT } = require("../utils/tokenUtils");
 
 export const authUser = (req, res, next) => {
   try {

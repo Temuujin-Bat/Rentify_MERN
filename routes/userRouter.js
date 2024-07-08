@@ -1,5 +1,5 @@
-import { Router } from "express";
-import {
+const { Router } = require("express");
+const {
   editAccount,
   editApartment,
   editName,
@@ -9,8 +9,8 @@ import {
   deleteApartment,
   userApartments,
   userSingleApartment,
-} from "../controllers/userController.js";
-import { authUser } from "../middlewares/authMiddleware.js";
+} = require("../controllers/userController");
+const { authUser } = require("../middlewares/authMiddleware");
 
 const router = Router();
 

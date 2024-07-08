@@ -1,6 +1,6 @@
-import User from "../models/userModel.js";
-import { comparePasswords, hashPassword } from "../utils/passwordUtils.js";
-import { createJWT } from "../utils/tokenUtils.js";
+const User = require("../models/userModel.js");
+const { comparePasswords, hashPassword } = require("../utils/passwordUtils");
+const { createJWT } = require("../utils/tokenUtils");
 
 export const register = async (req, res) => {
   try {

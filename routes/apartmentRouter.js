@@ -1,10 +1,10 @@
-import { Router } from "express";
-import {
+const { Router } = require("express");
+const {
   addApartment,
   getAllApartments,
   getSingleApartment,
-} from "../controllers/apartmentsController.js";
-import { authUser } from "../middlewares/authMiddleware.js";
+} = require("../controllers/apartmentsController");
+const { authUser } = require("../middlewares/authMiddleware");
 
 const router = Router();
 

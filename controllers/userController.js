@@ -1,6 +1,6 @@
-import User from "../models/userModel.js";
-import Apartment from "../models/apartmentModel.js";
-import { comparePasswords, hashPassword } from "../utils/passwordUtils.js";
+const User = require("../models/userModel");
+const Apartment = require("../models/apartmentModel");
+const { comparePasswords, hashPassword } = require("../utils/passwordUtils");
 
 export const getProfile = async (req, res) => {
   try {
