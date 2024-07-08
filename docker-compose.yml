@@ -23,3 +23,19 @@ services:
       - app-network
     environment:
       - NODE_ENV=development
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - rf-fe
+      - rf-be
+    networks:
+      - app-network
+
+networks:
+  app-network: # Define a custom network for the services to communicate
+    driver: bridge
