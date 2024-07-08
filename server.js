@@ -42,7 +42,7 @@ app.use("/api/v1/user", userRouter);
 app.use(express.static(path.join(__dirname, "/RF_FE/dist")));
 
 app.use("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/RF_FE/dist", "index.html"));
+  res.sendFile(path.join(__dirname, "/RF_FE", "dist", "index.html"));
 });
 
 const port = process.env.PORT || 1010;
