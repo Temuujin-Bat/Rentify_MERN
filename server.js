@@ -33,7 +33,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(cookieParser());
-app.use(morgan("dev"));
+app.use(morgan("combined"));
 
 app.use("/api/v1/apartments", apartmentRouter);
 app.use("/api/v1/auth", authRouter);
