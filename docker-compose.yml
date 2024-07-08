@@ -15,7 +15,7 @@ services:
   rf-be:
     container_name: rf-be-container
     build:
-      context: ./
+      context: ./RF_BE
       dockerfile: Dockerfile
     ports:
       - "1010:1010" # Map container port 5000 to host port 5000
