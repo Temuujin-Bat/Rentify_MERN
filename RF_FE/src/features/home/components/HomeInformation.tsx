@@ -16,6 +16,7 @@ export default function HomeInformation() {
         flexDirection: "column",
         alignItems: "center",
         marginTop: "50px",
+        mb: "100px",
       }}
     >
       <Typography

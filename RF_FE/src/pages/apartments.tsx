@@ -20,7 +20,7 @@ export default function apartments() {
   }
 
   return (
-    <Container maxWidth={"lg"}>
+    <Container maxWidth={"lg"} sx={{ mb: "50px" }}>
       <Grid xs={12} sm={12} md={12} lg={12}>
         <ApartmentsFilter />
       </Grid>

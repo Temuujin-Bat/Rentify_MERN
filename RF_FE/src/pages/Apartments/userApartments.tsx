@@ -13,12 +13,10 @@ export default function userApartments() {
   }
 
   return (
-    <>
-      <Container maxWidth={"lg"}>
-        <Grid xs={12} sm={12} md={12} lg={12}>
-          <UserApartmentsGrids />
-        </Grid>
-      </Container>
-    </>
+    <Container maxWidth={"lg"} sx={{ mb: "100px" }}>
+      <Grid xs={12} sm={12} md={12} lg={12}>
+        <UserApartmentsGrids />
+      </Grid>
+    </Container>
   );
 }
